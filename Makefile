@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/08/12 19:04:22 by bledda           ###   ########.fr        #
+#    Updated: 2021/08/12 19:08:05 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ re: 		fclean all
 clean:
 			$(MAKE_EXT) ./libft clean
 			$(MAKE_EXT) ./mlx_utils clean
-			@${RM} ${SRCS_OBJ}
+			@${RM} ${SRCS_OBJS}
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Object files have been deleted 🚮\n"
