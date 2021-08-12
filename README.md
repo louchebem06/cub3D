@@ -17,10 +17,7 @@
 | Turn in files    |  All your files                                                                                                                                                                                      |
 | Makefile         | all, clean, fclean, re, bonus                                                                                                                                                                                          |
 | Arguments        |   a map in format *.cub                                                                              |
-| External functs. | • open, close, read, write, printf, malloc, free, perror, strerror, exit
-• All functions of the math
-library (-lm man man 3 math)
-• All functions of the MinilibX |
+| External functs. | • open, close, read, write, printf, malloc, free, perror, strerror, exit • All functions of the math library (-lm man man 3 math) • All functions of the MinilibX |
 | Libft authorized | Yes                                                                                                                                                                                           |
 | Description      | Vous devez créer un graphique 3D « réaliste »
 représentation de l'intérieur d'un labyrinthe à partir d'un
