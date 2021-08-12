@@ -36,13 +36,13 @@ Les touches fléchées gauche et droite du clavier doivent vous permettre de reg
 droit dans le labyrinthe.<br>
 ◦ Les touches W, A, S et D doivent vous permettre de déplacer le point de vue à travers
 le labyrinthe.<br>◦ Appuyer sur ESC doit fermer la fenêtre et quitter le programme proprement.<br>◦ Cliquer sur la croix rouge sur le cadre de la fenêtre doit fermer la fenêtre et
-quittez le programme proprement.
+quittez le programme proprement.<br>
 L'utilisation d'images de la minilibX est fortement recommandée.
 - Votre programme doit prendre comme premier argument un fichier de description de scène avec le .cub
 extension.
 La carte doit être composée uniquement de 6 caractères possibles : 0 pour un espace vide,
 1 pour un mur, et N,S,E ou W pour la position de départ et le frai du joueur
-orientation.
+orientation.<br>
 Il s'agit d'une simple carte valide :
 ```
 111111
@@ -52,18 +52,17 @@ Il s'agit d'une simple carte valide :
 111111
 ```
 ◦ La carte doit être fermée/entourée de murs, sinon le programme doit revenir
-une erreur.
+une erreur.<br>
 ◦ A l'exception du contenu de la carte, chaque type d'élément peut être séparé par un ou
-plus de ligne(s) vide(s).
+plus de ligne(s) vide(s).<br>
 ◦ A l'exception du contenu de la carte qui doit toujours être le dernier, chaque type de
-L'élément peut être défini dans n'importe quel ordre dans le fichier.
+L'élément peut être défini dans n'importe quel ordre dans le fichier.<br>
 ◦ A l'exception de la carte, chaque type d'information d'un élément peut être séparé
-par un ou plusieurs espace(s).
+par un ou plusieurs espace(s).<br>
 ◦ La carte doit être analysée telle qu'elle apparaît dans le fichier. Les espaces sont une partie valide du
 carte et sont à vous de gérer. Vous devez être capable d'analyser tout type de carte,
-tant qu'il respecte les règles de la carte.
-◦ La première information de chaque élément (sauf la carte) est l'identifiant de type (composé d'un ou deux caractère(s)), suivi de toutes les informations spécifiques à chacun
-objet dans un ordre strict tel que :
+tant qu'il respecte les règles de la carte.<br>
+◦ La première information de chaque élément (sauf la carte) est l'identifiant de type (composé d'un ou deux caractère(s)), suivi de toutes les informations spécifiques à chacun objet dans un ordre strict tel que :<br>
 
 Texture Nord :
 ```
