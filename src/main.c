@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:13:22 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 01:04:38 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 01:13:03 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_extension(const char *file, const char *ext)
 
 /*
 	Ne peut etre valide car si il y a des retour a la ligne dans la maps
-	ont ne peut pas les detecter
+	ont ne peut pas les detecté
 */
 static char	**get_config(int fd, const char *file)
 {
