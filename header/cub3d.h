@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 00:22:18 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 01:05:42 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_vars
 	void	*win;
 }			t_vars;
 
-typedef struct s_rgv
+typedef struct s_rgb
 {
 	int		r;
 	int		g;
