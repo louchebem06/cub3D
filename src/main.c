@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:13:22 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 01:13:03 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 01:32:53 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,54 +24,48 @@ static int	ft_extension(const char *file, const char *ext)
 	size_file -= size_ext;
 	size_ext = 0;
 	while (file[size_file])
+	{
 		if (file[size_file++] != ext[size_ext++])
 			return (0);
+	}
 	return (1);
 }
 
-/*
-	Ne peut etre valide car si il y a des retour a la ligne dans la maps
-	ont ne peut pas les detecté
-*/
-static char	**get_config(int fd, const char *file)
+static void	get_file(int fd, const char *file, char ***config)
 {
-	char	**config;
 	char	*line;
 	int		i;
 
 	i = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (ft_strlen(line) > 0)
-			i++;
+		i++;
 		free(line);
 	}
-	if (ft_strlen(line) > 0)
-		i++;
+	i++;
 	free(line);
 	close (fd);
 	fd = open(file, O_RDONLY);
-	config = ft_calloc(sizeof(char *), i + 1);
+	*config = ft_calloc(sizeof(char *), i + 1);
 	i = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (ft_strlen(line) > 0)
-			config[i++] = ft_strdup(line);
+		(*config)[i++] = ft_strdup(line);
 		free(line);
 	}
 	if (ft_strlen(line) > 0)
-		config[i] = ft_strdup(line);
+		(*config)[i] = ft_strdup(line);
 	free(line);
 	close(fd);
-	return (config);
 }
 
 static int	ft_config(t_cub *cub, const char *file)
 {
 	int		fd;
-	char	**config;
+	char	**data_file;
 
 	(void)cub;
+	data_file = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1 || !ft_extension(file, ".cub"))
 	{
@@ -79,9 +73,7 @@ static int	ft_config(t_cub *cub, const char *file)
 format or the file could not be opened\n");
 		return (0);
 	}
-	config = get_config(fd, file);
-	for (int i = 0; config[i]; i++)
-		printf("%s\n", config[i]);
+	get_file(fd, file, &data_file);
 	return (1);
 }
 
