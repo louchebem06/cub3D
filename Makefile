@@ -45,7 +45,7 @@ endif
 #	RULES	#########################################################################
 $(NAME):	${SRCS_OBJS}
 			@printf $(magenta)
-			@printf "Start build ⏳\n"
+			@printf "\nStart build ⏳\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
 			$(MAKE_EXT) ./libft
@@ -56,7 +56,6 @@ $(NAME):	${SRCS_OBJS}
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
 			@$(CC) $(CFLAGS) ${SRCS_OBJS} $(LIBS) -o $(NAME)
-			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Your cub3D is ready ✅\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
