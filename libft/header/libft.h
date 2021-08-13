@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 12:40:50 by bledda            #+#    #+#             */
-/*   Updated: 2021/06/20 00:29:14 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 00:22:29 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <limits.h>
 # include <stdarg.h>
 
-# define BUFFER_SIZE 10
+# define BUFFER_SIZE 1
 
 typedef struct s_list
 {

@@ -6,13 +6,13 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 15:08:32 by bledda            #+#    #+#             */
-/*   Updated: 2021/06/05 05:53:01 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 00:31:17 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/libft.h"
 
-char 	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	size_t	i;
 	char	*str;

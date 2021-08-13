@@ -6,14 +6,14 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/08/12 19:08:05 by bledda           ###   ########.fr        #
+#    Updated: 2021/08/14 00:29:58 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				= cub3D
 
 #	FILES			############################################################
-HEADER_FILE 		= cub3d.h
+HEADER_FILES 		= cub3d.h
 
 FOLDER_HEADER		= header/
 FOLDER_SRC			= src/
@@ -21,6 +21,7 @@ FOLDER_SRC			= src/
 SRCS_FILES			= main.c
 
 SRCS				= $(addprefix ${FOLDER_SRC},${SRCS_FILES})
+HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILES})
 
 SRCS_OBJS			= ${SRCS:.c=.o}
 ####################################################################################
@@ -30,7 +31,7 @@ CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
-LIB					= -L ./libft -L ./mlx_utils -lm
+LIB					= -L ./libft -lft -L ./mlx_utils -lm
 
 UNAME_S				= $(shell uname -s)
 
