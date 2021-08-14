@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strisdigit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/12 18:13:22 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 04:45:23 by bledda           ###   ########.fr       */
+/*   Created: 2021/08/14 05:17:04 by bledda            #+#    #+#             */
+/*   Updated: 2021/08/14 05:18:17 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3d.h"
+#include "../../header/ft_config.h"
 
-int	main(int ac, const char **av)
+int	ft_strisdigit(char *str)
 {
-	t_cub	cub;
+	int	i;
 
-	if (ac == 2 && ft_config(&cub, av[1]))
-	{
-		cub.win.mlx = mlx_init();
-		cub.win.win = mlx_new_window(cub.win.mlx, WINDOWS_WIDTH,
-				WINDOWS_HEIGHT, "cub3D");
-		mlx_loop(cub.win.mlx);
-	}
-	else if (ac == 1)
-		printf("error: please specify a map\n");
-	else if (ac > 2)
-		printf("error: too many arguments\n");
-	return (0);
+	i = -1;
+	while (str[++i])
+		if (!ft_isdigit(str[i]))
+			return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 01:37:02 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 05:14:51 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,14 @@
 # include "../mlx_utils/header/mlx_keycode.h"
 # include "../mlx_utils/header/mlx_put_img_to_img.h"
 # include <fcntl.h>
+# include "ft_config.h"
+# include "utils.h"
 
 # define WINDOWS_WIDTH 600
 # define WINDOWS_HEIGHT 300
+
+typedef struct s_data_img	t_data_img;
+typedef struct s_img		t_img;
 
 typedef struct s_vars
 {

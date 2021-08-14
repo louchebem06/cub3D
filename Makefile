@@ -6,24 +6,43 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/08/14 00:29:58 by bledda           ###   ########.fr        #
+#    Updated: 2021/08/14 05:20:02 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				= cub3D
 
 #	FILES			############################################################
-HEADER_FILES 		= cub3d.h
+HEADER_FILES 		= cub3d.h \
+						ft_config.h \
+						utils.h
 
 FOLDER_HEADER		= header/
 FOLDER_SRC			= src/
+FOLDER_PARSING		= $(addprefix ${FOLDER_SRC},parsing/)
+FOLDER_UTILS		= $(addprefix ${FOLDER_SRC},utils/)
 
 SRCS_FILES			= main.c
 
+SRCS_PARSING_FILES	= ft_config.c \
+						ft_extension.c \
+						get_file.c \
+						get_values.c \
+						get_values_utils.c
+
+SRCS_UTILS_FILES	= add_value.c \
+						ft_strisdigit.c
+
 SRCS				= $(addprefix ${FOLDER_SRC},${SRCS_FILES})
+SRCS_PARSING		= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES})
+SRCS_UTILS			= $(addprefix ${FOLDER_UTILS},${SRCS_UTILS_FILES})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILES})
 
 SRCS_OBJS			= ${SRCS:.c=.o}
+SRCS_PARSING_OBJS	= ${SRCS_PARSING:.c=.o}
+SRCS_UTILS_OBJS		= ${SRCS_UTILS:.c=.o}
+
+OBJS				= $(SRCS_OBJS) $(SRCS_PARSING_OBJS) $(SRCS_UTILS_OBJS)
 ####################################################################################
 
 #	COMPILATION		################################################################
@@ -44,7 +63,7 @@ endif
 #####################################################################################
 
 #	RULES	#########################################################################
-$(NAME):	${SRCS_OBJS}
+$(NAME):	${OBJS}
 			@printf $(magenta)
 			@printf "\nStart build ⏳\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
@@ -56,7 +75,7 @@ $(NAME):	${SRCS_OBJS}
 			@printf "Compiling cub3D🔨\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
-			@$(CC) $(CFLAGS) ${SRCS_OBJS} $(LIBS) -o $(NAME)
+			@$(CC) $(CFLAGS) ${OBJS} $(LIBS) -o $(NAME)
 			@printf $(magenta)
 			@printf "Your cub3D is ready ✅\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
@@ -75,7 +94,7 @@ re: 		fclean all
 clean:
 			$(MAKE_EXT) ./libft clean
 			$(MAKE_EXT) ./mlx_utils clean
-			@${RM} ${SRCS_OBJS}
+			@${RM} ${OBJS}
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Object files have been deleted 🚮\n"
