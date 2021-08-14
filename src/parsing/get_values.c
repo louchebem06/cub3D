@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 05:09:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 05:37:36 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 06:56:28 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ static void	add_config_data(const char *line, t_isset *isset, t_cub *cub)
 	split_line = ft_split(line, ' ');
 	if (split_line[0] && !valid_param(split_line[0]))
 	{
-		printf("error: %s is an unknown parameter\n", split_line[0]);
+		printf("Error:\n%s is an unknown parameter\n", split_line[0]);
 		isset->error = 1;
 		return ;
 	}
 	if (!split_line[1])
 	{
-		printf("error: param %s is empty\n", split_line[0]);
+		printf("Error:\nParam %s is empty\n", split_line[0]);
 		isset->error = 1;
 	}
 	else if (ft_strlen(split_line[0]) == 2)
@@ -70,19 +70,22 @@ static int	param_not_found(t_isset *isset)
 	i = 0;
 	if (!isset->no || !isset->so || !isset->we
 		|| !isset->ea || !isset->f || !isset->c)
+	{
+		printf("Error:\nParam not found:\n");
 		i = 1;
+	}
 	if (!isset->no)
-		printf("error: param NO is not found\n");
+		printf("\t-NO is not found\n");
 	if (!isset->so)
-		printf("error: param SO is not found\n");
+		printf("\t-SO is not found\n");
 	if (!isset->we)
-		printf("error: param WE is not found\n");
+		printf("\t-WE is not found\n");
 	if (!isset->ea)
-		printf("error: param EA is not found\n");
+		printf("\t-EA is not found\n");
 	if (!isset->f)
-		printf("error: param F is not found\n");
+		printf("\t-F is not found\n");
 	if (!isset->c)
-		printf("error: param C is not found\n");
+		printf("\t-C is not found\n");
 	return (i);
 }
 

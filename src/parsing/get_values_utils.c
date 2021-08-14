@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 05:19:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 06:17:18 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 07:10:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	check_value_simple(char ***split_line, char **content, int *etat)
 {
 	*content = ft_strdup((*split_line)[1]);
 	if (*etat)
-		printf("error: several param %s exist\n", (*split_line)[0]);
+		printf("Error:\nSeveral param %s exist\n", (*split_line)[0]);
 	*etat = 1;
 }
 
@@ -35,13 +35,13 @@ void	add_simple(t_isset *isset, t_cub *cub, char ***split_line)
 	if ((*split_line)[2])
 	{
 		isset->error = 1;
-		printf("error: to many values in %s\n", (*split_line)[0]);
+		printf("Error:\nTo many values in %s\n", (*split_line)[0]);
 		return ;
 	}
 	fd = open((*split_line)[1], O_RDONLY);
 	if (fd == -1)
 	{
-		printf("error: %s in param %s cannot be opened\n",
+		printf("Error:\n%s in param %s cannot be opened\n",
 			(*split_line)[1], (*split_line)[0]);
 		isset->error = 1;
 		return ;
@@ -64,14 +64,14 @@ static void	check_value_multi(char ***split_arg, char ***split_line,
 		if (color->r > 255 || color->g > 255 || color->b > 255)
 		{
 			isset->error = 1;
-			printf("error: value color for %s and above 255\n",
+			printf("Error:\nValue color for %s and above 255\n",
 				(*split_line)[0]);
 		}
 	}
 	else
 	{
 		isset->error = 1;
-		printf("error: arg is not valid for %s\n", (*split_line)[0]);
+		printf("Error:\nArg not valid for %s\n", (*split_line)[0]);
 	}
 	i = -1;
 	while ((*split_arg)[++i])
@@ -95,7 +95,7 @@ void	add_multi(t_isset *isset, t_cub *cub, char ***split_line)
 	if ((!ft_strncmp((*split_line)[0], "F", 1) && isset->f)
 		|| (!ft_strncmp((*split_line)[0], "C", 1) && isset->c))
 	{
-		printf("error: several param %s exist\n", (*split_line)[0]);
+		printf("Error:\nSeveral param %s exist\n", (*split_line)[0]);
 		isset->error = 1;
 	}
 	if (!ft_strncmp((*split_line)[0], "F", 1))

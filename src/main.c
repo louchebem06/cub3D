@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:13:22 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 04:45:23 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 06:50:57 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	main(int ac, const char **av)
 		mlx_loop(cub.win.mlx);
 	}
 	else if (ac == 1)
-		printf("error: please specify a map\n");
+		printf("Error:\nPlease specify a map\n");
 	else if (ac > 2)
-		printf("error: too many arguments\n");
+		printf("Error:\nToo many arguments\n");
 	return (0);
 }
