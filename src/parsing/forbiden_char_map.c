@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 20:56:14 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 20:56:30 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 22:12:08 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	forbiden_char_map(char **map)
 				&& map[y][x] != '0' && map[y][x] != '1'
 				&& map[y][x] != ' ')
 			{
-				printf("Error:\n%c is forbiden char in map\n", map[y][x]);
+				printf("Error:\n'%c' is forbiden char in map\n", map[y][x]);
 				return (1);
 			}
 		}

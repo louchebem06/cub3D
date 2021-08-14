@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_config.c                                        :+:      :+:    :+:   */
+/*   remove_end_space_map.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 04:46:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 22:22:37 by bledda           ###   ########.fr       */
+/*   Created: 2021/08/14 22:16:26 by bledda            #+#    #+#             */
+/*   Updated: 2021/08/14 22:16:30 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
 
-int	ft_config(t_cub *cub, const char *file)
+int	remove_end_space_map(char ***map)
 {
-	int		fd;
-	char	**data_file;
+	int	size;
+	int	i;
 
-	data_file = 0;
-	fd = open(file, O_RDONLY);
-	if (fd == -1 || !ft_extension(file, ".cub"))
+	i = -1;
+	while ((*map)[++i])
 	{
-		printf("Error:\nYour card is not in the correct format \".cub\" \
-or the file could not be opened\n");
-		return (0);
+		size = ft_strlen((*map)[i]);
+		while (size > 0 && (*map)[i][size - 1] == ' ')
+		{
+			(*map)[i][size - 1] = 0;
+			size = ft_strlen((*map)[i]);
+		}
 	}
-	get_file(fd, file, &data_file);
-	if (!get_values(&data_file, cub) || !map_is_valid(cub))
-		return (0);
-	printf("%s is valid map\n", file);
-	return (1);
+	return (0);
 }

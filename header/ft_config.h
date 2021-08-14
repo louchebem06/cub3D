@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 20:57:45 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 22:43:57 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,8 @@ int		empty_line_in_map(char **map);
 int		forbiden_char_map(char **map);
 int		multi_pos_map(char **map);
 int		min_char_map(char **m);
+int		remove_end_space_map(char ***map);
+int		remove_space_map(char ***map);
+void	create_player_info(t_cub *cub);
 
 #endif
