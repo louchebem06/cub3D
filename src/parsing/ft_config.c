@@ -6,15 +6,12 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 05:08:58 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 06:34:22 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
 
-/*
-	Reste le parsing maps a faire
-*/
 int	ft_config(t_cub *cub, const char *file)
 {
 	int		fd;
@@ -29,7 +26,10 @@ or the file could not be opened\n");
 		return (0);
 	}
 	get_file(fd, file, &data_file);
-	if (!get_values(&data_file, cub))
+	if (!get_values(&data_file, cub) || !map_is_valid(cub->config.map))
+	{
+		map_is_valid(cub->config.map); //devras degager a la fin
 		return (0);
+	}
 	return (1);
 }

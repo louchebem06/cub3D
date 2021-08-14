@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 05:21:49 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 06:28:54 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void	get_file(int fd, const char *file, char ***config);
 int		get_values(char ***data_file, t_cub *cub);
 void	add_simple(t_isset *isset, t_cub *cub, char ***split);
 void	add_multi(t_isset *isset, t_cub *cub, char ***split);
+int		map_is_valid(char **map);
 
 #endif
