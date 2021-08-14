@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 06:29:40 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 06:45:47 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,23 @@ typedef struct s_config
 	char	**map;
 }			t_config;
 
+typedef struct s_position
+{
+	float	x;
+	float	y;
+}			t_position;
+
+typedef struct s_player
+{
+	t_position	pos;
+	float		angle;
+}				t_player;
+
 typedef struct s_cub
 {
 	t_vars		win;
 	t_config	config;
+	t_player	player;
 }				t_cub;
 
 #endif
