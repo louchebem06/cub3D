@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/08/14 22:43:47 by bledda           ###   ########.fr        #
+#    Updated: 2021/08/14 23:33:45 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ SRCS_PARSING_FILES	= ft_config.c \
 						min_char_map.c \
 						remove_end_space_map.c \
 						remove_space_map.c \
-						create_player_info.c
+						create_player_info.c \
+						wall_check_map.c
 
 SRCS_UTILS_FILES	= add_value.c \
 						ft_strisdigit.c

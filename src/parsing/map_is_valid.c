@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 06:21:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 23:14:31 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 23:47:10 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,13 @@ static void	error_ext(t_cub *cub)
 	free_cub(cub);
 }
 
-static int	wall_check_map(char **map)
-{
-	(void)map;
-	return (0);
-}
-
 int	map_is_valid(t_cub *cub)
 {
 	if (!remove_newlines(&cub->config.map) || remove_space_map(&cub->config.map)
 		|| empty_line_in_map(cub->config.map)
 		|| remove_end_space_map(&cub->config.map)
 		|| forbiden_char_map(cub->config.map) || min_char_map(cub->config.map)
-		|| multi_pos_map(cub->config.map) || wall_check_map(cub->config.map))
+		|| multi_pos_map(cub->config.map) || wall_check_map(cub))
 	{
 		free_cub(cub);
 		return (0);
