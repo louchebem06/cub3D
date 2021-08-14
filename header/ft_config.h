@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 18:25:46 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 19:53:38 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	free_path(t_isset *isset, t_cub *cub);
 void	add_simple(t_isset *isset, t_cub *cub, char ***split);
 void	add_multi(t_isset *isset, t_cub *cub, char ***split);
 int		map_is_valid(t_cub *cub);
+int		remove_newlines(char ***map);
 
 #endif
