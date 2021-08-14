@@ -6,17 +6,34 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 05:19:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 07:10:00 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 18:38:32 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
 
+void	free_path(t_isset *isset, t_cub *cub)
+{
+	if (isset->no && cub->config.path_no)
+		free(cub->config.path_no);
+	if (isset->so && cub->config.path_so)
+		free(cub->config.path_so);
+	if (isset->we && cub->config.path_we)
+		free(cub->config.path_we);
+	if (isset->ea && cub->config.path_ea)
+		free(cub->config.path_ea);
+	isset->error = 1;
+}
+
 static void	check_value_simple(char ***split_line, char **content, int *etat)
 {
-	*content = ft_strdup((*split_line)[1]);
 	if (*etat)
+	{
+		free(*content);
 		printf("Error:\nSeveral param %s exist\n", (*split_line)[0]);
+	}
+	else if ((*split_line)[1])
+		*content = ft_strdup((*split_line)[1]);
 	*etat = 1;
 }
 

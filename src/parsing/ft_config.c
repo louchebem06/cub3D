@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 07:03:46 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 18:41:41 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ or the file could not be opened\n");
 		return (0);
 	}
 	get_file(fd, file, &data_file);
-	if (!get_values(&data_file, cub) || !map_is_valid(cub->config.map))
+	if (!get_values(&data_file, cub) || !map_is_valid(cub))
 		return (0);
-	printf("%s is valid file\n", file);
+	printf("%s is valid map\n", file);
 	return (1);
 }

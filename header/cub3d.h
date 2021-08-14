@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 06:45:47 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 16:25:21 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_config
 	t_rgb	floor;
 	t_rgb	ceiling;
 	char	**map;
+	int		map_x;
+	int		map_y;
 }			t_config;
 
 typedef struct s_position

@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 05:09:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 06:56:28 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 18:43:17 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	add_config_data(const char *line, t_isset *isset, t_cub *cub)
 	if (!split_line[1])
 	{
 		printf("Error:\nParam %s is empty\n", split_line[0]);
-		isset->error = 1;
+		free_path(isset, cub);
 	}
 	else if (ft_strlen(split_line[0]) == 2)
 		add_simple(isset, cub, &split_line);
@@ -63,29 +63,32 @@ static void	add_config_data(const char *line, t_isset *isset, t_cub *cub)
 	free(split_line);
 }
 
-static int	param_not_found(t_isset *isset)
+static int	param_not_found(t_isset *isset, int error)
 {
 	int	i;
 
 	i = 0;
-	if (!isset->no || !isset->so || !isset->we
-		|| !isset->ea || !isset->f || !isset->c)
+	if (!error)
 	{
-		printf("Error:\nParam not found:\n");
-		i = 1;
+		if (!isset->no || !isset->so || !isset->we
+			|| !isset->ea || !isset->f || !isset->c)
+		{
+			printf("Error:\nParam not found:\n");
+			i = 1;
+		}
+		if (!isset->no)
+			printf("\t-NO is not found\n");
+		if (!isset->so)
+			printf("\t-SO is not found\n");
+		if (!isset->we)
+			printf("\t-WE is not found\n");
+		if (!isset->ea)
+			printf("\t-EA is not found\n");
+		if (!isset->f)
+			printf("\t-F is not found\n");
+		if (!isset->c)
+			printf("\t-C is not found\n");
 	}
-	if (!isset->no)
-		printf("\t-NO is not found\n");
-	if (!isset->so)
-		printf("\t-SO is not found\n");
-	if (!isset->we)
-		printf("\t-WE is not found\n");
-	if (!isset->ea)
-		printf("\t-EA is not found\n");
-	if (!isset->f)
-		printf("\t-F is not found\n");
-	if (!isset->c)
-		printf("\t-C is not found\n");
 	return (i);
 }
 
@@ -113,7 +116,7 @@ int	get_values(char ***data_file, t_cub *cub)
 		free((*data_file)[i]);
 	}
 	free((*data_file));
-	if (param_not_found(&isset) || isset.error)
+	if (param_not_found(&isset, isset.error) || isset.error)
 		return (0);
 	return (1);
 }
