@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/08/14 19:53:23 by bledda           ###   ########.fr        #
+#    Updated: 2021/08/14 20:57:21 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,11 @@ SRCS_PARSING_FILES	= ft_config.c \
 						get_values.c \
 						get_values_utils.c \
 						map_is_valid.c \
-						remove_newlines.c
+						remove_newlines.c \
+						empty_line_in_map.c \
+						forbiden_char_map.c \
+						multi_pos_map.c \
+						min_char_map.c
 
 SRCS_UTILS_FILES	= add_value.c \
 						ft_strisdigit.c

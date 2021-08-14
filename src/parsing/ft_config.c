@@ -6,12 +6,15 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 18:41:41 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 20:23:49 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
 
+/*
+	Verifier que les textures soit bien des .xpm
+*/
 int	ft_config(t_cub *cub, const char *file)
 {
 	int		fd;

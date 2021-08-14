@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 19:53:38 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/14 20:57:45 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "cub3d.h"
 
-typedef struct s_cub	t_cub;
+typedef struct s_cub		t_cub;
+typedef struct s_position	t_position;
 
 typedef struct s_isset
 {
@@ -37,5 +38,9 @@ void	add_simple(t_isset *isset, t_cub *cub, char ***split);
 void	add_multi(t_isset *isset, t_cub *cub, char ***split);
 int		map_is_valid(t_cub *cub);
 int		remove_newlines(char ***map);
+int		empty_line_in_map(char **map);
+int		forbiden_char_map(char **map);
+int		multi_pos_map(char **map);
+int		min_char_map(char **m);
 
 #endif
