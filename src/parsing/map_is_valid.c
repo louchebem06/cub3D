@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 06:21:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 04:41:53 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 05:42:19 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,24 @@ static void	free_cub(t_cub *cub)
 	free(cub->config.map);
 }
 
+static void	error_xpm(char *str)
+{
+	ft_error("\t- ");
+	ft_error(str);
+	ft_error(" not *.xpm file\n");
+}
+
 static void	error_ext(t_cub *cub)
 {
-	printf("Error:\n");
+	ft_error("Error:\n");
 	if (!ft_extension(cub->config.path_we, ".xmp"))
-		printf("\t- %s not *.xpm file\n", cub->config.path_we);
+		error_xpm(cub->config.path_we);
 	if (!ft_extension(cub->config.path_so, ".xmp"))
-		printf("\t- %s not *.xpm file\n", cub->config.path_so);
+		error_xpm(cub->config.path_so);
 	if (!ft_extension(cub->config.path_ea, ".xmp"))
-		printf("\t- %s not *.xpm file\n", cub->config.path_ea);
+		error_xpm(cub->config.path_ea);
 	if (!ft_extension(cub->config.path_no, ".xmp"))
-		printf("\t- %s not *.xpm file\n", cub->config.path_no);
+		error_xpm(cub->config.path_no);
 	free_cub(cub);
 }
 

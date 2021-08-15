@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 20:57:18 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 20:57:56 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 05:36:15 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	min_char_map(char **m)
 		}
 	}
 	if (!player)
-		printf("Error:\nPlayer position is not found in map\n");
+		ft_error("Error:\nPlayer position is not found in map\n");
 	if (!wall)
-		printf("Error:\nWall is not foundin map\n");
+		ft_error("Error:\nWall is not foundin map\n");
 	if (!player || !wall)
 		return (1);
 	return (0);

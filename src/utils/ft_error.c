@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/12 18:13:22 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 05:35:39 by bledda           ###   ########.fr       */
+/*   Created: 2021/08/15 05:25:05 by bledda            #+#    #+#             */
+/*   Updated: 2021/08/15 05:33:40 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3d.h"
+#include "../../header/ft_config.h"
 
-int	main(int ac, const char **av)
+void	ft_error(const char *str)
 {
-	t_cub	cub;
-
-	if (ac == 2 && ft_config(&cub, av[1]))
-	{
-		cub.win.mlx = mlx_init();
-		cub.win.win = mlx_new_window(cub.win.mlx, WINDOWS_WIDTH,
-				WINDOWS_HEIGHT, "cub3D");
-		mlx_loop(cub.win.mlx);
-	}
-	else if (ac == 1)
-		ft_error("Error:\n\t-Please specify a map\n");
-	else if (ac > 2)
-		ft_error("Error:\n\t-Too many arguments\n");
-	return (0);
+	ft_putstr_fd((char *)str, 2);
 }

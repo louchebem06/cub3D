@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 20:55:24 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 20:55:32 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 05:34:42 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	empty_line_in_map(char **map)
 	{
 		if (!ft_strlen(map[i]))
 		{
-			printf("Error:\nLine empty in map is detect\n");
+			ft_error("Error:\nLine empty in map is detect\n");
 			return (1);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 19:53:14 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 19:53:29 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 05:35:52 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	remove_newlines(char ***map)
 	if (start_i == end_i || start_i > end_i)
 	{
 		i = -1;
-		printf("Error:\nMap not found\n");
+		ft_error("Error:\nMap not found\n");
 		return (0);
 	}
 	new_map = ft_calloc(sizeof(char *), end_i - start_i + 1);
