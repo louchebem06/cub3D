@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 19:32:01 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 11:49:33 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 12:40:02 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ typedef struct s_data_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}	t_data_img;
+}			t_data_img;
 
 typedef struct s_img
 {
 	void	*img;
 	int		width;
 	int		height;
-}	t_img;
+}			t_img;
 
 void	mlx_put_img_to_img(t_img *dest, t_img *src, int x, int y);
 int		create_trgb(int t, int r, int g, int b);

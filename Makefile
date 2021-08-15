@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/08/15 10:27:32 by bledda           ###   ########.fr        #
+#    Updated: 2021/08/15 12:48:02 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ FOLDER_HEADER		= header/
 FOLDER_SRC			= src/
 FOLDER_PARSING		= $(addprefix ${FOLDER_SRC},parsing/)
 FOLDER_UTILS		= $(addprefix ${FOLDER_SRC},utils/)
+FOLDER_CUB3D		= $(addprefix ${FOLDER_SRC},cub3D/)
 
 SRCS_FILES			= main.c
 
@@ -50,16 +51,20 @@ SRCS_UTILS_FILES	= add_value.c \
 						count_char.c \
 						ft_error.c
 
+SRCS_CUB3D_FILES	= cub3d.c
+
 SRCS				= $(addprefix ${FOLDER_SRC},${SRCS_FILES})
 SRCS_PARSING		= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES})
 SRCS_UTILS			= $(addprefix ${FOLDER_UTILS},${SRCS_UTILS_FILES})
+SRCS_CUB3D			= $(addprefix ${FOLDER_CUB3D},${SRCS_CUB3D_FILES})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILES})
 
 SRCS_OBJS			= ${SRCS:.c=.o}
 SRCS_PARSING_OBJS	= ${SRCS_PARSING:.c=.o}
 SRCS_UTILS_OBJS		= ${SRCS_UTILS:.c=.o}
+SRCS_CUB3D_OBJS		= ${SRCS_CUB3D:.c=.o}
 
-OBJS				= $(SRCS_OBJS) $(SRCS_PARSING_OBJS) $(SRCS_UTILS_OBJS)
+OBJS				= $(SRCS_OBJS) $(SRCS_PARSING_OBJS) $(SRCS_UTILS_OBJS) $(SRCS_CUB3D_OBJS)
 ####################################################################################
 
 #	COMPILATION		################################################################
