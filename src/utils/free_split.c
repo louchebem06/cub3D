@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_config.c                                        :+:      :+:    :+:   */
+/*   free_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 04:46:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 04:29:36 by bledda           ###   ########.fr       */
+/*   Created: 2021/08/15 03:06:59 by bledda            #+#    #+#             */
+/*   Updated: 2021/08/15 03:11:03 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
 
-int	ft_config(t_cub *cub, const char *file)
+void	free_split(char ***tab)
 {
-	int		fd;
-	char	**data_file;
+	int	i;
 
-	data_file = 0;
-	fd = open(file, O_RDONLY);
-	if (fd == -1 || !ft_extension(file, ".cub"))
-	{
-		printf("Error:\n\t-Your card is not in the correct format \".cub\" \
-or the file could not be opened\n");
-		return (0);
-	}
-	get_file(fd, file, &data_file);
-	if (!get_values(&data_file, cub) || !map_is_valid(cub))
-		return (0);
-	printf("%s is valid map\n", file);
-	return (1);
+	i = -1;
+	while ((*tab)[++i])
+		free((*tab)[i]);
+	free(*tab);
 }

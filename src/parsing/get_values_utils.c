@@ -6,71 +6,77 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 05:19:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 18:38:32 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 04:43:50 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
 
-void	free_path(t_isset *isset, t_cub *cub)
+static void	check_value_simple(char ***split_line, t_cub *cub, t_isset *isset)
 {
-	if (isset->no && cub->config.path_no)
-		free(cub->config.path_no);
-	if (isset->so && cub->config.path_so)
-		free(cub->config.path_so);
-	if (isset->we && cub->config.path_we)
-		free(cub->config.path_we);
-	if (isset->ea && cub->config.path_ea)
-		free(cub->config.path_ea);
-	isset->error = 1;
-}
-
-static void	check_value_simple(char ***split_line, char **content, int *etat)
-{
-	if (*etat)
+	if (!ft_strncmp((*split_line)[0], "NO", 2))
 	{
-		free(*content);
-		printf("Error:\nSeveral param %s exist\n", (*split_line)[0]);
+		if (isset->no)
+		{
+			free(cub->config.path_no);
+			isset->error = 1;
+		}
+		cub->config.path_no = ft_strdup((*split_line)[1]);
+		isset->no = 1;
 	}
-	else if ((*split_line)[1])
-		*content = ft_strdup((*split_line)[1]);
-	*etat = 1;
+	if (!ft_strncmp((*split_line)[0], "SO", 2))
+	{
+		if (isset->so)
+		{
+			free(cub->config.path_so);
+			isset->error = 1;
+		}
+		cub->config.path_so = ft_strdup((*split_line)[1]);
+		isset->so = 1;
+	}
+	if (!ft_strncmp((*split_line)[0], "WE", 2))
+	{
+		if (isset->we)
+		{
+			free(cub->config.path_we);
+			isset->error = 1;
+		}
+		cub->config.path_we = ft_strdup((*split_line)[1]);
+		isset->we = 1;
+	}
+	if (!ft_strncmp((*split_line)[0], "EA", 2))
+	{
+		if (isset->ea)
+		{
+			free(cub->config.path_ea);
+			isset->error = 1;
+		}
+		cub->config.path_ea = ft_strdup((*split_line)[1]);
+		isset->ea = 1;
+	}
 }
 
 void	add_simple(t_isset *isset, t_cub *cub, char ***split_line)
 {
 	int		fd;
 
-	if (!ft_strncmp((*split_line)[0], "NO", 2))
-		check_value_simple(split_line, &cub->config.path_no, &isset->no);
-	else if (!ft_strncmp((*split_line)[0], "SO", 2))
-		check_value_simple(split_line, &cub->config.path_so, &isset->so);
-	else if (!ft_strncmp((*split_line)[0], "WE", 2))
-		check_value_simple(split_line, &cub->config.path_we, &isset->we);
-	else if (!ft_strncmp((*split_line)[0], "EA", 2))
-		check_value_simple(split_line, &cub->config.path_ea, &isset->ea);
 	if ((*split_line)[2])
 	{
 		isset->error = 1;
-		printf("Error:\nTo many values in %s\n", (*split_line)[0]);
 		return ;
 	}
+	check_value_simple(split_line, cub, isset);
 	fd = open((*split_line)[1], O_RDONLY);
 	if (fd == -1)
 	{
-		printf("Error:\n%s in param %s cannot be opened\n",
-			(*split_line)[1], (*split_line)[0]);
 		isset->error = 1;
 		return ;
 	}
 	close (fd);
 }
 
-static void	check_value_multi(char ***split_arg, char ***split_line,
-	t_rgb *color, t_isset *isset)
+static void	check_value_multi(char ***split_arg, t_rgb *color, t_isset *isset)
 {
-	int	i;
-
 	if ((*split_arg)[0] && (*split_arg)[1] && (*split_arg)[2]
 		&& !(*split_arg)[3] && ft_strisdigit((*split_arg)[0])
 		&& ft_strisdigit((*split_arg)[1]) && ft_strisdigit((*split_arg)[2]))
@@ -79,21 +85,24 @@ static void	check_value_multi(char ***split_arg, char ***split_line,
 		color->g = ft_atoi((*split_arg)[1]);
 		color->b = ft_atoi((*split_arg)[2]);
 		if (color->r > 255 || color->g > 255 || color->b > 255)
-		{
 			isset->error = 1;
-			printf("Error:\nValue color for %s and above 255\n",
-				(*split_line)[0]);
-		}
 	}
 	else
-	{
 		isset->error = 1;
-		printf("Error:\nArg not valid for %s\n", (*split_line)[0]);
-	}
+	free_split(split_arg);
+}
+
+static int	count_char(const char *str)
+{
+	int	i;
+	int	j;
+
 	i = -1;
-	while ((*split_arg)[++i])
-		free((*split_arg)[i]);
-	free(*split_arg);
+	j = 0;
+	while (str[++i])
+		if (str[i] == ',')
+			j++;
+	return (j);
 }
 
 void	add_multi(t_isset *isset, t_cub *cub, char ***split_line)
@@ -108,19 +117,18 @@ void	add_multi(t_isset *isset, t_cub *cub, char ***split_line)
 		while ((*split_line)[++i])
 			add_value(&arg, (*split_line)[i]);
 	split_arg = ft_split(arg, ',');
+	if (count_char(arg) > 2)
+		isset->error = 1;
 	free(arg);
 	if ((!ft_strncmp((*split_line)[0], "F", 1) && isset->f)
 		|| (!ft_strncmp((*split_line)[0], "C", 1) && isset->c))
-	{
-		printf("Error:\nSeveral param %s exist\n", (*split_line)[0]);
 		isset->error = 1;
-	}
 	if (!ft_strncmp((*split_line)[0], "F", 1))
 		isset->f = 1;
 	else if (!ft_strncmp((*split_line)[0], "C", 1))
 		isset->c = 1;
 	if (!ft_strncmp((*split_line)[0], "F", 1))
-		check_value_multi(&split_arg, split_line, &cub->config.floor, isset);
+		check_value_multi(&split_arg, &cub->config.floor, isset);
 	else if (!ft_strncmp((*split_line)[0], "C", 1))
-		check_value_multi(&split_arg, split_line, &cub->config.ceiling, isset);
+		check_value_multi(&split_arg, &cub->config.ceiling, isset);
 }

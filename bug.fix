@@ -1,5 +1,2 @@
-Fix a realiser :
-	- Seg fault si empty param fix via get_values.c bloquer la boucle recuperation maps
-
 A Finir le parsir map:
 	- wall_check_map.c

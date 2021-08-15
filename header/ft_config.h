@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 23:49:34 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 04:12:26 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int		ft_config(t_cub *cub, const char *file);
 int		ft_extension(const char *file, const char *ext);
 void	get_file(int fd, const char *file, char ***config);
 int		get_values(char ***data_file, t_cub *cub);
-void	free_path(t_isset *isset, t_cub *cub);
 void	add_simple(t_isset *isset, t_cub *cub, char ***split);
 void	add_multi(t_isset *isset, t_cub *cub, char ***split);
 int		map_is_valid(t_cub *cub);

@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/08/14 23:33:45 by bledda           ###   ########.fr        #
+#    Updated: 2021/08/15 03:08:10 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ SRCS_PARSING_FILES	= ft_config.c \
 						wall_check_map.c
 
 SRCS_UTILS_FILES	= add_value.c \
-						ft_strisdigit.c
+						ft_strisdigit.c \
+						free_split.c
 
 SRCS				= $(addprefix ${FOLDER_SRC},${SRCS_FILES})
 SRCS_PARSING		= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES})

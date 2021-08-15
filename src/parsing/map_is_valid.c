@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 06:21:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 23:47:10 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 04:41:53 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	free_cub(t_cub *cub)
 
 static void	error_ext(t_cub *cub)
 {
-	printf("Error:\nTexture not fomat valid:\n");
+	printf("Error:\n");
 	if (!ft_extension(cub->config.path_we, ".xmp"))
 		printf("\t- %s not *.xpm file\n", cub->config.path_we);
 	if (!ft_extension(cub->config.path_so, ".xmp"))
