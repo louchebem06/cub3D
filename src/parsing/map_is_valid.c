@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 06:21:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 05:57:07 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 10:04:08 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ static void	error_xpm(char *str)
 
 static void	error_ext(t_cub *cub)
 {
+	printf("%s\n", cub->config.path_we);
 	ft_error("Error:\n", RED);
-	if (!ft_extension(cub->config.path_we, ".xmp"))
+	if (!ft_extension(cub->config.path_we, ".xpm"))
 		error_xpm(cub->config.path_we);
-	if (!ft_extension(cub->config.path_so, ".xmp"))
+	if (!ft_extension(cub->config.path_so, ".xpm"))
 		error_xpm(cub->config.path_so);
-	if (!ft_extension(cub->config.path_ea, ".xmp"))
+	if (!ft_extension(cub->config.path_ea, ".xpm"))
 		error_xpm(cub->config.path_ea);
-	if (!ft_extension(cub->config.path_no, ".xmp"))
+	if (!ft_extension(cub->config.path_no, ".xpm"))
 		error_xpm(cub->config.path_no);
 	free_cub(cub);
 }
@@ -58,10 +59,10 @@ int	map_is_valid(t_cub *cub)
 		free_cub(cub);
 		return (0);
 	}
-	if (!ft_extension(cub->config.path_we, ".xmp")
-		|| !ft_extension(cub->config.path_so, ".xmp")
-		|| !ft_extension(cub->config.path_ea, ".xmp")
-		|| !ft_extension(cub->config.path_no, ".xmp"))
+	if (!ft_extension(cub->config.path_we, ".xpm")
+		|| !ft_extension(cub->config.path_so, ".xpm")
+		|| !ft_extension(cub->config.path_ea, ".xpm")
+		|| !ft_extension(cub->config.path_no, ".xpm"))
 	{
 		error_ext(cub);
 		return (0);

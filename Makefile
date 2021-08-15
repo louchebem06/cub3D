@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/08/15 06:04:34 by bledda           ###   ########.fr        #
+#    Updated: 2021/08/15 10:27:32 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
-LIB					= -L ./libft -lft -L ./mlx_utils -lm
+LIB					= ./libft/libft.a ./mlx_utils/mlx_utils.a -lm
 
 UNAME_S				= $(shell uname -s)
 

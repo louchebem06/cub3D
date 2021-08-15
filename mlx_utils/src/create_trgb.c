@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_extension.c                                     :+:      :+:    :+:   */
+/*   create_trgb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 05:06:31 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 09:36:15 by bledda           ###   ########.fr       */
+/*   Created: 2021/08/15 10:48:08 by bledda            #+#    #+#             */
+/*   Updated: 2021/08/15 11:12:55 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/ft_config.h"
+#include "../header/mlx_utils.h"
 
-int	ft_extension(const char *file, const char *ext)
+int	create_trgb(int t, int r, int g, int b)
 {
-	int	size_file;
-	int	size_ext;
-
-	size_file = ft_strlen(file);
-	size_ext = ft_strlen(ext);
-	if (size_ext > size_file)
-		return (0);
-	while (size_ext >= 0)
-	{
-		if (file[size_file] != ext[size_ext])
-			return (0);
-		size_file--;
-		size_ext--;
-	}
-	return (1);
+	return (t << 24 | r << 16 | g << 8 | b);
 }

@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_extension.c                                     :+:      :+:    :+:   */
+/*   mlx_put_pixel_to_img.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 05:06:31 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 09:36:15 by bledda           ###   ########.fr       */
+/*   Created: 2021/08/15 10:49:46 by bledda            #+#    #+#             */
+/*   Updated: 2021/08/15 11:57:28 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/ft_config.h"
+#include "../header/mlx_utils.h"
 
-int	ft_extension(const char *file, const char *ext)
+void	mlx_put_pixel_to_img(t_img *dest, int x, int y, int color)
 {
-	int	size_file;
-	int	size_ext;
-
-	size_file = ft_strlen(file);
-	size_ext = ft_strlen(ext);
-	if (size_ext > size_file)
-		return (0);
-	while (size_ext >= 0)
-	{
-		if (file[size_file] != ext[size_ext])
-			return (0);
-		size_file--;
-		size_ext--;
-	}
-	return (1);
+	t_data_img	img_dst;
+	int *pixel;
+	pixel = (int *)mlx_get_data_addr(dest->img, &img_dst.bits_per_pixel,
+			&img_dst.line_length, &img_dst.endian);
+	pixel[x * 10 + y] = color;
 }
