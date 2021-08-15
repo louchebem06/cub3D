@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 23:33:33 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 07:56:55 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 08:05:22 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	check_direction_space(char **map, int x, int y, t_cub *cub)
 static int	check_direction(char **map, int x, int y, t_cub *cub)
 {
 	if (!check_direction_player_ground(map, x, y, cub)
-		|| ! check_direction_space(map, x, y, cub))
+		|| !check_direction_space(map, x, y, cub))
 		return (0);
 	return (1);
 }
