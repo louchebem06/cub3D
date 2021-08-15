@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 20:56:14 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 05:45:05 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 05:57:43 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void	error_msg_forbiden_char_map(int c)
 
 	tab[0] = c;
 	tab[1] = 0;
-	ft_error("Error:\n'");
-	ft_error(tab);
-	ft_error("' forbiden char in map\n");
+	ft_error("Error:\n'", RED);
+	ft_error(tab, RED);
+	ft_error("' forbiden char in map\n", RED);
 }
 
 int	forbiden_char_map(char **map)

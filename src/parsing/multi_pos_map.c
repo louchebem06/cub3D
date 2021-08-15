@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 20:57:03 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 05:36:02 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 05:57:56 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	multi_pos_map(char **map)
 		{
 			if (pos > 1)
 			{
-				ft_error("Error:\nMulti player position is detect in map\n");
+				ft_error("Error:\nMulti player position is detect in map\n", RED);
 				return (1);
 			}
 			if (map[y][x] == 'N' || map[y][x] == 'S'

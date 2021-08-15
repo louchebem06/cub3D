@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/14 16:25:21 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 05:47:20 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include "ft_config.h"
 # include "utils.h"
+# include "color.h"
 
 # define WINDOWS_WIDTH 600
 # define WINDOWS_HEIGHT 300

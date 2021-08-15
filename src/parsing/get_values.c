@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 05:09:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 05:27:34 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 05:58:35 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static void	error_print(int is_true, const char *str, char **free_ptr)
 {
 	if (!is_true)
 	{
-		ft_error("\t");
-		ft_error(str);
-		ft_error("\n");
+		ft_error("\t", RED);
+		ft_error(str, RED);
+		ft_error("\n", RED);
 	}
 	else
 		free(*free_ptr);
@@ -67,7 +67,7 @@ static int	param_not_found(t_isset *isset, t_cub *cub)
 	if (isset->no && isset->so && isset->we
 		&& isset->ea && isset->f && isset->c && !isset->error)
 		return (0);
-	ft_error("Error:\n");
+	ft_error("Error:\n", RED);
 	error_print(isset->no, "-NO is not found or not valid",
 		&cub->config.path_no);
 	error_print(isset->so, "-SO is not found or not valid",
@@ -77,12 +77,13 @@ static int	param_not_found(t_isset *isset, t_cub *cub)
 	error_print(isset->ea, "-EA is not found or not valid",
 		&cub->config.path_ea);
 	if (!isset->f)
-		ft_error("\t-F is not found or not valid\n");
+		ft_error("\t-F is not found or not valid\n", RED);
 	if (!isset->c)
-		ft_error("\t-C is not found or not valid\n");
+		ft_error("\t-C is not found or not valid\n", RED);
 	if (isset->no && isset->so && isset->we
 		&& isset->ea && isset->f && isset->c && isset->error)
-		ft_error("\t-Badly formatted file or a texture could not be opened\n");
+		ft_error("\t-Badly formatted file or a texture could not be opened\n",
+			RED);
 	return (1);
 }
 

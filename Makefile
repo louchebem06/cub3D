@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/08/15 05:26:24 by bledda           ###   ########.fr        #
+#    Updated: 2021/08/15 05:47:26 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME				= cub3D
 #	FILES			############################################################
 HEADER_FILES 		= cub3d.h \
 						ft_config.h \
-						utils.h
+						utils.h \
+						color.h
 
 FOLDER_HEADER		= header/
 FOLDER_SRC			= src/

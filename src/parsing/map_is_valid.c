@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 06:21:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 05:42:19 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 05:57:07 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ static void	free_cub(t_cub *cub)
 
 static void	error_xpm(char *str)
 {
-	ft_error("\t- ");
-	ft_error(str);
-	ft_error(" not *.xpm file\n");
+	ft_error("\t- ", RED);
+	ft_error(str, RED);
+	ft_error(" not *.xpm file\n", RED);
 }
 
 static void	error_ext(t_cub *cub)
 {
-	ft_error("Error:\n");
+	ft_error("Error:\n", RED);
 	if (!ft_extension(cub->config.path_we, ".xmp"))
 		error_xpm(cub->config.path_we);
 	if (!ft_extension(cub->config.path_so, ".xmp"))

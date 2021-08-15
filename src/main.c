@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:13:22 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 05:35:39 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 05:53:18 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	main(int ac, const char **av)
 		mlx_loop(cub.win.mlx);
 	}
 	else if (ac == 1)
-		ft_error("Error:\n\t-Please specify a map\n");
+		ft_error("Error:\n\t-Please specify a map\n", RED);
 	else if (ac > 2)
-		ft_error("Error:\n\t-Too many arguments\n");
+		ft_error("Error:\n\t-Too many arguments\n", RED);
 	return (0);
 }
