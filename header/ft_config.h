@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 04:12:26 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 07:50:46 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ typedef struct s_isset
 	int	error;
 }		t_isset;
 
+typedef struct s_direction_parsing_wall
+{
+	int	x_map;
+	int	y_map;
+	int	up;
+	int	left;
+	int	down;
+	int	right;
+}		t_direction_parsing_wall;
+
 int		ft_config(t_cub *cub, const char *file);
 int		ft_extension(const char *file, const char *ext);
 void	get_file(int fd, const char *file, char ***config);
@@ -45,5 +55,8 @@ int		remove_end_space_map(char ***map);
 int		remove_space_map(char ***map);
 void	create_player_info(t_cub *cub);
 int		wall_check_map(t_cub *cub);
+int		size_map(char ***map, int c);
+void	add_space(char **line, int space);
+void	normalize_map(char ***map);
 
 #endif

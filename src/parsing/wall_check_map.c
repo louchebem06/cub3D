@@ -6,94 +6,104 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 23:33:33 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 00:31:25 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/15 07:56:55 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//         1111111111111111111111111
-//         1000000000110000000000001
-//         1011000001110000000000001
-//         1001000000000000000000001
-// 111111111011000001110000000000001
-// 100000000011000001110111111111111
-// 1111011111111101111110000101
-// 111101111111110111  10010001
-// 11000000110101011111100001011
-// 10000000000000001100000010001
-// 10000000000000001101010010001
-// 11000001110101011111011110N0111
-// 11110111 1110101 101111010001
-// 11111111 1111111 111111111111
-
 #include "../../header/ft_config.h"
 
-static int	size_map(char ***map, int c)
+static int	is_player_ground(int c)
 {
-	int	i;
-	int	x;
-	int	tmp;
-
-	if (c == 'x')
-	{
-		i = -1;
-		x = 0;
-		while ((*map)[++i])
-		{
-			tmp = ft_strlen((*map)[i]);
-			if (tmp > x)
-				x = tmp;
-		}
-		return (x);
-	}
-	else if (c == 'y')
-	{
-		i = 0;
-		while ((*map)[i])
-			i++;
-		return (i);
-	}
+	if (c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (1);
 	return (0);
 }
 
-static void	add_space(char **line, int space)
+static int	check_direction_player_ground(char **map, int x, int y, t_cub *cub)
 {
-	char	*tmp;
-	char	*tmp_space;
+	t_direction_parsing_wall	dir;
 
-	tmp_space = ft_calloc(sizeof(char *), space + 1);
-	while (space-- > 0)
-		tmp_space[space] = ' ';
-	tmp = ft_strjoin(*line, tmp_space);
-	free(*line);
-	free(tmp_space);
-	*line = tmp;
-}
-
-static void	normalize_map(char ***map)
-{
-	int	max_size;
-	int	y;
-
-	max_size = size_map(map, 'x');
-	y = -1;
-	while ((*map)[++y])
+	dir.y_map = (int)cub->config.map_y;
+	dir.x_map = (int)cub->config.map_x;
+	dir.up = y - 1;
+	dir.down = y + 1;
+	dir.left = x - 1;
+	dir.right = x + 1;
+	if (is_player_ground(map[y][x]))
 	{
-		if ((int)ft_strlen((*map)[y]) < max_size)
-			add_space(&(*map)[y], max_size - (int)ft_strlen((*map)[y]));
+		if (dir.up >= 0 && dir.up < dir.y_map)
+			if (map[dir.up][x] != '1' && !is_player_ground(map[dir.up][x]))
+				return (0);
+		if (dir.down >= 0 && dir.down < dir.y_map)
+			if (map[dir.down][x] != '1' && !is_player_ground(map[dir.down][x]))
+				return (0);
+		if (dir.left >= 0 && dir.left < dir.x_map)
+			if (map[y][dir.left] != '1' && !is_player_ground(map[y][dir.left]))
+				return (0);
+		if (dir.right >= 0 && dir.right < dir.x_map)
+			if (map[y][dir.right] != '1'
+				&& !is_player_ground(map[y][dir.right]))
+				return (0);
 	}
+	return (1);
 }
 
-void	print_map(char **map)//doit etre remove
+static int	check_direction_space(char **map, int x, int y, t_cub *cub)
 {
-	for (int i = 0; map[i]; i++)
-		printf("%s*\n", map[i]);
+	t_direction_parsing_wall	dir;
+
+	dir.y_map = (int)cub->config.map_y;
+	dir.x_map = (int)cub->config.map_x;
+	dir.up = y - 1;
+	dir.down = y + 1;
+	dir.left = x - 1;
+	dir.right = x + 1;
+	if (map[y][x] == ' ')
+	{
+		if (dir.up >= 0 && dir.up < dir.y_map)
+			if (map[dir.up][x] != '1' && map[dir.up][x] != ' ')
+				return (0);
+		if (dir.down >= 0 && dir.down < dir.y_map)
+			if (map[dir.down][x] != '1' && map[dir.down][x] != ' ')
+				return (0);
+		if (dir.left >= 0 && dir.left < dir.x_map)
+			if (map[y][dir.left] != '1' && map[y][dir.left] != ' ')
+				return (0);
+		if (dir.right >= 0 && dir.right < dir.x_map)
+			if (map[y][dir.right] != '1' && map[y][dir.right] != ' ')
+				return (0);
+	}
+	return (1);
+}
+
+static int	check_direction(char **map, int x, int y, t_cub *cub)
+{
+	if (!check_direction_player_ground(map, x, y, cub)
+		|| ! check_direction_space(map, x, y, cub))
+		return (0);
+	return (1);
 }
 
 int	wall_check_map(t_cub *cub)
 {
+	int	x;
+	int	y;
+
 	cub->config.map_x = size_map(&cub->config.map, 'x');
 	cub->config.map_y = size_map(&cub->config.map, 'y');
 	normalize_map(&cub->config.map);
-	print_map(cub->config.map);
+	y = -1;
+	while (cub->config.map[++y])
+	{
+		x = -1;
+		while (cub->config.map[y][++x])
+		{
+			if (!check_direction(cub->config.map, x, y, cub))
+			{
+				ft_error("Error\n\tMaps not valid\n", RED);
+				return (1);
+			}
+		}
+	}
 	return (0);
 }
