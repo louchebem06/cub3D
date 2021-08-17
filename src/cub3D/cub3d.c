@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 12:37:02 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/17 16:03:11 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/17 17:10:39 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,24 @@ static int	close_click(int keycode, t_cub *cub)
 	return (0);
 }
 
+static void print_sqare(t_cub *cub, int x, int y, int color)
+{
+	int save_x;
+	int save_y;
+
+	save_x = x;
+	save_y = y;
+	while (y < save_y * 10)
+	{
+		while (x < save_x * 10)
+		{
+			mlx_put_pixel_to_img(&cub->screen, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
 static void	trace(t_cub *cub)
 {
 	int y;
@@ -29,13 +47,17 @@ static void	trace(t_cub *cub)
 	while (cub->config.map[++y])
 	{
 		x = -1;
-		printf ("%s\n", cub->config.map[y]);
 		while (cub->config.map[y][++x])
 		{
 			if (cub->config.map[y][x] == '1')
-				mlx_put_pixel_to_img(&cub->screen, 150, 150, create_trgb(0, 0, 0, 255));
+				print_sqare(cub, x, y, create_trgb(0, 255, 0, 0));
+			else if (cub->config.map[y][x] == '0')
+				print_sqare(cub, x, y, create_trgb(0, 0, 255, 0));
+			else if (cub->config.map[y][x] == ' ')
+				print_sqare(cub, x, y, create_trgb(0, 0, 0, 255));
 		}
 	}
+	//mlx_put_pixel_to_img(&cub->screen, 300, 150, create_trgb(0, 255, 0, 255));
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 }
 
@@ -95,10 +117,11 @@ static void hook(t_cub *cub)
 
 static void	put_img(t_cub *cub)
 {
-	mlx_put_img_to_img(&cub->screen, &cub->texture.no, 0, 0);
-	mlx_put_img_to_img(&cub->screen, &cub->texture.so, 64, 0);
-	mlx_put_img_to_img(&cub->screen, &cub->texture.we, 128, 0);
-	mlx_put_img_to_img(&cub->screen, &cub->texture.ea, 192, 0);
+	(void)cub;
+	// mlx_put_img_to_img(&cub->screen, &cub->texture.no, 150, 0);
+	// mlx_put_img_to_img(&cub->screen, &cub->texture.so, 150, 150);
+	// mlx_put_img_to_img(&cub->screen, &cub->texture.we, 120, 120);
+	// mlx_put_img_to_img(&cub->screen, &cub->texture.ea, 192, 0);
 }
 
 void	cub3d(t_cub *cub)
