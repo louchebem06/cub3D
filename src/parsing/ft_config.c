@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 10:00:57 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/17 13:47:58 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ or the file could not be opened\n", RED);
 	get_file(fd, file, &data_file);
 	if (!get_values(&data_file, cub) || !map_is_valid(cub))
 		return (0);
+	ft_error("Success:\n\t-", GREEN);
 	ft_error(file, GREEN);
 	ft_error(" is valid map\n", GREEN);
 	return (1);

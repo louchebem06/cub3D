@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 12:42:41 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/17 13:36:29 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,6 @@ typedef struct s_texture
 	t_img		ea;
 }				t_texture;
 
-typedef struct s_minimap
-{
-	t_img	red;
-	t_img	white;
-	t_img	yellow;
-	t_img	green;
-	t_img	player;
-	t_img	direction;
-}			t_minimap;
-
 typedef struct s_cub
 {
 	t_vars		win;
@@ -93,8 +83,6 @@ typedef struct s_cub
 	t_player	player;
 	t_texture	texture;
 	t_img		screen;
-	t_img		minimap;
-	t_minimap	mini_data;
 }				t_cub;
 
 void	cub3d(t_cub *cub);

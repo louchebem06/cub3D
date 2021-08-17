@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 12:37:02 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 12:40:39 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/17 16:03:11 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,23 @@ static int	close_click(int keycode, t_cub *cub)
 	return (0);
 }
 
-static void	trace_minimap(t_cub *cub)
+static void	trace(t_cub *cub)
 {
-	for (int y = 0; cub->config.map[y]; y++)
-		for (int x = 0; cub->config.map[y][x]; x++)
+	int y;
+	int x;
+
+	y = -1;
+	while (cub->config.map[++y])
+	{
+		x = -1;
+		printf ("%s\n", cub->config.map[y]);
+		while (cub->config.map[y][++x])
 		{
-			if (cub->config.map[y][x] == ' ')
-				mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->mini_data.yellow.img,
-					x * 10, (y * 10) + WINDOWS_HEIGHT - (cub->config.map_y * 10));
-			else if (cub->config.map[y][x] == '1')
-				mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->mini_data.red.img,
-					x * 10, (y * 10) + WINDOWS_HEIGHT - (cub->config.map_y * 10));
-			else if (cub->config.map[y][x] == '0')
-				mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->mini_data.white.img,
-					x * 10, (y * 10) + WINDOWS_HEIGHT - (cub->config.map_y * 10));
+			if (cub->config.map[y][x] == '1')
+				mlx_put_pixel_to_img(&cub->screen, 150, 150, create_trgb(0, 0, 0, 255));
 		}
-	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->mini_data.green.img,
-			 		cub->player.pos.x * 10, (cub->player.pos.y * 10) + WINDOWS_HEIGHT - (cub->config.map_y * 10));
-	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->mini_data.direction.img,
-			 		cub->player.pos.x * 10, (cub->player.pos.y * 10 + 10) + WINDOWS_HEIGHT - (cub->config.map_y * 10));
+	}
+	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 }
 
 static int	key_press(int keycode, t_cub *cub)
@@ -65,22 +63,14 @@ static int	key_press(int keycode, t_cub *cub)
 		cub->player.angle = 359;
 	else if (cub->player.angle >= 360)
 		cub->player.angle = 0;
-	if (keycode == KEY_W || keycode == KEY_S || keycode == KEY_A || keycode == KEY_D
-		|| keycode == KEY_ARROW_LEFT || keycode == KEY_ARROW_RIGHT)
-	{
-		printf("Player Y : %f\n Player X : %f\n Angle : %f\n",
-			cub->player.pos.y, cub->player.pos.x, cub->player.angle);
-		mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
-		trace_minimap(cub);
-	}
+	trace(cub);
 	return (0);
 }
 
 static void setup(t_cub *cub)
 {
 	cub->win.mlx = mlx_init();
-	cub->win.win = mlx_new_window(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT,
-		"cub3D");
+	cub->win.win = mlx_new_window(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT, "cub3D");
 }
 
 static void generate_img(t_cub *cub)
@@ -93,26 +83,7 @@ static void generate_img(t_cub *cub)
 		&cub->texture.we.height, &cub->texture.we.width);
 	cub->texture.ea.img = mlx_xpm_file_to_image(cub->win.mlx, cub->config.path_ea,
 		&cub->texture.ea.height, &cub->texture.ea.width);
-	cub->screen.img = mlx_new_image(cub->win.mlx, WINDOWS_WIDTH,
-		WINDOWS_HEIGHT);
-	cub->minimap.img = mlx_new_image(cub->win.mlx, cub->config.map_x * 10,
-		cub->config.map_y * 10);
-	cub->mini_data.red.img = mlx_new_image(cub->win.mlx, 10, 10);
-	cub->mini_data.white.img = mlx_new_image(cub->win.mlx, 10, 10);
-	cub->mini_data.green.img = mlx_new_image(cub->win.mlx, 10, 10);
-	cub->mini_data.yellow.img = mlx_new_image(cub->win.mlx, 10, 10);
-	cub->mini_data.player.img = mlx_new_image(cub->win.mlx, 10, 10);
-	cub->mini_data.direction.img = mlx_new_image(cub->win.mlx, 5, 10);
-
-	for (int y = 0; y < 10; y++)
-		for (int x = 0; x < 10; x++)
-		{
-			mlx_put_pixel_to_img(&cub->mini_data.red, x, y, create_trgb(0, 255, 0, 0));
-			mlx_put_pixel_to_img(&cub->mini_data.white, x, y, create_trgb(0, 255, 255, 255));
-			mlx_put_pixel_to_img(&cub->mini_data.green, x, y, create_trgb(0, 0, 255, 0));
-			mlx_put_pixel_to_img(&cub->mini_data.direction, x, y, create_trgb(0, 0, 255, 0));
-			mlx_put_pixel_to_img(&cub->mini_data.yellow, x, y, create_trgb(0, 255, 251, 0));
-		}
+	cub->screen.img = mlx_new_image(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT);
 }
 
 static void hook(t_cub *cub)
@@ -137,7 +108,6 @@ void	cub3d(t_cub *cub)
 	setup(cub);
 	generate_img(cub);
 	put_img(cub);
-	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
-	trace_minimap(cub);
+	trace(cub);
 	hook(cub);
 }
