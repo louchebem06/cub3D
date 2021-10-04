@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_is_valid.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 06:21:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 10:04:08 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/04 14:58:53 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	error_xpm(char *str)
 
 static void	error_ext(t_cub *cub)
 {
-	printf("%s\n", cub->config.path_we);
 	ft_error("Error:\n", RED);
 	if (!ft_extension(cub->config.path_we, ".xpm"))
 		error_xpm(cub->config.path_we);
