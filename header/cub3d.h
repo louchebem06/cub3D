@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/17 13:36:29 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/09 22:05:49 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 # include "utils.h"
 # include "color.h"
 # include <math.h>
+# include <stdbool.h>
 
-# define WINDOWS_WIDTH 600
-# define WINDOWS_HEIGHT 300
+# define WINDOWS_WIDTH 1280
+# define WINDOWS_HEIGHT 720
 
 typedef struct s_data_img	t_data_img;
 typedef struct s_img		t_img;
@@ -42,6 +43,14 @@ typedef struct s_rgb
 	int		g;
 	int		b;
 }			t_rgb;
+
+//TODO
+typedef struct s_map
+{
+	char	**map;
+	int		width;
+	int		height;
+}		t_map;
 
 typedef struct s_config
 {
@@ -80,9 +89,11 @@ typedef struct s_cub
 {
 	t_vars		win;
 	t_config	config;
+	t_map		map;
 	t_player	player;
 	t_texture	texture;
 	t_img		screen;
+	bool		up_to_date;
 }				t_cub;
 
 void	cub3d(t_cub *cub);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/10 21:16:17 by bledda            #+#    #+#              #
-#    Updated: 2021/08/15 11:12:41 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/09 22:09:59 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ HEADER_FILES	= mlx_utils.h \
 
 SRCS_FILES		= mlx_put_img_to_img.c \
 					create_trgb.c \
-					mlx_put_pixel_to_img.c
+					mlx_put_pixel_to_img.c \
+					mlx_get_img_pixel.c
 
 SRCS			= $(addprefix ${SRC_FOLDER},${SRCS_FILES})
 HEADERS			= $(addprefix ${HEADER_FOLDER},${HEADER_FILES})

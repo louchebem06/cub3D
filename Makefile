@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/08/15 12:48:02 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/09 19:01:11 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ OBJS				= $(SRCS_OBJS) $(SRCS_PARSING_OBJS) $(SRCS_UTILS_OBJS) $(SRCS_CUB3D_OBJS
 
 #	COMPILATION		################################################################
 CC					= gcc
-CFLAGS  			= -Wall -Wextra -Werror
+CFLAGS  			= -Wall -Wextra -O0
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 LIB					= ./libft/libft.a ./mlx_utils/mlx_utils.a -lm
