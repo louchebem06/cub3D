@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 12:37:02 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/11 20:31:02 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/11 22:03:53 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,60 +180,88 @@ void	draw_shit(t_cub *cub)
 	}
 }
 
+void	move(t_cub *cub)
+{
+	cub->up_to_date = 0;
+	if (cub->keys.up)
+	{
+		cub->player.pos.x += 0.2 * cosf(M_PI * cub->player.angle / 180);
+		cub->player.pos.y += 0.2 * sinf(M_PI * cub->player.angle / 180);
+	}
+	if (cub->keys.down)
+	{
+		cub->player.pos.x -= 0.1 * cosf(M_PI * cub->player.angle / 180);
+		cub->player.pos.y -= 0.1 * sinf(M_PI * cub->player.angle / 180);
+	}
+	if (cub->keys.left)
+	{
+		cub->player.pos.x += 0.15 * cosf(M_PI * (cub->player.angle - 90) / 180);
+		cub->player.pos.y += 0.15 * sinf(M_PI * (cub->player.angle - 90) / 180);
+	}
+	if (cub->keys.right)
+	{
+		cub->player.pos.x += 0.15 * cosf(M_PI * (cub->player.angle + 90) / 180);
+		cub->player.pos.y += 0.15 * sinf(M_PI * (cub->player.angle + 90) / 180);
+	}
+	if (cub->keys.arrow_l)
+		cub->player.angle -= 10;
+	if (cub->keys.arrow_r)
+		cub->player.angle += 10;
+
+	if (cub->player.angle < 0)
+		cub->player.angle += 360;
+	else if (cub->player.angle >= 360)
+		cub->player.angle -= 360;
+}
+
 int	render_next_frame(t_cub *cub)
 {
-	//if (cub->tick++ < 200)
-		//return (0);
+	if (cub->tick++ < 200)
+		return (0);
 	if (cub->up_to_date)
 		return (0);
 	draw_shit(cub);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 	cub->tick = 0;
 	cub->up_to_date = 1;
+	move(cub);
 	return (0);
 }
 
 static int	key_press(int keycode, t_cub *cub)
 {
-	cub->up_to_date = 0;
 	if (keycode == KEY_W)
-	{
-		cub->player.pos.x += 0.2 * cosf(M_PI * cub->player.angle / 180);
-		cub->player.pos.y += 0.2 * sinf(M_PI * cub->player.angle / 180);
-	}
-	else if (keycode == KEY_S)
-	{
-		cub->player.pos.x -= 0.1 * cosf(M_PI * cub->player.angle / 180);
-		cub->player.pos.y -= 0.1 * sinf(M_PI * cub->player.angle / 180);
-	}
-	else if (keycode == KEY_A)
-	{
-		cub->player.pos.x += 0.15 * cosf(M_PI * (cub->player.angle - 90) / 180);
-		cub->player.pos.y += 0.15 * sinf(M_PI * (cub->player.angle - 90) / 180);
-	}
-	else if (keycode == KEY_D)
-	{
-		cub->player.pos.x += 0.15 * cosf(M_PI * (cub->player.angle + 90) / 180);
-		cub->player.pos.y += 0.15 * sinf(M_PI * (cub->player.angle + 90) / 180);
-	}
-	else if (keycode == KEY_ARROW_LEFT)
-		cub->player.angle -= 5;
-	else if (keycode == KEY_ARROW_RIGHT)
-		cub->player.angle += 5;
-	else if (keycode == KEY_ECHAP)
+		cub->keys.up = true;
+	if (keycode == KEY_S)
+		cub->keys.down = true;
+	if (keycode == KEY_A)
+		cub->keys.left = true;
+	if (keycode == KEY_D)
+		cub->keys.right = true;
+	if (keycode == KEY_ARROW_LEFT)
+		cub->keys.arrow_l = true;
+	if (keycode == KEY_ARROW_RIGHT)
+		cub->keys.arrow_r = true;
+
+	if (keycode == KEY_ECHAP)
 		close_click(0, cub);
-	if (cub->player.angle < 0)
-		cub->player.angle += 360;
-	else if (cub->player.angle >= 360)
-		cub->player.angle -= 360;
-	printf("Player Y : %f\n Player X : %f\n Angle : %f\n",
-		cub->player.pos.y, cub->player.pos.x, cub->player.angle);
-	printf("%d %d\n", cub->screen.width, cub->screen.height);
-	//draw_shit(cub);
-	//t_position pos = scale_pos(&cub->player.pos, WINDOWS_WIDTH / cub->map.width, WINDOWS_HEIGHT / cub->map.height);
-	//for (int i = 0; i < 10; i++)
-	//	mlx_put_pixel_to_img(&cub->screen, pos.x + i * cosf(M_PI * cub->player.angle / 180), pos.y + i * sinf(M_PI * cub->player.angle / 180), 0x00FF0000);
-	//put_img(cub);
+	return (0);
+}
+
+static int	key_release(int keycode, t_cub *cub)
+{
+	if (keycode == KEY_W)
+		cub->keys.up = false;
+	if (keycode == KEY_S)
+		cub->keys.down = false;
+	if (keycode == KEY_A)
+		cub->keys.left = false;
+	if (keycode == KEY_D)
+		cub->keys.right = false;
+	if (keycode == KEY_ARROW_LEFT)
+		cub->keys.arrow_l = false;
+	if (keycode == KEY_ARROW_RIGHT)
+		cub->keys.arrow_r = false;
 	return (0);
 }
 
@@ -278,6 +306,7 @@ static void	generate_img(t_cub *cub)
 static void	hook(t_cub *cub)
 {
 	mlx_hook(cub->win.win, 2, 1, key_press, cub);
+	mlx_hook(cub->win.win, 3, 2, key_release, cub);
 	mlx_hook(cub->win.win, 17, 0, close_click, cub);
 	mlx_loop_hook(cub->win.mlx, render_next_frame, cub);
 	mlx_loop(cub->win.mlx);

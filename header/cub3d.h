@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/11 20:26:39 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/11 21:51:28 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,16 @@ typedef struct s_texture
 	t_img		ea;
 }				t_texture;
 
+typedef struct s_keys
+{
+	bool	up;
+	bool	down;
+	bool	left;
+	bool 	right;
+	bool	arrow_l;
+	bool	arrow_r;
+}	t_keys;
+
 typedef struct s_cub
 {
 	t_vars		win;
@@ -96,6 +106,7 @@ typedef struct s_cub
 	t_img		screen_draft;
 	bool		up_to_date;
 	int			tick;
+	t_keys		keys;
 }				t_cub;
 
 void	cub3d(t_cub *cub);
