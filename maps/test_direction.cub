@@ -1,7 +1,7 @@
-NO ./texture/brick.xpm
-SO ./texture/vroum.xpm
+NO ./texture/test.xpm
+SO ./texture/test.xpm
 WE ./texture/test.xpm
-EA ./texture/wood.xpm
+EA ./texture/test.xpm
 
 F 0,0, 0
 C 0,000,255

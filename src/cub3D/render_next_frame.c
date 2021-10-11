@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:30:13 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/12 00:31:41 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/12 01:40:56 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int	render_next_frame(t_cub *cub)
 {
 	if (cub->tick++ < 200)
 		return (0);
+	move(cub);
 	draw(cub);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 	cub->tick = 0;
-	move(cub);
 	return (0);
 }

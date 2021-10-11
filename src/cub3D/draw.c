@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/12 00:24:27 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/12 01:39:24 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,19 @@ static void	draw_col(t_cub *cub, int x, int size, const t_position *ray_pos)
 	int				y;
 
 	y = -1;
-	xx = texture->width;
 	if (ray_pos->x - floorf(ray_pos->x) > ray_pos->y - floorf(ray_pos->y))
-		xx *= ray_pos->x - floorf(ray_pos->x);
+	{
+		xx = ray_pos->x - floorf(ray_pos->x);
+		if (cub->player.pos.y < ray_pos->y)
+			xx = 1 - xx;
+	}
 	else
-		xx *= ray_pos->y - floorf(ray_pos->y);
+	{
+		xx = ray_pos->y - floorf(ray_pos->y);
+		if (cub->player.pos.x > ray_pos->x)
+			xx = 1 - xx;
+	}
+	xx *= texture->width;
 	while (++y < cub->screen.height)
 	{
 		color = anti_rgb(cub->config.floor);
