@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 12:37:02 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/11 18:19:49 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/11 18:41:42 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,9 @@ static void	put_img(t_cub *cub)
 
 static int	key_press(int keycode, t_cub *cub)
 {
+	if (cub->up_to_date)
+		return (0);
+	cub->up_to_date = true;
 	if (keycode == KEY_W)
 	{
 		cub->player.pos.x += 0.2 * cosf(M_PI * cub->player.angle / 180);
@@ -226,6 +229,7 @@ static int	key_press(int keycode, t_cub *cub)
 	for (int i = 0; i < 10; i++)
 		mlx_put_pixel_to_img(&cub->screen, pos.x + i * cosf(M_PI * cub->player.angle / 180), pos.y + i * sinf(M_PI * cub->player.angle / 180), 0x00FF0000);
 	put_img(cub);
+	cub->up_to_date = false;
 	return (0);
 }
 
@@ -288,6 +292,7 @@ void	cub3d(t_cub *cub)
 	cub->map.map = cub->config.map;
 	cub->map.width = cub->config.map_x;
 	cub->map.height = cub->config.map_y;
+	cub->up_to_date = false;
 	printf("Player Y : %f\n Player X : %f\n Angle : %f\n",
 		cub->player.pos.y, cub->player.pos.x, cub->player.angle);
 	setup(cub);
