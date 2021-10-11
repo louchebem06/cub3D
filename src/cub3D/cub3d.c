@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 12:37:02 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/11 18:41:42 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/11 20:31:02 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,16 +180,22 @@ void	draw_shit(t_cub *cub)
 	}
 }
 
-static void	put_img(t_cub *cub)
+int	render_next_frame(t_cub *cub)
 {
+	//if (cub->tick++ < 200)
+		//return (0);
+	if (cub->up_to_date)
+		return (0);
+	draw_shit(cub);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
+	cub->tick = 0;
+	cub->up_to_date = 1;
+	return (0);
 }
 
 static int	key_press(int keycode, t_cub *cub)
 {
-	if (cub->up_to_date)
-		return (0);
-	cub->up_to_date = true;
+	cub->up_to_date = 0;
 	if (keycode == KEY_W)
 	{
 		cub->player.pos.x += 0.2 * cosf(M_PI * cub->player.angle / 180);
@@ -223,13 +229,11 @@ static int	key_press(int keycode, t_cub *cub)
 	printf("Player Y : %f\n Player X : %f\n Angle : %f\n",
 		cub->player.pos.y, cub->player.pos.x, cub->player.angle);
 	printf("%d %d\n", cub->screen.width, cub->screen.height);
-	//clear_screen(&cub->screen);
-	draw_shit(cub);
-	t_position pos = scale_pos(&cub->player.pos, WINDOWS_WIDTH / cub->map.width, WINDOWS_HEIGHT / cub->map.height);
-	for (int i = 0; i < 10; i++)
-		mlx_put_pixel_to_img(&cub->screen, pos.x + i * cosf(M_PI * cub->player.angle / 180), pos.y + i * sinf(M_PI * cub->player.angle / 180), 0x00FF0000);
-	put_img(cub);
-	cub->up_to_date = false;
+	//draw_shit(cub);
+	//t_position pos = scale_pos(&cub->player.pos, WINDOWS_WIDTH / cub->map.width, WINDOWS_HEIGHT / cub->map.height);
+	//for (int i = 0; i < 10; i++)
+	//	mlx_put_pixel_to_img(&cub->screen, pos.x + i * cosf(M_PI * cub->player.angle / 180), pos.y + i * sinf(M_PI * cub->player.angle / 180), 0x00FF0000);
+	//put_img(cub);
 	return (0);
 }
 
@@ -275,6 +279,7 @@ static void	hook(t_cub *cub)
 {
 	mlx_hook(cub->win.win, 2, 1, key_press, cub);
 	mlx_hook(cub->win.win, 17, 0, close_click, cub);
+	mlx_loop_hook(cub->win.mlx, render_next_frame, cub);
 	mlx_loop(cub->win.mlx);
 }
 
@@ -292,13 +297,12 @@ void	cub3d(t_cub *cub)
 	cub->map.map = cub->config.map;
 	cub->map.width = cub->config.map_x;
 	cub->map.height = cub->config.map_y;
-	cub->up_to_date = false;
+	cub->up_to_date = 0;
+	cub->tick = 0;
 	printf("Player Y : %f\n Player X : %f\n Angle : %f\n",
 		cub->player.pos.y, cub->player.pos.x, cub->player.angle);
 	setup(cub);
 	generate_img(cub);
-	draw_shit(cub);
-	put_img(cub);
 	print_map(&cub->map);
 	hook(cub);
 }

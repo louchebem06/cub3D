@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/11 14:38:05 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/11 20:26:39 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,9 @@ typedef struct s_cub
 	t_player	player;
 	t_texture	texture;
 	t_img		screen;
+	t_img		screen_draft;
 	bool		up_to_date;
+	int			tick;
 }				t_cub;
 
 void	cub3d(t_cub *cub);
