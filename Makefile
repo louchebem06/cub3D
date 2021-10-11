@@ -6,7 +6,7 @@
 #    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/11 23:59:13 by mmehran          ###   ########.fr        #
+#    Updated: 2021/10/12 00:32:30 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,12 @@ SRCS_UTILS_FILES	= add_value.c \
 
 SRCS_CUB3D_FILES	= cub3d.c \
 						ray_cast.c \
-						is_in_air.c
+						is_in_air.c \
+						scale_pos.c \
+						draw.c \
+						generate_img.c \
+						render_next_frame.c \
+						hook.c
 
 SRCS				= $(addprefix ${FOLDER_SRC},${SRCS_FILES})
 SRCS_PARSING		= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES})

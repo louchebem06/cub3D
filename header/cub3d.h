@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/12 00:03:29 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/12 00:32:23 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,10 @@ void		cub3d(t_cub *cub);
 bool		is_in_air(const t_map *map, const t_position *ray,
 				const t_position *p);
 t_position	ray_cast(const t_player *p, const float angle, const t_map *map);
+t_position	scale_pos(t_position *pos, float scale_x, float scale_y);
+void		draw(t_cub *cub);
+void		generate_img(t_cub *c);
+int			render_next_frame(t_cub *cub);
+void		hook(t_cub *cub);
 
 #endif
