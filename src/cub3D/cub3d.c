@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 12:37:02 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/11 13:02:04 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/11 18:19:49 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	clear_screen(t_img *img)
 	}
 }
 
-bool	is_in_air(t_map *map, t_position *ray, t_position *p)
+bool	is_in_air(const t_map *map, const t_position *ray, const t_position *p)
 {
 	int	x;
 	int	y;
@@ -64,31 +64,37 @@ t_position	scale_pos(t_position *pos, float scale_x, float scale_y)
 	return (screen_pos);
 }
 
-void next(t_position *pos, const t_position *direction)
+void	next(t_position *pos, const t_position *direction)
 {
-	float slope = 1;
+	float		slope;
+	t_position	next_x;
+	t_position	next_y;
+
+	slope = 1;
 	if (direction->x != 0)
 		slope = direction->y / direction->x;
-	t_position next_x = (t_position) {0};
-	t_position next_y = (t_position) {0};
+	next_x = (t_position){0};
+	next_y = (t_position){0};
 	const float dx = (direction->x > 0) ? floorf(pos->x + 1) - pos->x : ceilf(pos->x - 1) - pos->x;
 	const float dy = (direction->y > 0) ? floorf(pos->y + 1) - pos->y : ceilf(pos->y - 1) - pos->y;
 	next_x.x = dx;
 	next_x.y = dx * slope;
 	next_y.x = dy / slope;
 	next_y.y = dy;
-	if (next_x.x * next_x.x + next_x.y * next_x.y < next_y.x * next_y.x + next_y.y * next_y.y)
+	if (next_x.x * next_x.x + next_x.y * next_x.y
+		< next_y.x * next_y.x + next_y.y * next_y.y)
 	{
 		pos->x += next_x.x;
 		pos->y += next_x.y;
-	} else
+	}
+	else
 	{
 		pos->x += next_y.x;
 		pos->y += next_y.y;
 	}
 }
 
-t_position	ray_cast(t_player *p, float angle, t_map *map)
+t_position	ray_cast(const t_player *p, const float angle, const t_map *map)
 {
 	t_position	dir;
 	t_position	ray_pos;
@@ -106,59 +112,71 @@ unsigned int	antirgb(t_rgb rgb)
 	return rgb.r << 16 | rgb.g << 8 | rgb.b;
 }
 
-void	draw_col(t_cub *cub, int x, int size, t_position *pos)
+static t_img	*get_texture_direction(t_cub *cub, const t_position *ray_pos)
+{
+	const float	off_x = ray_pos->x - floorf(ray_pos->x);
+	const float	off_y = ray_pos->y - floorf(ray_pos->y);
+
+	if (off_x > off_y)
+	{
+		if (cub->player.pos.y > ray_pos->y)
+			return (&cub->texture.so);
+		return (&cub->texture.no);
+	}
+	else
+	{
+		if (cub->player.pos.x > ray_pos->x)
+			return (&cub->texture.ea);
+		return (&cub->texture.we);
+	}
+	return (0);
+}
+
+void	draw_col(t_cub *cub, int x, int size, const t_position *ray_pos)
 {
 	const int	am = (cub->screen.height - size) / 2;
+	const float	off_x = ray_pos->x - floorf(ray_pos->x);
+	const float	off_y = ray_pos->y - floorf(ray_pos->y);
+	const t_img	*texture = get_texture_direction(cub, ray_pos);
+	const float	xx = texture->width * (off_x > off_y ? off_x : off_y);
 	unsigned int	color;
-	const float off_x = fabsf(pos->x - roundf(pos->x));
-	const float off_y = fabsf(pos->y - roundf(pos->y));
-	const float xx = cub->texture.no.width * (off_x > off_y ? off_x : off_y);
+	int	y;
 
-	for (int y = 0; y < cub->screen.height; y++)
+	y = -1;
+	while (++y < cub->screen.height)
 	{
 		color = antirgb(cub->config.floor);
 		if (y < am)
 			color = antirgb(cub->config.ceiling);
 		else if (y < am + size)
-		{
-			if (off_x > off_y)
-			{
-				if (cub->player.pos.y > pos->y)
-					color = mlx_get_pixel_img(&cub->texture.so, xx, cub->texture.no.height * (y - am) / size);
-				else
-					color = mlx_get_pixel_img(&cub->texture.no, xx, cub->texture.so.height * (y - am) / size);
-			}
-			else
-			{
-				if (cub->player.pos.x > pos->x)
-					color = mlx_get_pixel_img(&cub->texture.ea, xx, cub->texture.ea.height * (y - am) / size);
-				else
-					color = mlx_get_pixel_img(&cub->texture.we, xx, cub->texture.we.height * (y - am) / size);
-
-			}
-		}
+			color = mlx_get_pixel_img(texture, xx,
+					texture->height * (y - am) / size);
 		mlx_put_pixel_to_img(&cub->screen, x, y, color);
 	}
 }
 
 void	draw_shit(t_cub *cub)
 {
-	float	size;
+	float		size;
+	t_position	ray;
+	t_position	cray;
+	int			x;
+	float		angle;
 
 	size = 0;
-	for (int x = 0; x < cub->screen.width; x++)
+	x = -1;
+	while (++x < cub->screen.width)
 	{
-		float lol = (float) x / cub->screen.width - 0.5;
-		float angle = atan2f(lol, 0.5) * 180 / M_PI;
-		t_position ray = ray_cast(&cub->player, cub->player.angle + angle, &cub->map);
-		t_position cray = ray;
+		angle = atan2f((float) x / cub->screen.width - 0.5, 0.6) * 180 / M_PI;
+		ray = ray_cast(&cub->player, cub->player.angle + angle, &cub->map);
+		cray = ray;
 		cray.x -= cub->player.pos.x;
 		cray.y -= cub->player.pos.y;
 		size = hypotf(cray.x, cray.y);
 		size *= cosf(angle * M_PI / 180);
 		if (size == 0)
 			size = 1;
-		draw_col(cub, x, WINDOWS_HEIGHT / size, &ray);
+		draw_col(cub, x, cub->screen.height / size, &ray);
 	}
 }
 
@@ -190,9 +208,9 @@ static int	key_press(int keycode, t_cub *cub)
 		cub->player.pos.y += 0.15 * sinf(M_PI * (cub->player.angle + 90) / 180);
 	}
 	else if (keycode == KEY_ARROW_LEFT)
-		cub->player.angle -= 10;
+		cub->player.angle -= 5;
 	else if (keycode == KEY_ARROW_RIGHT)
-		cub->player.angle += 10;
+		cub->player.angle += 5;
 	else if (keycode == KEY_ECHAP)
 		close_click(0, cub);
 	if (cub->player.angle < 0)
@@ -202,7 +220,7 @@ static int	key_press(int keycode, t_cub *cub)
 	printf("Player Y : %f\n Player X : %f\n Angle : %f\n",
 		cub->player.pos.y, cub->player.pos.x, cub->player.angle);
 	printf("%d %d\n", cub->screen.width, cub->screen.height);
-	clear_screen(&cub->screen);
+	//clear_screen(&cub->screen);
 	draw_shit(cub);
 	t_position pos = scale_pos(&cub->player.pos, WINDOWS_WIDTH / cub->map.width, WINDOWS_HEIGHT / cub->map.height);
 	for (int i = 0; i < 10; i++)
@@ -229,19 +247,19 @@ static void	generate_img(t_cub *cub)
 {
 
 	cub->texture.no.img = mlx_xpm_file_to_image(cub->win.mlx, cub->config.path_no,
-		&cub->texture.no.height, &cub->texture.no.width);
+		&cub->texture.no.width, &cub->texture.no.height);
 	create_img(&cub->texture.no, cub->texture.no.img);
 
 	cub->texture.so.img = mlx_xpm_file_to_image(cub->win.mlx, cub->config.path_so,
-		&cub->texture.so.height, &cub->texture.so.width);
+		&cub->texture.so.width, &cub->texture.so.height);
 	create_img(&cub->texture.so, cub->texture.so.img);
 
 	cub->texture.we.img = mlx_xpm_file_to_image(cub->win.mlx, cub->config.path_we,
-		&cub->texture.we.height, &cub->texture.we.width);
+		&cub->texture.we.width, &cub->texture.we.height);
 	create_img(&cub->texture.we, cub->texture.we.img);
 
 	cub->texture.ea.img = mlx_xpm_file_to_image(cub->win.mlx, cub->config.path_ea,
-		&cub->texture.ea.height, &cub->texture.ea.width);
+		&cub->texture.ea.width, &cub->texture.ea.height);
 	create_img(&cub->texture.ea, cub->texture.ea.img);
 
 	create_img(&cub->screen, mlx_new_image(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT));

@@ -6,13 +6,13 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 22:00:39 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/09 22:01:45 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/11 15:47:48 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/mlx_utils.h"
 
-unsigned int	mlx_get_pixel_img(t_img *img, int x, int y)
+unsigned int	mlx_get_pixel_img(const t_img *img, int x, int y)
 {
 	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
 		return (0);

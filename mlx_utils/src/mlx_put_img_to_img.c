@@ -6,13 +6,13 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 19:29:14 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/09 22:01:51 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/11 15:49:26 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/mlx_utils.h"
 
-void	mlx_put_img_to_img(t_img *dest, t_img *src, int x, int y)
+void	mlx_put_img_to_img(t_img *dest, const t_img *src, int x, int y)
 {
 	int			current_x;
 	int			current_y;

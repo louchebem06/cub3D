@@ -1,6 +1,6 @@
 NO ./texture/brick.xpm
-SO ./texture/metal.xpm
-WE ./texture/pebbles.xpm
+SO ./texture/vroum.xpm
+WE ./texture/test.xpm
 EA ./texture/wood.xpm
 
 F 255,100, 0
