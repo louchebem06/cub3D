@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_player_info.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 22:43:37 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 10:04:13 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/10 12:38:32 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	convert_player_angle(t_cub *cub)
 {
 	if (cub->player.angle == 'N')
-		cub->player.angle = 0;
-	else if (cub->player.angle == 'E')
-		cub->player.angle = 90;
-	else if (cub->player.angle == 'S')
-		cub->player.angle = 180;
-	else if (cub->player.angle == 'W')
 		cub->player.angle = 270;
+	else if (cub->player.angle == 'E')
+		cub->player.angle = 0;
+	else if (cub->player.angle == 'S')
+		cub->player.angle = 90;
+	else if (cub->player.angle == 'W')
+		cub->player.angle = 180;
 }
 
 void	create_player_info(t_cub *cub)
