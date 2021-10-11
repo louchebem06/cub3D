@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_put_pixel_to_img.c                             :+:      :+:    :+:   */
+/*   anti_rgb.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/15 10:49:46 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/11 23:50:59 by mmehran          ###   ########.fr       */
+/*   Created: 2021/10/11 23:54:27 by mmehran           #+#    #+#             */
+/*   Updated: 2021/10/12 00:00:30 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/mlx_utils.h"
+#include "../../header/cub3d.h"
+#include "../../header/utils.h"
 
-void	mlx_put_pixel_to_img(t_img *dest, int x, int y, int color)
+unsigned int	anti_rgb(t_rgb rgb)
 {
-	char	*dst;
-
-	if (x < 0 || x >= dest->width || y < 0 || y >= dest->height)
-		return ;
-	if (color >> 24 == 0xFF)
-		return ;
-	dst = dest->data.addr + (y * dest->data.line_length
-			+ x * (dest->data.bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	return (rgb.r << 16 | rgb.g << 8 | rgb.b);
 }

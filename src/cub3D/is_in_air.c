@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_put_pixel_to_img.c                             :+:      :+:    :+:   */
+/*   is_in_air.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/15 10:49:46 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/11 23:50:59 by mmehran          ###   ########.fr       */
+/*   Created: 2021/10/11 23:46:57 by mmehran           #+#    #+#             */
+/*   Updated: 2021/10/11 23:47:12 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/mlx_utils.h"
+#include "../../header/cub3d.h"
 
-void	mlx_put_pixel_to_img(t_img *dest, int x, int y, int color)
+bool	is_in_air(const t_map *map, const t_position *ray, const t_position *p)
 {
-	char	*dst;
+	int	x;
+	int	y;
 
-	if (x < 0 || x >= dest->width || y < 0 || y >= dest->height)
-		return ;
-	if (color >> 24 == 0xFF)
-		return ;
-	dst = dest->data.addr + (y * dest->data.line_length
-			+ x * (dest->data.bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	if (p->x > ray->x)
+		x = ceilf(ray->x - 1);
+	else
+		x = floorf(ray->x);
+	if (p->y > ray->y)
+		y = ceilf(ray->y - 1);
+	else
+		y = floorf(ray->y);
+	if (x >= map->width || x < 0 || y >= map->height || y < 0)
+		return (false);
+	if (map->map[y][x] == '0')
+		return (true);
+	return (false);
 }

@@ -6,22 +6,23 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 22:43:37 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/10 12:38:32 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/12 00:08:14 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
+#include <math.h>
 
 static void	convert_player_angle(t_cub *cub)
 {
 	if (cub->player.angle == 'N')
-		cub->player.angle = 270;
+		cub->player.angle = M_PI * 270 / 180;
 	else if (cub->player.angle == 'E')
-		cub->player.angle = 0;
+		cub->player.angle = M_PI * 0 / 180;
 	else if (cub->player.angle == 'S')
-		cub->player.angle = 90;
+		cub->player.angle = M_PI * 90 / 180;
 	else if (cub->player.angle == 'W')
-		cub->player.angle = 180;
+		cub->player.angle = M_PI * 180 / 180;
 }
 
 void	create_player_info(t_cub *cub)

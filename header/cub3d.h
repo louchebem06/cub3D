@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/11 21:51:28 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/12 00:03:29 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_keys
 	bool	up;
 	bool	down;
 	bool	left;
-	bool 	right;
+	bool	right;
 	bool	arrow_l;
 	bool	arrow_r;
 }	t_keys;
@@ -103,12 +103,13 @@ typedef struct s_cub
 	t_player	player;
 	t_texture	texture;
 	t_img		screen;
-	t_img		screen_draft;
-	bool		up_to_date;
 	int			tick;
 	t_keys		keys;
 }				t_cub;
 
-void	cub3d(t_cub *cub);
+void		cub3d(t_cub *cub);
+bool		is_in_air(const t_map *map, const t_position *ray,
+				const t_position *p);
+t_position	ray_cast(const t_player *p, const float angle, const t_map *map);
 
 #endif
