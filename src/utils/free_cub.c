@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_cub.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/12 18:13:22 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/12 02:32:23 by bledda           ###   ########.fr       */
+/*   Created: 2021/10/12 02:23:00 by bledda            #+#    #+#             */
+/*   Updated: 2021/10/12 02:24:08 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3d.h"
+#include "../../header/utils.h"
 
-int	main(int ac, const char **av)
+void	free_cub(t_cub *cub)
 {
-	t_cub	cub;
+	int	i;
 
-	if (ac == 2 && ft_config(&cub, av[1]))
-		cub3d(&cub);
-	else if (ac == 1)
-		ft_error("Error:\n\t-Please specify a map\n", RED);
-	else if (ac > 2)
-		ft_error("Error:\n\t-Too many arguments\n", RED);
-	return (0);
+	i = -1;
+	free(cub->config.path_ea);
+	free(cub->config.path_no);
+	free(cub->config.path_so);
+	free(cub->config.path_we);
+	while (cub->config.map[++i])
+		free(cub->config.map[i]);
+	free(cub->config.map);
 }

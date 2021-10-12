@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_is_valid.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 06:21:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/04 14:58:53 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/12 02:22:16 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
-
-static void	free_cub(t_cub *cub)
-{
-	int	i;
-
-	i = -1;
-	free(cub->config.path_ea);
-	free(cub->config.path_no);
-	free(cub->config.path_so);
-	free(cub->config.path_we);
-	while (cub->config.map[++i])
-		free(cub->config.map[i]);
-	free(cub->config.map);
-}
 
 static void	error_xpm(char *str)
 {

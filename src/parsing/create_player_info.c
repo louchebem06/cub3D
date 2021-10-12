@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_player_info.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 22:43:37 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/12 00:08:14 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/12 01:48:02 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	create_player_info(t_cub *cub)
 			if (cub->config.map[y][x] == 'N' || cub->config.map[y][x] == 'S'
 				|| cub->config.map[y][x] == 'E' || cub->config.map[y][x] == 'W')
 			{
-				cub->player.pos.x = x;
-				cub->player.pos.y = y;
+				cub->player.pos.x = floorf(x) + 0.5;
+				cub->player.pos.y = floorf(y) + 0.5;
 				cub->player.angle = cub->config.map[y][x];
 				cub->config.map[y][x] = '0';
 				convert_player_angle(cub);

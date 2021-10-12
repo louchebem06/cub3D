@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_img.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:28:05 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/12 00:33:56 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/12 02:27:04 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	generate_img(t_cub *c)
 	{
 		ft_error("Error:\n", RED);
 		ft_error("\t-Impossible to load textures\n", RED);
+		free_cub(c);
 		exit(1);
 	}
 	create_img(&c->texture.no, c->texture.no.img);

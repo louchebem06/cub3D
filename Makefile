@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/12 00:32:30 by mmehran          ###   ########.fr        #
+#    Updated: 2021/10/12 02:24:40 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,9 @@ SRCS_UTILS_FILES	= add_value.c \
 						free_split.c \
 						count_char.c \
 						ft_error.c \
-						anti_rgb.c
+						anti_rgb.c \
+						is_valid_int.c \
+						free_cub.c
 
 SRCS_CUB3D_FILES	= cub3d.c \
 						ray_cast.c \

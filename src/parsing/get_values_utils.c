@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 05:19:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 04:54:02 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/12 02:14:08 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,15 @@ void	add_simple(t_isset *isset, t_cub *cub, char ***split_line)
 static void	check_value_multi(char ***split_arg, t_rgb *color, t_isset *isset)
 {
 	if ((*split_arg)[0] && (*split_arg)[1] && (*split_arg)[2]
-		&& !(*split_arg)[3] && ft_strisdigit((*split_arg)[0])
-		&& ft_strisdigit((*split_arg)[1]) && ft_strisdigit((*split_arg)[2]))
+		&& !(*split_arg)[3] && is_valid_int((*split_arg)[0])
+		&& is_valid_int((*split_arg)[1]) && is_valid_int((*split_arg)[2]))
 	{
 		color->r = ft_atoi((*split_arg)[0]);
 		color->g = ft_atoi((*split_arg)[1]);
 		color->b = ft_atoi((*split_arg)[2]);
 		if (color->r > 255 || color->g > 255 || color->b > 255)
+			isset->error = 1;
+		if (color->r < 0 || color->g < 0 || color->b < 0)
 			isset->error = 1;
 	}
 	else
@@ -97,7 +99,7 @@ void	add_multi(t_isset *isset, t_cub *cub, char ***split_line)
 		while ((*split_line)[++i])
 			add_value(&arg, (*split_line)[i]);
 	split_arg = ft_split(arg, ',');
-	if (count_char(arg, 'c') > 2)
+	if (count_char(arg, ',') > 2)
 		isset->error = 1;
 	free(arg);
 	if ((!ft_strncmp((*split_line)[0], "F", 1) && isset->f)
