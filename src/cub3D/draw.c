@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/12 01:39:24 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/12 17:11:44 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,36 @@ static t_img	*get_texture_direction(t_cub *cub, const t_position *ray_pos)
 	return (0);
 }
 
+static float	img_x_percent(const t_cub *cub, const t_position *ray_pos)
+{
+	const float	off_x = ray_pos->x - floorf(ray_pos->x);
+	const float	off_y = ray_pos->y - floorf(ray_pos->y);
+	float		res;
+
+	if (off_x > off_y)
+	{
+		res = off_x;
+		if (cub->player.pos.y < ray_pos->y)
+			res = 1 - res;
+	}
+	else
+	{
+		res = off_y;
+		if (cub->player.pos.x > ray_pos->x)
+			res = 1 - res;
+	}
+	return (res);
+}
+
 static void	draw_col(t_cub *cub, int x, int size, const t_position *ray_pos)
 {
 	const int		am = (cub->screen.height - size) / 2;
 	const t_img		*texture = get_texture_direction(cub, ray_pos);
-	float			xx;
+	const int		xx = img_x_percent(cub, ray_pos) * texture->width;
 	unsigned int	color;
 	int				y;
 
 	y = -1;
-	if (ray_pos->x - floorf(ray_pos->x) > ray_pos->y - floorf(ray_pos->y))
-	{
-		xx = ray_pos->x - floorf(ray_pos->x);
-		if (cub->player.pos.y < ray_pos->y)
-			xx = 1 - xx;
-	}
-	else
-	{
-		xx = ray_pos->y - floorf(ray_pos->y);
-		if (cub->player.pos.x > ray_pos->x)
-			xx = 1 - xx;
-	}
-	xx *= texture->width;
 	while (++y < cub->screen.height)
 	{
 		color = anti_rgb(cub->config.floor);

@@ -6,13 +6,13 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 23:43:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/12 00:10:56 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/12 17:17:52 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
 
-static float	left_right(float number, bool direction)
+static float	left_right(const float number, const bool direction)
 {
 	if (direction)
 		return (floorf(number + 1) - number);
@@ -21,13 +21,12 @@ static float	left_right(float number, bool direction)
 
 static void	next(t_position *pos, const t_position *direction)
 {
-	float		slope;
-	t_position	next_x;
-	t_position	next_y;
 	const float	dx = left_right(pos->x, direction->x > 0);
 	const float	dy = left_right(pos->y, direction->y > 0);
+	const float	slope = direction->y / direction->x;
+	t_position	next_x;
+	t_position	next_y;
 
-	slope = direction->y / direction->x;
 	next_x = (t_position){0};
 	next_y = (t_position){0};
 	next_x.x = dx;
