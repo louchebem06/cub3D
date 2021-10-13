@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_get_img_pixel.c                                :+:      :+:    :+:   */
+/*   create_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 22:00:39 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/11 15:47:48 by mmehran          ###   ########.fr       */
+/*   Created: 2021/10/13 18:26:33 by mmehran           #+#    #+#             */
+/*   Updated: 2021/10/13 18:27:34 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/mlx_utils.h"
 
-unsigned int	mlx_get_pixel_img(const t_img *img, int x, int y)
+void	create_img(t_img *img, void *mlx_img)
 {
-	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
-		return (0);
-	return (*(unsigned int *)(img->data.addr
-		+ (y * img->data.line_length + x * (img->data.bits_per_pixel / 8))));
+	img->img = mlx_img;
+	img->data.addr = mlx_get_data_addr(mlx_img, &img->data.bits_per_pixel,
+			&img->data.line_length, &img->data.endian);
 }

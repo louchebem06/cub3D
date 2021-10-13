@@ -6,7 +6,7 @@
 #    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/10 21:16:17 by bledda            #+#    #+#              #
-#    Updated: 2021/10/09 22:09:59 by mmehran          ###   ########.fr        #
+#    Updated: 2021/10/13 18:28:45 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ HEADER_FILES	= mlx_utils.h \
 SRCS_FILES		= mlx_put_img_to_img.c \
 					create_trgb.c \
 					mlx_put_pixel_to_img.c \
-					mlx_get_img_pixel.c
+					mlx_get_pixel_img.c \
+					create_img.c
 
 SRCS			= $(addprefix ${SRC_FOLDER},${SRCS_FILES})
 HEADERS			= $(addprefix ${HEADER_FOLDER},${HEADER_FILES})

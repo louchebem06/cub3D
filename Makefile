@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/13 15:44:42 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/13 18:42:01 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,9 +67,9 @@ SRCS_CUB3D_FILES_COMMUN		= cub3d.c \
 								generate_img.c
 
 #  MANDA
-SRCS_FILES_MANDA			= 
+SRCS_FILES_MANDA			=
 
-SRCS_PARSING_FILES_MANDA	= 
+SRCS_PARSING_FILES_MANDA	=
 
 SRCS_UTILS_FILES_MANDA		=
 
@@ -77,9 +77,9 @@ SRCS_CUB3D_FILES_MANDA		= hook.c \
 								render_next_frame.c
 
 #  BONUS
-SRCS_FILES_BONUS			= 
+SRCS_FILES_BONUS			=
 
-SRCS_PARSING_FILES_BONUS	= 
+SRCS_PARSING_FILES_BONUS	=
 
 SRCS_UTILS_FILES_BONUS		=
 
@@ -127,7 +127,7 @@ OBJS_BONUS					= $(SRCS_OBJS_BONUS) $(SRCS_PARSING_OBJS_BONUS) $(SRCS_UTILS_OBJS
 
 #	COMPILATION		################################################################
 CC					= gcc
-CFLAGS  			= -Wall -Wextra -Werror
+CFLAGS  			= -Wall -Wextra -Werror -D __LINUX__
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 LIB					= ./libft/libft.a ./mlx_utils/mlx_utils.a -lm
@@ -199,7 +199,7 @@ fclean:		clean
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
 
-bonus: 		
+bonus:
 			@$(MAKE) CUB3D_BONUS=1
 
 .PHONY: 	all clean fclean re bonus

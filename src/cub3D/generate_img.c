@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   generate_img.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:28:05 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/12 02:27:04 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/13 18:28:08 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
-
-static void	create_img(t_img *img, void *mlx_img)
-{
-	img->img = mlx_img;
-	img->data.addr = mlx_get_data_addr(mlx_img, &img->data.bits_per_pixel,
-			&img->data.line_length, &img->data.endian);
-}
 
 void	generate_img(t_cub *c)
 {

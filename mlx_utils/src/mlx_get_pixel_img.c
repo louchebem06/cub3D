@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_put_pixel_to_img.c                             :+:      :+:    :+:   */
+/*   mlx_get_img_pixel.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/15 10:49:46 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/13 17:53:27 by mmehran          ###   ########.fr       */
+/*   Created: 2021/10/09 22:00:39 by mmehran           #+#    #+#             */
+/*   Updated: 2021/10/13 17:45:38 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/mlx_utils.h"
 
-void	mlx_put_pixel_to_img(t_img *dest, int x, int y, int color)
+unsigned int	mlx_get_pixel_img(const t_img *img, int x, int y)
 {
-	char	*dst;
-
-	if (x < 0 || x >= dest->width || y < 0 || y >= dest->height)
-		return ;
-	if (color >> 24 == 0xFF)
-		return ;
-	dst = dest->data.addr + (y * dest->data.line_length
-			+ x * (dest->data.bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
+		return (0);
+	return (*(unsigned int *)(img->data.addr
+		+ (y * img->data.line_length + x * (img->data.bits_per_pixel / 8))));
 }

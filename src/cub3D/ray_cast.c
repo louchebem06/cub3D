@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 23:43:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/12 17:17:52 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/12 19:59:42 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,25 @@ static void	next(t_position *pos, const t_position *direction)
 	if (next_x.x * next_x.x + next_x.y * next_x.y
 		< next_y.x * next_y.x + next_y.y * next_y.y)
 	{
-		pos->x += next_x.x;
+		pos->x = roundf(pos->x + next_x.x);
 		pos->y += next_x.y;
 	}
 	else
 	{
 		pos->x += next_y.x;
-		pos->y += next_y.y;
+		pos->y = roundf(pos->y + next_y.y);
 	}
 }
 
-t_position	ray_cast(const t_player *p, const float angle, const t_map *map)
+t_position	ray_cast(const t_position *p, const float angle, const t_map *map)
 {
 	t_position	dir;
 	t_position	ray_pos;
 
 	dir.x = cosf(angle);
 	dir.y = sinf(angle);
-	ray_pos = p->pos;
-	while (is_in_air(map, &ray_pos, &p->pos))
+	ray_pos = *p;
+	while (is_in_air(map, &ray_pos, p))
 		next(&ray_pos, &dir);
 	return (ray_pos);
 }

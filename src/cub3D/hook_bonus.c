@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 13:12:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/13 17:17:22 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/13 19:20:15 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,16 @@ static int	move_mouse(int x, int y, t_cub *cub)
 {
 	if (x < 0 || y < 0 || y > WINDOWS_HEIGHT || x > WINDOWS_WIDTH)
 	{
-		mlx_mouse_show();
+		mlx_mouse_show(cub->win.mlx, cub->win.win);
 		return (0);
 	}
 	if (x < WINDOWS_WIDTH / 2)
 		cub->player.angle -= M_PI / 30;
 	else if (x > WINDOWS_WIDTH / 2)
 		cub->player.angle += M_PI / 30;
-	mlx_mouse_move(cub->win.win, WINDOWS_WIDTH / 2, WINDOWS_HEIGHT / 2);
-	mlx_mouse_hide();
+	mlx_mouse_move(cub->win.mlx, cub->win.win,
+		WINDOWS_WIDTH / 2, WINDOWS_HEIGHT / 2);
+	mlx_mouse_hide(cub->win.mlx, cub->win.win);
 	return (0);
 }
 
@@ -80,7 +81,7 @@ void	hook(t_cub *cub)
 	mlx_hook(cub->win.win, 2, 1, key_press, cub);
 	mlx_hook(cub->win.win, 3, 2, key_release, cub);
 	mlx_hook(cub->win.win, 17, 0, close_click, cub);
-	mlx_hook(cub->win.win, 6, 0, move_mouse, cub);
+	mlx_hook(cub->win.win, 7, 0, move_mouse, cub);
 	mlx_loop_hook(cub->win.mlx, render_next_frame, cub);
 	mlx_loop(cub->win.mlx);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 19:32:01 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/13 16:44:52 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/13 18:27:33 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ typedef struct s_img
 	int			height;
 }			t_img;
 
-void			mlx_put_img_to_img(t_img *dest, t_img *src, int x, int y);
+void			mlx_put_img_to_img(t_img *dest, const t_img *src, int x, int y);
 int				create_trgb(int t, int r, int g, int b);
 void			mlx_put_pixel_to_img(t_img *dest, int x, int y, int color);
 unsigned int	mlx_get_pixel_img(const t_img *img, int x, int y);
+void			create_img(t_img *img, void *mlx_img);
 
 #endif
