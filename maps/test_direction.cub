@@ -1,7 +1,7 @@
-NO ./texture/test.xpm
-SO ./texture/test.xpm
-WE ./texture/test.xpm
-EA ./texture/test.xpm
+NO ./texture/Test/test.xpm
+SO ./texture/Test/test.xpm
+WE ./texture/Test/test.xpm
+EA ./texture/Test/test.xpm
 
 F 0,0, 0
 C 0,000,255

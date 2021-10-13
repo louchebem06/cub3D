@@ -1,7 +1,7 @@
-NO ./texture/brick.xpm
-SO ./texture/metal.xpm
-WE ./texture/pebbles.xpm
-EA ./texture/wood.xpm
+NO ./texture/Test/brick.xpm
+SO ./texture/Test/metal.xpm
+WE ./texture/Test/pebbles.xpm
+EA ./texture/Test/wood.xpm
 
 F 255,100, 0
 C 225,255, 255
