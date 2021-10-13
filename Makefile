@@ -6,75 +6,122 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/12 02:24:40 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/13 13:11:55 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME				= cub3D
+NAME						= cub3D
 
 #	FILES			############################################################
-HEADER_FILES 		= cub3d.h \
-						ft_config.h \
-						utils.h \
-						color.h
+HEADER_FILES_COMMUN 		= cub3d.h \
+								ft_config.h \
+								utils.h \
+								color.h
 
-FOLDER_HEADER		= header/
-FOLDER_SRC			= src/
-FOLDER_PARSING		= $(addprefix ${FOLDER_SRC},parsing/)
-FOLDER_UTILS		= $(addprefix ${FOLDER_SRC},utils/)
-FOLDER_CUB3D		= $(addprefix ${FOLDER_SRC},cub3D/)
+HEADER_FILES_MANDA 			= 
 
-SRCS_FILES			= main.c
+HEADER_FILES_BONUS 			=
 
-SRCS_PARSING_FILES	= ft_config.c \
-						ft_extension.c \
-						get_file.c \
-						get_values.c \
-						get_values_utils.c \
-						map_is_valid.c \
-						remove_newlines.c \
-						empty_line_in_map.c \
-						forbiden_char_map.c \
-						multi_pos_map.c \
-						min_char_map.c \
-						remove_end_space_map.c \
-						remove_space_map.c \
-						create_player_info.c \
-						wall_check_map.c \
-						normalize_map.c \
-						add_space.c \
-						size_map.c
+FOLDER_HEADER				= header/
+FOLDER_SRC					= src/
+FOLDER_PARSING				= $(addprefix ${FOLDER_SRC},parsing/)
+FOLDER_UTILS				= $(addprefix ${FOLDER_SRC},utils/)
+FOLDER_CUB3D				= $(addprefix ${FOLDER_SRC},cub3D/)
 
-SRCS_UTILS_FILES	= add_value.c \
-						ft_strisdigit.c \
-						free_split.c \
-						count_char.c \
-						ft_error.c \
-						anti_rgb.c \
-						is_valid_int.c \
-						free_cub.c
+#  COMMUN
+SRCS_FILES_COMMUN			= main.c
 
-SRCS_CUB3D_FILES	= cub3d.c \
-						ray_cast.c \
-						is_in_air.c \
-						scale_pos.c \
-						draw.c \
-						generate_img.c \
-						render_next_frame.c \
-						hook.c
+SRCS_PARSING_FILES_COMMUN	= ft_config.c \
+								ft_extension.c \
+								get_file.c \
+								get_values.c \
+								get_values_utils.c \
+								map_is_valid.c \
+								remove_newlines.c \
+								empty_line_in_map.c \
+								forbiden_char_map.c \
+								multi_pos_map.c \
+								min_char_map.c \
+								remove_end_space_map.c \
+								remove_space_map.c \
+								create_player_info.c \
+								wall_check_map.c \
+								normalize_map.c \
+								add_space.c \
+								size_map.c
 
-SRCS				= $(addprefix ${FOLDER_SRC},${SRCS_FILES})
-SRCS_PARSING		= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES})
-SRCS_UTILS			= $(addprefix ${FOLDER_UTILS},${SRCS_UTILS_FILES})
-SRCS_CUB3D			= $(addprefix ${FOLDER_CUB3D},${SRCS_CUB3D_FILES})
-HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILES})
+SRCS_UTILS_FILES_COMMUN		= add_value.c \
+								ft_strisdigit.c \
+								free_split.c \
+								count_char.c \
+								ft_error.c \
+								anti_rgb.c \
+								is_valid_int.c \
+								free_cub.c
 
-SRCS_OBJS			= ${SRCS:.c=.o}
-SRCS_PARSING_OBJS	= ${SRCS_PARSING:.c=.o}
-SRCS_UTILS_OBJS		= ${SRCS_UTILS:.c=.o}
-SRCS_CUB3D_OBJS		= ${SRCS_CUB3D:.c=.o}
+SRCS_CUB3D_FILES_COMMUN		= cub3d.c \
+								ray_cast.c \
+								is_in_air.c \
+								scale_pos.c \
+								draw.c \
+								generate_img.c \
+								render_next_frame.c \
 
-OBJS				= $(SRCS_OBJS) $(SRCS_PARSING_OBJS) $(SRCS_UTILS_OBJS) $(SRCS_CUB3D_OBJS)
+#  MANDA
+SRCS_FILES_MANDA			= 
+
+SRCS_PARSING_FILES_MANDA	= 
+
+SRCS_UTILS_FILES_MANDA		=
+
+SRCS_CUB3D_FILES_MANDA		= hook.c
+
+
+#  BONUS
+SRCS_FILES_BONUS			= 
+
+SRCS_PARSING_FILES_BONUS	= 
+
+SRCS_UTILS_FILES_BONUS		=
+
+SRCS_CUB3D_FILES_BONUS		= hook_bonus.c
+
+SRCS_COMMUN					= $(addprefix ${FOLDER_SRC},${SRCS_FILES_COMMUN})
+SRCS_PARSING_COMMUN			= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES_COMMUN})
+SRCS_UTILS_COMMUN			= $(addprefix ${FOLDER_UTILS},${SRCS_UTILS_FILES_COMMUN})
+SRCS_CUB3D_COMMUN			= $(addprefix ${FOLDER_CUB3D},${SRCS_CUB3D_FILES_COMMUN})
+HEADERS_COMMUN				= $(addprefix ${FOLDER_HEADER},${HEADER_FILES_COMMUN})
+
+SRCS_MANDA					= $(addprefix ${FOLDER_SRC},${SRCS_FILES_MANDA})
+SRCS_PARSING_MANDA			= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES_MANDA})
+SRCS_UTILS_MANDA			= $(addprefix ${FOLDER_UTILS},${SRCS_UTILS_FILES_MANDA})
+SRCS_CUB3D_MANDA			= $(addprefix ${FOLDER_CUB3D},${SRCS_CUB3D_FILES_MANDA})
+HEADERS_MANDA				= $(addprefix ${FOLDER_HEADER},${HEADER_FILES_MANDA})
+
+SRCS_BONUS					= $(addprefix ${FOLDER_SRC},${SRCS_FILES_BONUS})
+SRCS_PARSING_BONUS			= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES_BONUS})
+SRCS_UTILS_BONUS			= $(addprefix ${FOLDER_UTILS},${SRCS_UTILS_FILES_BONUS})
+SRCS_CUB3D_BONUS			= $(addprefix ${FOLDER_CUB3D},${SRCS_CUB3D_FILES_BONUS})
+HEADERS_BONUS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILES_BONUS})
+
+SRCS_OBJS_COMMUN			= ${SRCS_COMMUN:.c=.o}
+SRCS_PARSING_OBJS_COMMUN	= ${SRCS_PARSING_COMMUN:.c=.o}
+SRCS_UTILS_OBJS_COMMUN		= ${SRCS_UTILS_COMMUN:.c=.o}
+SRCS_CUB3D_OBJS_COMMUN		= ${SRCS_CUB3D_COMMUN:.c=.o}
+
+SRCS_OBJS_MANDA				= ${SRCS_MANDA:.c=.o}
+SRCS_PARSING_OBJS_MANDA		= ${SRCS_PARSING_MANDA:.c=.o}
+SRCS_UTILS_OBJS_MANDA		= ${SRCS_UTILS_MANDA:.c=.o}
+SRCS_CUB3D_OBJS_MANDA		= ${SRCS_CUB3D_MANDA:.c=.o}
+
+SRCS_OBJS_BONUS				= ${SRCS_BONUS:.c=.o}
+SRCS_PARSING_OBJS_BONUS		= ${SRCS_PARSING_BONUS:.c=.o}
+SRCS_UTILS_OBJS_BONUS		= ${SRCS_UTILS_BONUS:.c=.o}
+SRCS_CUB3D_OBJS_BONUS		= ${SRCS_CUB3D_BONUS:.c=.o}
+
+OBJS_COMMUN					= $(SRCS_OBJS_COMMUN) $(SRCS_PARSING_OBJS_COMMUN) $(SRCS_UTILS_OBJS_COMMUN) $(SRCS_CUB3D_OBJS_COMMUN)
+OBJS_MANDA					= $(SRCS_OBJS_MANDA) $(SRCS_PARSING_OBJS_MANDA) $(SRCS_UTILS_OBJS_MANDA) $(SRCS_CUB3D_OBJS_MANDA)
+OBJS_BONUS					= $(SRCS_OBJS_BONUS) $(SRCS_PARSING_OBJS_BONUS) $(SRCS_UTILS_OBJS_BONUS) $(SRCS_CUB3D_OBJS_BONUS)
 ####################################################################################
 
 #	COMPILATION		################################################################
@@ -90,7 +137,15 @@ ifeq ($(UNAME_S),Linux)
 	LIBS 			= $(LIB) -lmlx -lXext -lX11
 endif
 ifeq ($(UNAME_S),Darwin)
-	LIBS 			= $(LIB) -lmlx -framework OpenGL -framework AppKit -lz
+	LIBS 			= $(LIB) -lmlx -framework OpenGL -framework AppKit
+endif
+
+ifdef CUB3D_BONUS
+OBJS 				= $(OBJS_COMMUN) $(OBJS_BONUS)
+HEADERS 			= $(HEADERS_COMMUN) $(HEADERS_BONUS)
+else
+OBJS 				= $(OBJS_COMMUN) $(OBJS_MANDA)
+HEADERS 			= $(HEADERS_COMMUN) $(HEADERS_MANDA)
 endif
 #####################################################################################
 
@@ -126,7 +181,7 @@ re: 		fclean all
 clean:
 			$(MAKE_EXT) ./libft clean
 			$(MAKE_EXT) ./mlx_utils clean
-			@${RM} ${OBJS}
+			@${RM} ${OBJS_COMMUN} ${OBJS_MANDA} ${OBJS_BONUS}
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Object files have been deleted 🚮\n"
@@ -143,7 +198,10 @@ fclean:		clean
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
 
-.PHONY: 	all clean fclean re
+bonus: 		
+			@$(MAKE) CUB3D_BONUS=1
+
+.PHONY: 	all clean fclean re bonus
 #################################################################################
 
 #	COLOR SETTING	#############################################################
