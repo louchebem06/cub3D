@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_put_pixel_to_img.c                             :+:      :+:    :+:   */
+/*   minimap_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/15 10:49:46 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/13 16:34:54 by bledda           ###   ########.fr       */
+/*   Created: 2021/10/13 15:31:40 by bledda            #+#    #+#             */
+/*   Updated: 2021/10/13 15:45:38 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/mlx_utils.h"
+#ifndef MINIMAP_BONUS_H
+# define MINIMAP_BONUS_H
 
-void	mlx_put_pixel_to_img(t_img *dest, int x, int y, int color)
-{
-	char	*dst;
+# include "cub3d.h"
 
-	if (x < 0 || x >= dest->width || y < 0 || y >= dest->height)
-		return ;
-	if (color >> 24 == 0xFF)
-		return ;
-	dst = dest->data.addr + (y * dest->data.line_length
-			+ x * (dest->data.bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
+typedef struct s_cub	t_cub;
+
+void	minimap(t_cub *cub);
+
+#endif

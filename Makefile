@@ -6,21 +6,21 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/13 13:11:55 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/13 15:44:42 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME						= cub3D
 
 #	FILES			############################################################
-HEADER_FILES_COMMUN 		= cub3d.h \
-								ft_config.h \
+HEADER_FILES_COMMUN 		= ft_config.h \
 								utils.h \
-								color.h
+								color.h \
+								cub3d.h
 
-HEADER_FILES_MANDA 			= 
+HEADER_FILES_MANDA 			=
 
-HEADER_FILES_BONUS 			=
+HEADER_FILES_BONUS 			= minimap_bonus.h
 
 FOLDER_HEADER				= header/
 FOLDER_SRC					= src/
@@ -64,8 +64,7 @@ SRCS_CUB3D_FILES_COMMUN		= cub3d.c \
 								is_in_air.c \
 								scale_pos.c \
 								draw.c \
-								generate_img.c \
-								render_next_frame.c \
+								generate_img.c
 
 #  MANDA
 SRCS_FILES_MANDA			= 
@@ -74,8 +73,8 @@ SRCS_PARSING_FILES_MANDA	=
 
 SRCS_UTILS_FILES_MANDA		=
 
-SRCS_CUB3D_FILES_MANDA		= hook.c
-
+SRCS_CUB3D_FILES_MANDA		= hook.c \
+								render_next_frame.c
 
 #  BONUS
 SRCS_FILES_BONUS			= 
@@ -84,7 +83,9 @@ SRCS_PARSING_FILES_BONUS	=
 
 SRCS_UTILS_FILES_BONUS		=
 
-SRCS_CUB3D_FILES_BONUS		= hook_bonus.c
+SRCS_CUB3D_FILES_BONUS		= hook_bonus.c \
+								render_next_frame_bonus.c \
+								minimap_bonus.c
 
 SRCS_COMMUN					= $(addprefix ${FOLDER_SRC},${SRCS_FILES_COMMUN})
 SRCS_PARSING_COMMUN			= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES_COMMUN})
