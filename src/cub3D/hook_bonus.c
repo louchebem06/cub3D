@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 13:12:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/13 19:24:11 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/13 19:30:20 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	hook(t_cub *cub)
 	mlx_hook(cub->win.win, 2, 1, key_press, cub);
 	mlx_hook(cub->win.win, 3, 2, key_release, cub);
 	mlx_hook(cub->win.win, 17, 0, close_click, cub);
-	mlx_hook(cub->win.win, 7, 0, move_mouse, cub);
+	mlx_hook(cub->win.win, 6, 0, move_mouse, cub);
 	mlx_loop_hook(cub->win.mlx, render_next_frame, cub);
 	mlx_loop(cub->win.mlx);
 }
