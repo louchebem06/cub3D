@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 13:12:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/13 14:14:18 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/13 15:06:45 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,35 +61,17 @@ static int	key_release(int keycode, t_cub *cub)
 
 static int	move_mouse(int x, int y, t_cub *cub)
 {
-	static int xx = WINDOWS_WIDTH/2;
-	static int yy = WINDOWS_HEIGHT / 2;
-	printf("x:%d\ny:%d\n", x, y);
-	(void)yy;
-	if (xx >= 0 && xx <= WINDOWS_WIDTH)
+	if (x < 0 || y < 0 || y > WINDOWS_HEIGHT || x > WINDOWS_WIDTH)
 	{
-		if (xx < WINDOWS_WIDTH / 2)
-		{
-			cub->keys.arrow_r = true;
-			cub->keys.arrow_l = false;
-		}
-		else
-		{
-			cub->keys.arrow_l = true;
-			cub->keys.arrow_r = false;
-		}
+		mlx_mouse_show();
+		return (0);
 	}
-	else
-	{
-		cub->keys.arrow_l = false;
-		cub->keys.arrow_r = false;
-	}
-	return (0);
-}
-
-static int	click_mouse(int button, int x, int y, t_cub *cub)
-{
-	(void)cub;
-	printf("button:%d\nx:%d\ny:%d\n", button, x, y);
+	if (x < WINDOWS_WIDTH / 2)
+		cub->player.angle -= M_PI / 30;
+	else if (x > WINDOWS_WIDTH / 2)
+		cub->player.angle += M_PI / 30;
+	mlx_mouse_move(cub->win.win, WINDOWS_WIDTH / 2, WINDOWS_HEIGHT / 2);
+	mlx_mouse_hide();
 	return (0);
 }
 
@@ -99,7 +81,6 @@ void	hook(t_cub *cub)
 	mlx_hook(cub->win.win, 3, 2, key_release, cub);
 	mlx_hook(cub->win.win, 17, 0, close_click, cub);
 	mlx_hook(cub->win.win, 6, 0, move_mouse, cub);
-	mlx_mouse_hook(cub->win.win, click_mouse, cub);
 	mlx_loop_hook(cub->win.mlx, render_next_frame, cub);
 	mlx_loop(cub->win.mlx);
 }
