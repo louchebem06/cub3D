@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 13:12:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/13 19:20:15 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/13 19:24:11 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,15 @@ static int	move_mouse(int x, int y, t_cub *cub)
 {
 	if (x < 0 || y < 0 || y > WINDOWS_HEIGHT || x > WINDOWS_WIDTH)
 	{
-		mlx_mouse_show(cub->win.mlx, cub->win.win);
+		mlx_mouse_show();
 		return (0);
 	}
 	if (x < WINDOWS_WIDTH / 2)
 		cub->player.angle -= M_PI / 30;
 	else if (x > WINDOWS_WIDTH / 2)
 		cub->player.angle += M_PI / 30;
-	mlx_mouse_move(cub->win.mlx, cub->win.win,
-		WINDOWS_WIDTH / 2, WINDOWS_HEIGHT / 2);
-	mlx_mouse_hide(cub->win.mlx, cub->win.win);
+	mlx_mouse_move(cub->win.win, WINDOWS_WIDTH / 2, WINDOWS_HEIGHT / 2);
+	mlx_mouse_hide();
 	return (0);
 }
 
