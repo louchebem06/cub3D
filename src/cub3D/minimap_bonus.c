@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/14 02:57:32 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/14 04:04:46 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,6 @@ void	minimap(t_cub *cub)
 	}
 	crop_cicle(cub, &minimap);
 	mlx_put_img_to_img(&cub->screen, &minimap, 15, 15);
+	mlx_destroy_image(cub->win.mlx, temp.img);
+	mlx_destroy_image(cub->win.mlx, minimap.img);
 }
