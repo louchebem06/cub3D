@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/14 04:04:46 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/14 05:20:10 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ static void print_background(t_cub *cub, t_img *minimap)
 			color.r *= 0.5;
 			color.g *= 0.5;
 			color.b *= 0.5;
-			mlx_put_pixel_to_img(minimap, x-15, y-15, create_trgb(0,color.r ,color.g ,color.b));
+			if (mlx_get_pixel_img(minimap, x - 15, y - 15) == 0)
+			{
+				mlx_put_pixel_to_img(minimap, x-15, y-15, create_trgb(0,color.r ,color.g ,color.b));
+			}
 		}		
 	}
 }
@@ -98,7 +101,6 @@ void	minimap(t_cub *cub)
 	minimap.width = 200;
 	create_img(&minimap, minimap.img);
 
-	print_background(cub, &temp);
 	print_minimap(cub, &temp);
 	for (int y = 0; y < 200; y++)
 	{
@@ -108,16 +110,14 @@ void	minimap(t_cub *cub)
 			unsigned int color = mlx_get_pixel_img(&temp, x, y);
 			xx =x;
 			yy=y;
-			if (color == 0x00FF0000 || color == 0x00FF00)
-			{
-				xx = cosf(-cub->player.angle - M_PI / 2) * (x - 100) - sinf(-cub->player.angle- M_PI / 2) * (y - 100);
-				yy = sinf(-cub->player.angle - M_PI / 2) * (x - 100) + cosf(-cub->player.angle - M_PI / 2) * (y - 100);
-				xx += 100;
-				yy += 100;
-			}
+			xx = cosf(-cub->player.angle - M_PI / 2) * (x - 100) - sinf(-cub->player.angle- M_PI / 2) * (y - 100);
+			yy = sinf(-cub->player.angle - M_PI / 2) * (x - 100) + cosf(-cub->player.angle - M_PI / 2) * (y - 100);
+			xx += 100;
+			yy += 100;
 			mlx_put_pixel_to_img(&minimap, xx, yy, color);
 		}
 	}
+	print_background(cub, &minimap);
 	crop_cicle(cub, &minimap);
 	mlx_put_img_to_img(&cub->screen, &minimap, 15, 15);
 	mlx_destroy_image(cub->win.mlx, temp.img);

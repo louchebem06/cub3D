@@ -6,13 +6,14 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/14 04:01:06 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/14 04:40:31 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
 #include "../../header/minimap_bonus.h"
 #include "../../header/mouse_bonus.h"
+#include "../../header/shooter_bonus.h"
 
 static float	distance(t_position *p1, t_position *p2)
 {
@@ -69,6 +70,7 @@ int	render_next_frame(t_cub *cub)
 	draw(cub);
 	move_mouse(cub);
 	minimap(cub);
+	shooter(cub);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 	cub->tick = 0;
 	return (0);
@@ -82,6 +84,7 @@ int	render_next_frame(t_cub *cub)
 	move(cub);
 	draw(cub);
 	minimap(cub);
+	shooter(cub);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 	cub->tick = 0;
 	return (0);
