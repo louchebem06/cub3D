@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_put_img_to_img.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 19:29:14 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/13 18:18:16 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/14 03:57:36 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	mlx_put_img_to_img(t_img *dest, const t_img *src, int x, int y)
 {
-	int			current_x;
-	int			current_y;
+	int		current_x;
+	int		current_y;
 
 	current_y = 0;
 	current_x = 0;

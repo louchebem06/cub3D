@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/14 03:22:59 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/14 04:01:06 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static void	move(t_cub *cub)
 		cub->player.angle -= 2 * M_PI;
 }
 
+#ifdef __linux__
+
 int	render_next_frame(t_cub *cub)
 {
 	if (cub->tick++ < 200)
@@ -71,3 +73,17 @@ int	render_next_frame(t_cub *cub)
 	cub->tick = 0;
 	return (0);
 }
+#elif __APPLE__
+
+int	render_next_frame(t_cub *cub)
+{
+	if (cub->tick++ < 200)
+		return (0);
+	move(cub);
+	draw(cub);
+	minimap(cub);
+	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
+	cub->tick = 0;
+	return (0);
+}
+#endif
