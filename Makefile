@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/13 18:42:01 by mmehran          ###   ########.fr        #
+#    Updated: 2021/10/14 03:23:33 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ HEADER_FILES_COMMUN 		= ft_config.h \
 
 HEADER_FILES_MANDA 			=
 
-HEADER_FILES_BONUS 			= minimap_bonus.h
+HEADER_FILES_BONUS 			= minimap_bonus.h \
+								mouse_bonus.h
 
 FOLDER_HEADER				= header/
 FOLDER_SRC					= src/
@@ -64,7 +65,8 @@ SRCS_CUB3D_FILES_COMMUN		= cub3d.c \
 								is_in_air.c \
 								scale_pos.c \
 								draw.c \
-								generate_img.c
+								generate_img.c \
+								hook.c
 
 #  MANDA
 SRCS_FILES_MANDA			=
@@ -73,8 +75,7 @@ SRCS_PARSING_FILES_MANDA	=
 
 SRCS_UTILS_FILES_MANDA		=
 
-SRCS_CUB3D_FILES_MANDA		= hook.c \
-								render_next_frame.c
+SRCS_CUB3D_FILES_MANDA		= render_next_frame.c
 
 #  BONUS
 SRCS_FILES_BONUS			=
@@ -83,9 +84,9 @@ SRCS_PARSING_FILES_BONUS	=
 
 SRCS_UTILS_FILES_BONUS		=
 
-SRCS_CUB3D_FILES_BONUS		= hook_bonus.c \
-								render_next_frame_bonus.c \
-								minimap_bonus.c
+SRCS_CUB3D_FILES_BONUS		= render_next_frame_bonus.c \
+								minimap_bonus.c \
+								move_mouse_bonus.c
 
 SRCS_COMMUN					= $(addprefix ${FOLDER_SRC},${SRCS_FILES_COMMUN})
 SRCS_PARSING_COMMUN			= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES_COMMUN})
