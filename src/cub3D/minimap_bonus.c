@@ -3,58 +3,121 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/13 19:21:03 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/14 02:57:32 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minimap_bonus.h"
 
+static t_rgb	uitorgb(unsigned int value)
+{
+	t_rgb	result;
+
+	result.r = ((value & 0x00FF0000) >> 16);
+	result.g = ((value & 0x0000FF00) >> 8);
+	result.b = ((value & 0x000000FF));
+	return (result);
+}
+
+static void print_background(t_cub *cub, t_img *minimap)
+{
+	t_rgb	color;
+
+	for (int y = 15; y < 215; y++)
+	{
+		for (int x = 15; x < 215; x++)
+		{
+			color = uitorgb(mlx_get_pixel_img(&cub->screen, x, y));
+			color.r *= 0.5;
+			color.g *= 0.5;
+			color.b *= 0.5;
+			mlx_put_pixel_to_img(minimap, x-15, y-15, create_trgb(0,color.r ,color.g ,color.b));
+		}		
+	}
+}
+
+static void	print_minimap(t_cub *cub, t_img *minimap)
+{
+	for (int y = 0; y < 20; y++)
+	{
+		for (int x = 0; x < 20; x++)
+		{
+			if ((int)(cub->player.pos.y) - 10 + y < 0
+				|| (int)(cub->player.pos.x) - 10 + x < 0
+				|| (int)(cub->player.pos.x) - 10 + x >= cub->map.width
+				|| (int)(cub->player.pos.y) - 10 + y >= cub->map.height)
+				continue ;
+			else if (cub->map.map[(int)(cub->player.pos.y) - 10 + y][(int)(cub->player.pos.x) - 10 + x] == '1')
+			{
+				for (int i = 0; i < 10; i++)
+				{
+					for (int j = 0; j < 10; j++)
+					{
+						mlx_put_pixel_to_img(minimap, i + (x * 10), j + (y * 10), create_trgb(0,255,0,0));
+					}
+				}
+			}
+		}
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			mlx_put_pixel_to_img(minimap, 100 + i, j + 100, create_trgb(0,0,255,0));
+		}
+	}
+}
+
+static void crop_cicle(t_cub *cub, t_img *minimap)
+{
+	for (int y = 0; y < 200; y++)
+	{
+		for (int x = 0; x < 200; x++)
+		{
+			if (hypotf(x - 100, y - 100) <= 100)
+				continue ;
+			mlx_put_pixel_to_img(minimap, x, y, mlx_get_pixel_img(&cub->screen, x + 15, y + 15));
+		}
+	}
+}
+
 void	minimap(t_cub *cub)
 {
 	t_img	minimap;
-	t_img	rose;
-	t_img	blue;
-	t_img	green;
-	int		y;
-	int		x;
 
-	x = 0;
-	y = 0;
-	minimap.img = mlx_new_image(cub->win.mlx, cub->map.width * 10,
-			cub->map.height * 10);
-	minimap.width = cub->map.width * 10;
-	minimap.height = cub->map.height * 10;
-	rose.img = mlx_xpm_file_to_image(cub->win.mlx,
-			"texture/Minimap/10px_rose.xpm", &rose.width, &rose.height);
-	green.img = mlx_xpm_file_to_image(cub->win.mlx,
-			"texture/Minimap/10px_green.xpm", &green.width, &green.height);
-	blue.img = mlx_xpm_file_to_image(cub->win.mlx,
-			"texture/Minimap/10px_blue.xpm", &blue.width, &blue.height);
-
+	t_img	temp;
+	temp.img = mlx_new_image(cub->win.mlx, 200, 200);
+	temp.height = 200;
+	temp.width = 200;
+	create_img(&temp, temp.img);
+	minimap.img = mlx_new_image(cub->win.mlx, 200, 200);
+	minimap.height = 200;
+	minimap.width = 200;
 	create_img(&minimap, minimap.img);
-	create_img(&rose, rose.img);
-	create_img(&blue, blue.img);
-	create_img(&green, green.img);
-	while (cub->map.map[y])
+
+	print_background(cub, &temp);
+	print_minimap(cub, &temp);
+	for (int y = 0; y < 200; y++)
 	{
-		x = 0;
-		while (cub->map.map[y][x])
+		for (int x = 0; x < 200; x++)
 		{
-			if (cub->map.map[y][x] == '1')
-				mlx_put_img_to_img(&minimap, &rose, x * 10, y * 10);
-			else
-				mlx_put_img_to_img(&minimap, &blue, x * 10, y * 10);
-			x++;
+			float xx, yy;
+			unsigned int color = mlx_get_pixel_img(&temp, x, y);
+			xx =x;
+			yy=y;
+			if (color == 0x00FF0000 || color == 0x00FF00)
+			{
+				xx = cosf(-cub->player.angle - M_PI / 2) * (x - 100) - sinf(-cub->player.angle- M_PI / 2) * (y - 100);
+				yy = sinf(-cub->player.angle - M_PI / 2) * (x - 100) + cosf(-cub->player.angle - M_PI / 2) * (y - 100);
+				xx += 100;
+				yy += 100;
+			}
+			mlx_put_pixel_to_img(&minimap, xx, yy, color);
 		}
-		y++;
 	}
-	mlx_put_img_to_img(&minimap, &green, cub->player.pos.x * 10, cub->player.pos.y * 10);
-	mlx_put_img_to_img(&cub->screen, &minimap, WINDOWS_WIDTH / 2 - (cub->map.width * 10 / 2), 15);
-	mlx_destroy_image(cub->win.mlx, minimap.img);
-	mlx_destroy_image(cub->win.mlx, rose.img);
-	mlx_destroy_image(cub->win.mlx, blue.img);
-	mlx_destroy_image(cub->win.mlx, green.img);
+	crop_cicle(cub, &minimap);
+	mlx_put_img_to_img(&cub->screen, &minimap, 15, 15);
 }

@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_put_pixel_to_img.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 10:49:46 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/13 17:53:27 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/14 01:59:23 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/mlx_utils.h"
 
-void	mlx_put_pixel_to_img(t_img *dest, int x, int y, int color)
+void	mlx_put_pixel_to_img(t_img *dest, int x, int y, unsigned int color)
 {
 	char	*dst;
-
+	
 	if (x < 0 || x >= dest->width || y < 0 || y >= dest->height)
 		return ;
-	if (color >> 24 == 0xFF)
+	if (color == 0xFF000000)
 		return ;
 	dst = dest->data.addr + (y * dest->data.line_length
 			+ x * (dest->data.bits_per_pixel / 8));
