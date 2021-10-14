@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/14 03:50:51 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/14 04:29:50 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,7 +129,7 @@ OBJS_BONUS					= $(SRCS_OBJS_BONUS) $(SRCS_PARSING_OBJS_BONUS) $(SRCS_UTILS_OBJS
 
 #	COMPILATION		################################################################
 CC					= gcc
-CFLAGS  			= -Wall -Wextra -Werror -D __LINUX__
+CFLAGS  			= -Wall -Wextra -Werror
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 LIB					= ./libft/libft.a ./mlx_utils/mlx_utils.a -lm
