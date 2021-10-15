@@ -25,7 +25,7 @@ MUR 4 coter pareil
 6 Game 5
 7 Game 6
 8 Game 7
-9 Pierre
+9 Wall 123 soleil
 ] Beton
 
 SOL + CIEL
