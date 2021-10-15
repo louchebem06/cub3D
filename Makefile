@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/14 04:35:45 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/15 02:57:38 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,13 +41,9 @@ SRCS_PARSING_FILES_COMMUN	= ft_config.c \
 								map_is_valid.c \
 								remove_newlines.c \
 								empty_line_in_map.c \
-								forbiden_char_map.c \
 								multi_pos_map.c \
-								min_char_map.c \
 								remove_end_space_map.c \
 								remove_space_map.c \
-								create_player_info.c \
-								wall_check_map.c \
 								normalize_map.c \
 								add_space.c \
 								size_map.c
@@ -71,7 +67,10 @@ SRCS_CUB3D_FILES_COMMUN		= cub3d.c \
 #  MANDA
 SRCS_FILES_MANDA			=
 
-SRCS_PARSING_FILES_MANDA	=
+SRCS_PARSING_FILES_MANDA	= forbiden_char_map.c \
+								min_char_map.c \
+								wall_check_map.c \
+								create_player_info.c
 
 SRCS_UTILS_FILES_MANDA		=
 
@@ -81,7 +80,10 @@ SRCS_CUB3D_FILES_MANDA		= render_next_frame.c \
 #  BONUS
 SRCS_FILES_BONUS			=
 
-SRCS_PARSING_FILES_BONUS	=
+SRCS_PARSING_FILES_BONUS	= forbiden_char_map_bonus.c \
+								min_char_map_bonus.c \
+								wall_check_map_bonus.c \
+								create_player_info_bonus.c
 
 SRCS_UTILS_FILES_BONUS		=
 

@@ -1,16 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   min_char_map.c                                     :+:      :+:    :+:   */
+/*   min_char_map_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 20:57:18 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/15 02:22:31 by bledda           ###   ########.fr       */
+/*   Created: 2021/10/15 02:23:34 by bledda            #+#    #+#             */
+/*   Updated: 2021/10/15 02:27:40 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
+
+static int	forbidden(char const c, char const *set)
+{
+	int			isset;
+	int			i;
+
+	isset = 0;
+	i = -1;
+	while (set[++i])
+	{
+		if (set[i] == c)
+		{
+			isset = 1;
+			break ;
+		}
+	}
+	return (isset);
+}
 
 int	min_char_map(char **m)
 {
@@ -25,10 +43,9 @@ int	min_char_map(char **m)
 		p.x = -1;
 		while (m[(int)p.y][(int)++p.x])
 		{
-			if (m[(int)p.y][(int)p.x] == 'N' || m[(int)p.y][(int)p.x] == 'S'
-				|| m[(int)p.y][(int)p.x] == 'E' || m[(int)p.y][(int)p.x] == 'W')
+			if (forbidden(m[(int)p.y][(int)p.x], "NSWE"))
 				player = 1;
-			if (m[(int)p.y][(int)p.x] == '1')
+			if (forbidden(m[(int)p.y][(int)p.x], "123456789]"))
 				wall = 1;
 		}
 	}
