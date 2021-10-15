@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/15 02:57:38 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/15 08:34:11 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ HEADER_FILES_MANDA 			=
 
 HEADER_FILES_BONUS 			= minimap_bonus.h \
 								mouse_bonus.h \
-								shooter_bonus.h
+								shooter_bonus.h \
+								sound_bonus.h
 
 FOLDER_HEADER				= header/
 FOLDER_SRC					= src/
@@ -57,8 +58,7 @@ SRCS_UTILS_FILES_COMMUN		= add_value.c \
 								is_valid_int.c \
 								free_cub.c
 
-SRCS_CUB3D_FILES_COMMUN		= cub3d.c \
-								ray_cast.c \
+SRCS_CUB3D_FILES_COMMUN		= ray_cast.c \
 								is_in_air.c \
 								scale_pos.c \
 								draw.c \
@@ -75,7 +75,8 @@ SRCS_PARSING_FILES_MANDA	= forbiden_char_map.c \
 SRCS_UTILS_FILES_MANDA		=
 
 SRCS_CUB3D_FILES_MANDA		= render_next_frame.c \
-								hook.c
+								hook.c \
+								cub3d.c
 
 #  BONUS
 SRCS_FILES_BONUS			=
@@ -91,7 +92,8 @@ SRCS_CUB3D_FILES_BONUS		= render_next_frame_bonus.c \
 								minimap_bonus.c \
 								move_mouse_bonus.c \
 								hook_bonus.c \
-								shooter_bonus.c
+								shooter_bonus.c \
+								cub3d_bonus.c
 
 SRCS_COMMUN					= $(addprefix ${FOLDER_SRC},${SRCS_FILES_COMMUN})
 SRCS_PARSING_COMMUN			= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES_COMMUN})
@@ -150,6 +152,15 @@ endif
 ifdef CUB3D_BONUS
 OBJS 				= $(OBJS_COMMUN) $(OBJS_BONUS)
 HEADERS 			= $(HEADERS_COMMUN) $(HEADERS_BONUS)
+ifeq ($(UNAME_S),Linux)
+	EXEC_BASE24		= $(MAKE_EXT) ./base24-linux
+	LIBS			+= libbass.a
+endif
+ifeq ($(UNAME_S),Darwin)
+	EXEC_BASE24		= $(MAKE_EXT) ./base24-osx intel && cp -r ./base24-osx/intel/libbass.dylib ./
+	LIBS			+= libbass.dylib
+endif
+MSG_BASE24			= @printf "libbase24 is created.\n"
 else
 OBJS 				= $(OBJS_COMMUN) $(OBJS_MANDA)
 HEADERS 			= $(HEADERS_COMMUN) $(HEADERS_MANDA)
@@ -164,6 +175,9 @@ $(NAME):	${OBJS}
 			@printf $(reset)
 			$(MAKE_EXT) ./libft
 			$(MAKE_EXT) ./mlx_utils
+			$(EXEC_BASE24)
+			@printf $(yellow)
+			$(MSG_BASE24)
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Compiling cub3D🔨\n"
@@ -198,7 +212,8 @@ clean:
 fclean:		clean
 			$(MAKE_EXT) ./libft fclean
 			$(MAKE_EXT) ./mlx_utils fclean
-			@${RM} $(NAME)
+			$(MAKE_EXT) ./base24-linux clean
+			@${RM} $(NAME) base24-osx/intel libbass.dylib
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Your folder is now clean 🧹\n"
