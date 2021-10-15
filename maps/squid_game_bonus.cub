@@ -1,7 +1,7 @@
-NO ./texture/SquidGame/456.xpm
-SO ./texture/SquidGame/logo_corea.xpm
-WE ./texture/SquidGame/square.xpm
-EA ./texture/SquidGame/logo_squid_game.xpm
+NO ./texture/SquidGame/rose.xpm
+SO ./texture/SquidGame/rose.xpm
+WE ./texture/SquidGame/rose.xpm
+EA ./texture/SquidGame/rose.xpm
 
 F 240, 89, 132
 C 0 , 255, 0
