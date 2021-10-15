@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/15 16:45:09 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/15 18:24:37 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,16 @@ void	shooter(t_cub *cub)
 			&shooter.width, &shooter.height);
 	create_img(&shooter, shooter.img);
 	mlx_put_img_to_img(&cub->screen, &shooter,
-		WINDOWS_WIDTH / 2, WINDOWS_HEIGHT - shooter.height);
+		WINDOWS_WIDTH / 1.5, WINDOWS_HEIGHT - shooter.height);
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (hypotf(i - 5, j - 5) <= 4)
+				mlx_put_pixel_to_img(&cub->screen,
+					WINDOWS_WIDTH / 2 + i,
+					WINDOWS_HEIGHT / 2 + j,
+					create_trgb(0, 255, 255, 255));
+		}
+	}
 }
