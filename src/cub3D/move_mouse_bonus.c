@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:19:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/14 03:58:51 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/15 23:29:26 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	move_mouse(t_cub *cub)
 		cub->player.angle += M_PI / 25;
 	mlx_mouse_move(cub->win.mlx, cub->win.win,
 		WINDOWS_WIDTH / 2, WINDOWS_HEIGHT / 2);
-	mlx_mouse_hide(ub->win.mlx, cub->win.win);
+	mlx_mouse_hide(cub->win.mlx, cub->win.win);
 }
 #endif
