@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/15 08:34:11 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/15 16:05:25 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,8 @@ SRCS_CUB3D_FILES_BONUS		= render_next_frame_bonus.c \
 								move_mouse_bonus.c \
 								hook_bonus.c \
 								shooter_bonus.c \
-								cub3d_bonus.c
+								cub3d_bonus.c \
+								sound_bonus.c
 
 SRCS_COMMUN					= $(addprefix ${FOLDER_SRC},${SRCS_FILES_COMMUN})
 SRCS_PARSING_COMMUN			= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES_COMMUN})

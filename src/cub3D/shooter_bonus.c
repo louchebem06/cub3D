@@ -6,13 +6,13 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/14 04:51:28 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/15 16:45:09 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/shooter_bonus.h"
 
-void shooter(t_cub *cub)
+void	shooter(t_cub *cub)
 {
 	t_img	shooter;
 
