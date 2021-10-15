@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/14 05:20:10 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/15 18:16:44 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static void	print_minimap(t_cub *cub, t_img *minimap)
 	{
 		for (int j = 0; j < 10; j++)
 		{
-			mlx_put_pixel_to_img(minimap, 100 + i, j + 100, create_trgb(0,0,255,0));
+			if (hypotf(i - 5, j - 5) <= 4)
+				mlx_put_pixel_to_img(minimap, 100 + i, j + 100, create_trgb(0,0,255,0));
 		}
 	}
 }
