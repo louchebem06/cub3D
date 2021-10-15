@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/15 16:05:25 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/15 23:26:59 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -155,7 +155,7 @@ OBJS 				= $(OBJS_COMMUN) $(OBJS_BONUS)
 HEADERS 			= $(HEADERS_COMMUN) $(HEADERS_BONUS)
 ifeq ($(UNAME_S),Linux)
 	EXEC_BASE24		= $(MAKE_EXT) ./base24-linux
-	LIBS			+= libbass.a
+	LIBS			+= ./base24-linux/x64/libbass.so
 endif
 ifeq ($(UNAME_S),Darwin)
 	EXEC_BASE24		= $(MAKE_EXT) ./base24-osx intel && cp -r ./base24-osx/intel/libbass.dylib ./
@@ -214,7 +214,7 @@ fclean:		clean
 			$(MAKE_EXT) ./libft fclean
 			$(MAKE_EXT) ./mlx_utils fclean
 			$(MAKE_EXT) ./base24-linux clean
-			@${RM} $(NAME) base24-osx/intel libbass.dylib
+			@${RM} $(NAME) base24-osx/intel libbass.dylib libbass.so
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Your folder is now clean 🧹\n"
