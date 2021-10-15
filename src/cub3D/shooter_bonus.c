@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/15 18:24:37 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/15 23:44:12 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	shooter(t_cub *cub)
 	create_img(&shooter, shooter.img);
 	mlx_put_img_to_img(&cub->screen, &shooter,
 		WINDOWS_WIDTH / 1.5, WINDOWS_HEIGHT - shooter.height);
+	mlx_destroy_image(cub->win.mlx, shooter.img);
 	for (int i = 0; i < 10; i++)
 	{
 		for (int j = 0; j < 10; j++)
