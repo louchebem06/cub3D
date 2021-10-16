@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:49 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/15 16:43:46 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/16 02:26:38 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define SHOOTER_BONUS_H
 
 # include "cub3d.h"
-
-typedef struct s_cub	t_cub;
 
 void	shooter(t_cub *cub);
 

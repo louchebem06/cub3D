@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/15 23:26:59 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/16 02:24:46 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,16 @@ NAME						= cub3D
 HEADER_FILES_COMMUN 		= ft_config.h \
 								utils.h \
 								color.h \
+								struct.h \
 								cub3d.h
 
-HEADER_FILES_MANDA 			=
+HEADER_FILES_MANDA 			= cub.h
 
 HEADER_FILES_BONUS 			= minimap_bonus.h \
 								mouse_bonus.h \
 								shooter_bonus.h \
-								sound_bonus.h
+								sound_bonus.h \
+								cub_bonus.h
 
 FOLDER_HEADER				= header/
 FOLDER_SRC					= src/
@@ -162,6 +164,7 @@ ifeq ($(UNAME_S),Darwin)
 	LIBS			+= libbass.dylib
 endif
 MSG_BASE24			= @printf "libbase24 is created.\n"
+DEFINE				= -D CUB_BONUS
 else
 OBJS 				= $(OBJS_COMMUN) $(OBJS_MANDA)
 HEADERS 			= $(HEADERS_COMMUN) $(HEADERS_MANDA)
@@ -184,7 +187,7 @@ $(NAME):	${OBJS}
 			@printf "Compiling cub3D🔨\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
-			@$(CC) $(CFLAGS) ${OBJS} $(LIBS) -o $(NAME)
+			@$(CC) $(CFLAGS) ${OBJS} $(LIBS) $(DEFINE) -o $(NAME)
 			@printf $(magenta)
 			@printf "Your cub3D is ready ✅\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
@@ -195,7 +198,7 @@ all:		${NAME}
 %.o: %.c	$(HEADERS)
 			@printf $(yellow)
 			@printf "Generating cub3D objects... %-28.28s\r" $@
-			@$(CC) -c $(CFLAGS) -o $@ $<
+			@$(CC) -c $(CFLAGS) $(DEFINE) -o $@ $<
 			@printf $(reset)
 
 re: 		fclean all

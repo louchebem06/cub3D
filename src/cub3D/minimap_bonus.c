@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/15 18:16:44 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/16 02:25:18 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,37 +90,34 @@ static void crop_cicle(t_cub *cub, t_img *minimap)
 
 void	minimap(t_cub *cub)
 {
-	t_img	minimap;
+	cub->minimap.tmp.img = mlx_new_image(cub->win.mlx, 200, 200);
+	cub->minimap.tmp.height = 200;
+	cub->minimap.tmp.width = 200;
+	create_img(&cub->minimap.tmp, cub->minimap.tmp.img);
+	cub->minimap.minimap.img = mlx_new_image(cub->win.mlx, 200, 200);
+	cub->minimap.minimap.height = 200;
+	cub->minimap.minimap.width = 200;
+	create_img(&cub->minimap.minimap, cub->minimap.minimap.img);
 
-	t_img	temp;
-	temp.img = mlx_new_image(cub->win.mlx, 200, 200);
-	temp.height = 200;
-	temp.width = 200;
-	create_img(&temp, temp.img);
-	minimap.img = mlx_new_image(cub->win.mlx, 200, 200);
-	minimap.height = 200;
-	minimap.width = 200;
-	create_img(&minimap, minimap.img);
-
-	print_minimap(cub, &temp);
+	print_minimap(cub, &cub->minimap.tmp);
 	for (int y = 0; y < 200; y++)
 	{
 		for (int x = 0; x < 200; x++)
 		{
 			float xx, yy;
-			unsigned int color = mlx_get_pixel_img(&temp, x, y);
+			unsigned int color = mlx_get_pixel_img(&cub->minimap.tmp, x, y);
 			xx =x;
 			yy=y;
 			xx = cosf(-cub->player.angle - M_PI / 2) * (x - 100) - sinf(-cub->player.angle- M_PI / 2) * (y - 100);
 			yy = sinf(-cub->player.angle - M_PI / 2) * (x - 100) + cosf(-cub->player.angle - M_PI / 2) * (y - 100);
 			xx += 100;
 			yy += 100;
-			mlx_put_pixel_to_img(&minimap, xx, yy, color);
+			mlx_put_pixel_to_img(&cub->minimap.minimap, xx, yy, color);
 		}
 	}
-	print_background(cub, &minimap);
-	crop_cicle(cub, &minimap);
-	mlx_put_img_to_img(&cub->screen, &minimap, 15, 15);
-	mlx_destroy_image(cub->win.mlx, temp.img);
-	mlx_destroy_image(cub->win.mlx, minimap.img);
+	print_background(cub, &cub->minimap.minimap);
+	crop_cicle(cub, &cub->minimap.minimap);
+	mlx_put_img_to_img(&cub->screen, &cub->minimap.minimap, 15, 15);
+	mlx_destroy_image(cub->win.mlx, cub->minimap.tmp.img);
+	mlx_destroy_image(cub->win.mlx, cub->minimap.minimap.img);
 }
