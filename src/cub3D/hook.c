@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:31:21 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/12 02:26:17 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 17:34:39 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int	key_press(int keycode, t_cub *cub)
 		cub->keys.arrow_r = true;
 	if (keycode == KEY_ECHAP)
 	{
+		free_image(cub);
 		free_cub(cub);
 		close_click(0, cub);
 	}

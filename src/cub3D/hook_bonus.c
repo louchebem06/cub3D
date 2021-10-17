@@ -6,13 +6,14 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:49:21 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 11:10:34 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 19:02:08 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
 #include "../../header/mouse_bonus.h"
 #include "../../header/sound_bonus.h"
+#include "../../header/shooter_bonus.h"
 
 static int	close_click(int keycode, t_cub *cub)
 {
@@ -38,6 +39,7 @@ static int	key_press(int keycode, t_cub *cub)
 		cub->keys.arrow_r = true;
 	if (keycode == KEY_ECHAP)
 	{
+		free_image(cub);
 		free_sound(cub);
 		free_cub(cub);
 		close_click(0, cub);
@@ -70,6 +72,8 @@ void	hook(t_cub *cub)
 	mlx_hook(cub->win.win, 3, 2, key_release, cub);
 	mlx_hook(cub->win.win, 17, 0, close_click, cub);
 	mlx_hook(cub->win.win, 6, 0, move_mouse, cub);
+	mlx_hook(cub->win.win, 5, 0, mouse_unclick, cub);
+	mlx_mouse_hook(cub->win.win, mouse_hook, cub);
 	mlx_loop_hook(cub->win.mlx, render_next_frame, cub);
 	mlx_loop(cub->win.mlx);
 }
@@ -81,6 +85,8 @@ void	hook(t_cub *cub)
 	mlx_hook(cub->win.win, 2, 1, key_press, cub);
 	mlx_hook(cub->win.win, 3, 2, key_release, cub);
 	mlx_hook(cub->win.win, 17, 0, close_click, cub);
+	mlx_hook(cub->win.win, 5, 0, mouse_unclick, cub);
+	mlx_mouse_hook(cub->win.win, mouse_hook, cub);
 	mlx_loop_hook(cub->win.mlx, render_next_frame, cub);
 	mlx_loop(cub->win.mlx);
 }

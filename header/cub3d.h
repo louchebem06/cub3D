@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/16 04:42:13 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/17 17:35:31 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void		draw(t_cub *cub);
 void		generate_img(t_cub *c);
 int			render_next_frame(t_cub *cub);
 void		hook(t_cub *cub);
+void		free_image(t_cub *cub);
 
 #endif

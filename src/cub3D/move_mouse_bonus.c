@@ -6,11 +6,27 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:19:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/15 23:29:26 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 19:38:17 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/mouse_bonus.h"
+#include "../../header/shooter_bonus.h"
+
+int	mouse_hook(int button, int x, int y, t_cub *cub)
+{
+	(void)x;
+	(void)y;
+	toggle_mouse(cub, button, true);
+	return (0);
+}
+
+int	mouse_unclick(int button, t_cub *cub)
+{
+	(void)cub;
+	toggle_mouse(cub, button, false);
+	return (0);
+}
 
 #ifdef __APPLE__
 

@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/17 15:00:28 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/17 17:46:35 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ SRCS_CUB3D_FILES_MANDA		= render_next_frame.c \
 								cub3d.c \
 								ray_cast.c \
 								draw.c \
+								free_image.c
 
 #  BONUS
 SRCS_FILES_BONUS			=
@@ -103,6 +104,7 @@ SRCS_CUB3D_FILES_BONUS		= render_next_frame_bonus.c \
 								ray_cast_bonus.c \
 								draw_bonus.c \
 								generate_img_bonus.c \
+								free_image_bonus.c
 
 
 SRCS_COMMUN					= $(addprefix ${FOLDER_SRC},${SRCS_FILES_COMMUN})

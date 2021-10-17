@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shooter_bonus.h                                    :+:      :+:    :+:   */
+/*   free_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/14 04:35:49 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 19:38:30 by bledda           ###   ########.fr       */
+/*   Created: 2021/10/17 17:35:58 by bledda            #+#    #+#             */
+/*   Updated: 2021/10/17 17:42:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHOOTER_BONUS_H
-# define SHOOTER_BONUS_H
+#include "../../header/cub3d.h"
 
-# include "cub3d.h"
-
-void	shooter(t_cub *cub);
-int		mouse_hook(int button, int x, int y, t_cub *cub);
-int		toggle_mouse(t_cub *cub, int button, bool state);
-
-#endif
+void	free_image(t_cub *cub)
+{
+	mlx_destroy_image(cub->win.mlx, cub->texture.no.img);
+	mlx_destroy_image(cub->win.mlx, cub->texture.so.img);
+	mlx_destroy_image(cub->win.mlx, cub->texture.we.img);
+	mlx_destroy_image(cub->win.mlx, cub->texture.ea.img);
+}
