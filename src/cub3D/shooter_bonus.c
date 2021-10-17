@@ -6,11 +6,12 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 22:28:42 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 22:44:04 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/shooter_bonus.h"
+#include "../../header/sound_bonus.h"
 
 static void	print_pointer(t_cub *cub, int color)
 {
@@ -37,6 +38,8 @@ static t_img	*get_shooter(t_cub *cub, int img)
 	if (cub->keys.r)
 	{
 		cmp = ft_get_current_time();
+		if (anim == 0)
+			toggle(&cub->sound.recharge, true);
 		if (cmp - first > 400)
 		{
 			anim++;
@@ -56,14 +59,22 @@ static t_img	*get_shooter(t_cub *cub, int img)
 		{
 			anim = 0;
 			cub->keys.r = false;
+			toggle(&cub->sound.recharge, true);
 		}
 	}
 	if (img == 1)
 		return (&cub->shooter.viser);
 	else if (img == 2)
+	{
+		toggle(&cub->sound.tir, true);
+		toggle(&cub->sound.tir, true);
 		return (&cub->shooter.tirer);
+	}
 	else if (img == 3)
+	{
+		toggle(&cub->sound.tir, true);
 		return (&cub->shooter.viser_tirer);
+	}
 	return (&cub->shooter.first);
 }
 
@@ -105,9 +116,11 @@ void	shooter(t_cub *cub)
 
 	print_pointer(cub, create_trgb(0, 255, 0, 0));
 	if (img == 3 || img == 1)
+	{
 		mlx_put_img_to_img(&cub->screen, shooter,
 			(WINDOWS_WIDTH / 2) - (shooter->width / 2),
 			WINDOWS_HEIGHT - shooter->height);
+	}
 	else
 	{
 		cmp = ft_get_current_time();
