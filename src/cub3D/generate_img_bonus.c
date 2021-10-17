@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:28:05 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/17 21:26:27 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 23:50:34 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,20 @@ static void	generate_img_wall(t_cub *cub)
 	generate_i(cub, &cub->texture.bet, "texture/Floor_Ceil/Beton.xpm");
 }
 
+static void	generate_img_sprite(t_cub *cub)
+{
+	generate_i(cub, &cub->sprite.woman, "texture/Sprite/067.xpm");
+	generate_i(cub, &cub->sprite.man, "texture/Sprite/456.xpm");
+	generate_i(cub, &cub->sprite.intel, "texture/Sprite/218.xpm");
+	generate_i(cub, &cub->sprite.door, "texture/Sprite/door.xpm");
+	generate_i(cub, &cub->sprite.circle, "texture/Sprite/circle.xpm");
+	generate_i(cub, &cub->sprite.lit, "texture/Sprite/lit.xpm");
+	generate_i(cub, &cub->sprite.tree, "texture/Sprite/tree.xpm");
+}
+
 void	generate_img_bonus(t_cub *cub)
 {
 	generate_img_shooter(cub);
 	generate_img_wall(cub);
+	generate_img_sprite(cub);
 }

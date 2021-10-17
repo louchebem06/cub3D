@@ -1,0 +1,13 @@
+NO ./texture/Test/brick.xpm
+SO ./texture/Test/metal.xpm
+WE ./texture/Test/pebbles.xpm
+EA ./texture/Test/wood.xpm
+
+F 255,100, 0
+C 225,255, 255
+
+11111
+10001
+10F01
+100N1
+11111

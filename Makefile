@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/17 22:48:18 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/17 23:58:34 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ HEADER_FILES_BONUS 			= minimap_bonus.h \
 								sound_bonus.h \
 								cub_bonus.h \
 								struct_bonus.h \
-								utils_bonus.h
+								utils_bonus.h \
+								sprite_bonus.h
 
 FOLDER_HEADER				= header/
 FOLDER_SRC					= src/
@@ -106,7 +107,8 @@ SRCS_CUB3D_FILES_BONUS		= render_next_frame_bonus.c \
 								ray_cast_bonus.c \
 								draw_bonus.c \
 								generate_img_bonus.c \
-								free_image_bonus.c
+								free_image_bonus.c \
+								sprite_bonus.c
 
 
 SRCS_COMMUN					= $(addprefix ${FOLDER_SRC},${SRCS_FILES_COMMUN})

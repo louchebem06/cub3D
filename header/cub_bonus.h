@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 23:37:27 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 23:48:19 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,17 @@ typedef struct s_shooter
 	t_img	tirer;
 }			t_shooter;
 
+typedef struct s_sprite
+{
+	t_img	woman;
+	t_img	man;
+	t_img	intel;
+	t_img	door;
+	t_img	circle;
+	t_img	lit;
+	t_img	tree;
+}		t_sprite;
+
 typedef struct s_cub
 {
 	t_vars		win;
@@ -59,6 +70,7 @@ typedef struct s_cub
 	t_keys		keys;
 	t_sound		sound;
 	t_shooter	shooter;
+	t_sprite	sprite;
 }				t_cub;
 
 char	get_map_char(const t_map *map, const t_position *ray,

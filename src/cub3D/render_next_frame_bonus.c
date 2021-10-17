@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 13:20:55 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 23:57:28 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../../header/mouse_bonus.h"
 #include "../../header/shooter_bonus.h"
 #include "../../header/sound_bonus.h"
+#include "../../header/sprite_bonus.h"
 
 static float	distance(t_position *p1, t_position *p2)
 {
@@ -71,9 +72,10 @@ int	render_next_frame(t_cub *cub)
 		return (0);
 	move(cub);
 	draw(cub);
+	sprite(cub);
 	move_mouse(cub);
-	minimap(cub, WINDOWS_WIDTH - 215, WINDOWS_HEIGHT - 215);
 	shooter(cub);
+	minimap(cub, WINDOWS_WIDTH - 215, WINDOWS_HEIGHT - 215);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 	cub->tick = 0;
 	return (0);
@@ -86,8 +88,9 @@ int	render_next_frame(t_cub *cub)
 		return (0);
 	move(cub);
 	draw(cub);
-	minimap(cub, WINDOWS_WIDTH - 215, WINDOWS_HEIGHT - 215);
+	sprite(cub);
 	shooter(cub);
+	minimap(cub, WINDOWS_WIDTH - 215, WINDOWS_HEIGHT - 215);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 	cub->tick = 0;
 	return (0);

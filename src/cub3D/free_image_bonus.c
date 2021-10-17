@@ -6,14 +6,27 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 17:35:58 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 21:27:00 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 23:52:55 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
 
+static void	free_img_sprite(t_cub *cub)
+{
+	mlx_destroy_image(cub->win.mlx, cub->sprite.woman.img);
+	mlx_destroy_image(cub->win.mlx, cub->sprite.man.img);
+	mlx_destroy_image(cub->win.mlx, cub->sprite.intel.img);
+	mlx_destroy_image(cub->win.mlx, cub->sprite.door.img);
+	mlx_destroy_image(cub->win.mlx, cub->sprite.circle.img);
+	mlx_destroy_image(cub->win.mlx, cub->sprite.lit.img);
+	mlx_destroy_image(cub->win.mlx, cub->sprite.tree.img);
+	
+}
+
 void	free_image(t_cub *cub)
 {
+	free_img_sprite(cub);
 	mlx_destroy_image(cub->win.mlx, cub->texture.no.img);
 	mlx_destroy_image(cub->win.mlx, cub->texture.so.img);
 	mlx_destroy_image(cub->win.mlx, cub->texture.we.img);
