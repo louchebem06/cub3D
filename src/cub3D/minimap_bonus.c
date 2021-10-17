@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 15:15:24 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 16:06:27 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,16 @@ static void	print_map_content(t_cub *cub, char c, t_position screen,
 {
 	if (ft_isset_tab(c, "123456789]"))
 		print_map(cub, screen, map, create_trgb(0, 255, 0, 0));
-	if (ft_isset_tab(c, "PLHFIA|O"))
+	else if (ft_isset_tab(c, "PLA"))
 		print_map(cub, screen, map, create_trgb(0, 0, 0, 255));
+	else if (ft_isset_tab(c, "HFI|O"))
+		print_map(cub, screen, map, create_trgb(0, 0, 255, 255));
+	else if (c == '0')
+		print_map(cub, screen, map, anti_rgb(cub->config.floor));
+	else if (ft_isset_tab(c, "!`"))
+		print_map(cub, screen, map, create_trgb(0, 255, 255, 0));
+	else if (ft_isset_tab(c, "@$"))
+		print_map(cub, screen, map, create_trgb(0, 255, 0, 255));
 }
 
 void	minimap(t_cub *cub, const int x, const int y)
@@ -88,9 +96,9 @@ void	minimap(t_cub *cub, const int x, const int y)
 		map.x = -1;
 		while (++map.x < 20)
 		{
-			player.x = cub->player.pos.x - 10 + map.x;
-			player.y = cub->player.pos.y - 10 + map.y;
-			if ((int)player.y < 0 || (int)player.x < 0
+			player.x = cub->player.pos.x + map.x - 10;
+			player.y = cub->player.pos.y + map.y - 10;
+			if ((int)player.x < 0 || (int)player.y < 0
 				|| (int)player.x >= cub->map.width
 				|| (int)player.y >= cub->map.height)
 				continue ;
