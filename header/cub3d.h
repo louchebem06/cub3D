@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/16 02:13:02 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/16 04:42:13 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@
 # include "color.h"
 # include <math.h>
 # include <stdbool.h>
-# include "struct.h"
 # ifdef CUB_BONUS
 #  include "cub_bonus.h"
+#  include "struct_bonus.h"
 # else
 #  include "cub.h"
+#  include "struct.h"
 # endif
 
 # define WINDOWS_WIDTH 1280

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/16 02:24:46 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/17 09:27:35 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,16 +16,17 @@ NAME						= cub3D
 HEADER_FILES_COMMUN 		= ft_config.h \
 								utils.h \
 								color.h \
-								struct.h \
 								cub3d.h
 
-HEADER_FILES_MANDA 			= cub.h
+HEADER_FILES_MANDA 			= cub.h \
+								struct.h \
 
 HEADER_FILES_BONUS 			= minimap_bonus.h \
 								mouse_bonus.h \
 								shooter_bonus.h \
 								sound_bonus.h \
-								cub_bonus.h
+								cub_bonus.h \
+								struct_bonus.h \
 
 FOLDER_HEADER				= header/
 FOLDER_SRC					= src/
@@ -60,10 +61,8 @@ SRCS_UTILS_FILES_COMMUN		= add_value.c \
 								is_valid_int.c \
 								free_cub.c
 
-SRCS_CUB3D_FILES_COMMUN		= ray_cast.c \
-								is_in_air.c \
+SRCS_CUB3D_FILES_COMMUN		= is_in_air.c \
 								scale_pos.c \
-								draw.c \
 								generate_img.c
 
 #  MANDA
@@ -78,7 +77,9 @@ SRCS_UTILS_FILES_MANDA		=
 
 SRCS_CUB3D_FILES_MANDA		= render_next_frame.c \
 								hook.c \
-								cub3d.c
+								cub3d.c \
+								ray_cast.c \
+								draw.c \
 
 #  BONUS
 SRCS_FILES_BONUS			=
@@ -96,7 +97,12 @@ SRCS_CUB3D_FILES_BONUS		= render_next_frame_bonus.c \
 								hook_bonus.c \
 								shooter_bonus.c \
 								cub3d_bonus.c \
-								sound_bonus.c
+								sound_bonus.c \
+								get_map_char_bonus.c \
+								ray_cast_bonus.c \
+								draw_bonus.c \
+								generate_img_bonus.c \
+
 
 SRCS_COMMUN					= $(addprefix ${FOLDER_SRC},${SRCS_FILES_COMMUN})
 SRCS_PARSING_COMMUN			= $(addprefix ${FOLDER_PARSING},${SRCS_PARSING_FILES_COMMUN})
@@ -138,7 +144,7 @@ OBJS_BONUS					= $(SRCS_OBJS_BONUS) $(SRCS_PARSING_OBJS_BONUS) $(SRCS_UTILS_OBJS
 
 #	COMPILATION		################################################################
 CC					= gcc
-CFLAGS  			= -Wall -Wextra -Werror
+CFLAGS  			= -Wall -Wextra -Werror -O3
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 LIB					= ./libft/libft.a ./mlx_utils/mlx_utils.a -lm

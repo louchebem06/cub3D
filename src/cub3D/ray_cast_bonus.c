@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_cast.c                                         :+:      :+:    :+:   */
+/*   ray_cast_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 23:43:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/16 04:18:52 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/16 04:24:24 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,16 @@ t_position	ray_cast(const t_position *p, const float angle, const t_map *map)
 {
 	t_position	dir;
 	t_position	ray_pos;
+	char		c;
 
 	dir.x = cosf(angle);
 	dir.y = sinf(angle);
 	ray_pos = *p;
-	while (is_in_air(map, &ray_pos, p))
+	c = get_map_char(map, &ray_pos, p);
+	while (ft_isset_tab(c, "0NSWELPOFHI|A!`@$"))
+	{
 		next(&ray_pos, &dir);
+		c = get_map_char(map, &ray_pos, p);
+	}
 	return (ray_pos);
 }
