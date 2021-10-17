@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_bonus.h                                    :+:      :+:    :+:   */
+/*   color_to_rgb.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/13 15:31:40 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 13:26:37 by bledda           ###   ########.fr       */
+/*   Created: 2021/10/17 14:58:27 by bledda            #+#    #+#             */
+/*   Updated: 2021/10/17 15:00:47 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIMAP_BONUS_H
-# define MINIMAP_BONUS_H
+#include "../../header/utils.h"
 
-# include "cub3d.h"
+t_rgb	color_to_rgb(unsigned int color)
+{
+	t_rgb	result;
 
-void	minimap(t_cub *cub, const int x, const int y);
-
-#endif
+	result.r = ((color & 0x00FF0000) >> 16);
+	result.g = ((color & 0x0000FF00) >> 8);
+	result.b = ((color & 0x000000FF));
+	return (result);
+}

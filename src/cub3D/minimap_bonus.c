@@ -6,92 +6,98 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 13:17:34 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 15:15:24 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minimap_bonus.h"
 
-static t_rgb	uitorgb(unsigned int value)
+static void	print_background(t_cub *cub, const int x, const int y)
 {
-	t_rgb	result;
+	t_rgb		color;
+	t_position	map;
 
-	result.r = ((value & 0x00FF0000) >> 16);
-	result.g = ((value & 0x0000FF00) >> 8);
-	result.b = ((value & 0x000000FF));
-	return (result);
-}
-
-void	minimap(t_cub *cub)
-{
-	t_rgb	color;
-	int xx = (WINDOWS_WIDTH) - 215;
-	int yy = (WINDOWS_HEIGHT) - 215;
-
-	for (int y = yy; y < 200 + yy; y++)
+	map.y = y - 1;
+	while (++map.y < 200 + y)
 	{
-		for (int x = xx; x < 200 + xx; x++)
+		map.x = x - 1;
+		while (++map.x < 200 + x)
 		{
-			if (hypotf(x - (100 + xx), y - (100 + yy)) <= 100)
+			if (hypotf(map.x - (100 + x), map.y - (100 + y)) < 100)
 			{
-				color = uitorgb(mlx_get_pixel_img(&cub->screen, x, y));
+				color = color_to_rgb(
+						mlx_get_pixel_img(&cub->screen, map.x, map.y));
 				color.r *= 0.5;
 				color.g *= 0.5;
 				color.b *= 0.5;
-				mlx_put_pixel_to_img(&cub->screen, x, y, create_trgb(0,color.r ,color.g ,color.b));
+				mlx_put_pixel_to_img(&cub->screen, map.x, map.y,
+					create_trgb(0, color.r, color.g, color.b));
 			}
 		}		
 	}
+}
 
-	for (int y = 0; y < 20; y++)
+static void	print_map(t_cub *cub, t_position s, t_position *map, int color)
+{
+	t_position			m;
+	t_position			r;
+	t_position			i;
+	const t_position	t = {cosf(-cub->player.angle - M_PI / 2),
+								sinf(-cub->player.angle - M_PI / 2)};
+
+	i.y = -1;
+	while (++i.y < 10)
 	{
-		for (int x = 0; x < 20; x++)
+		i.x = -1;
+		while (++i.x < 10)
 		{
-			if ((int)(cub->player.pos.y) - 10 + y < 0
-				|| (int)(cub->player.pos.x) - 10 + x < 0
-				|| (int)(cub->player.pos.x) - 10 + x >= cub->map.width
-				|| (int)(cub->player.pos.y) - 10 + y >= cub->map.height)
+			m.x = i.x + s.x + 100;
+			m.y = i.y + s.y + 100;
+			if (map)
+			{
+				m.x += -100 + (map->x * 10);
+				m.y += -100 + (map->y * 10);
+			}
+			r.x = t.x * (m.x - s.x - 100) - t.y * (m.y - s.y - 100) + s.x + 100;
+			r.y = t.y * (m.x - s.x - 100) + t.x * (m.y - s.y - 100) + s.y + 100;
+			if (hypotf(r.x - 100 - s.x, r.y - 100 - s.y) < 100)
+				mlx_put_pixel_to_img(&cub->screen, r.x, r.y, color);
+		}
+	}
+}
+
+static void	print_map_content(t_cub *cub, char c, t_position screen,
+								t_position *map)
+{
+	if (ft_isset_tab(c, "123456789]"))
+		print_map(cub, screen, map, create_trgb(0, 255, 0, 0));
+	if (ft_isset_tab(c, "PLHFIA|O"))
+		print_map(cub, screen, map, create_trgb(0, 0, 0, 255));
+}
+
+void	minimap(t_cub *cub, const int x, const int y)
+{
+	const t_position	screen = {x, y};
+	t_position			map;
+	t_position			player;
+
+	map.y = -1;
+	print_background(cub, x, y);
+	while (++map.y < 20)
+	{
+		map.x = -1;
+		while (++map.x < 20)
+		{
+			player.x = cub->player.pos.x - 10 + map.x;
+			player.y = cub->player.pos.y - 10 + map.y;
+			if ((int)player.y < 0 || (int)player.x < 0
+				|| (int)player.x >= cub->map.width
+				|| (int)player.y >= cub->map.height)
 				continue ;
-			else if (cub->map.map[(int)(cub->player.pos.y) - 10 + y][(int)(cub->player.pos.x) - 10 + x] == '1')
-			{
-				for (int i = 0; i < 10; i++)
-				{
-					for (int j = 0; j < 10; j++)
-					{
-						int xxx = j + xx + (x * 10);
-						int yyy = i + yy + (y * 10);
-						float xxxx, yyyy;
-						xxxx = cosf(-cub->player.angle - M_PI / 2) * (xxx - ((xx + 100))) - sinf(-cub->player.angle- M_PI / 2) * (yyy - ((yy + 100)));
-						yyyy = sinf(-cub->player.angle - M_PI / 2) * (xxx - ((xx + 100))) + cosf(-cub->player.angle - M_PI / 2) * (yyy - ((yy + 100)));
-						xxxx += xx + 100;
-						yyyy += yy + 100;
-						if (hypotf(xxxx - (100 + xx), yyyy - (100 + yy)) <= 100)
-						{
-							mlx_put_pixel_to_img(&cub->screen, xxxx, yyyy, create_trgb(0,255,0,0));
-						}
-					}
-				}
-			}
-			if (x == 10 && y == 10)
-			{
-				for (int i = 0; i < 10; i++)
-				{
-					for (int j = 0; j < 10; j++)
-					{
-						int xxx = j + xx + (x * 10);
-						int yyy = i + yy + (y * 10);
-						float xxxx, yyyy;
-						xxxx = cosf(-cub->player.angle - M_PI / 2) * (xxx - ((xx + 100))) - sinf(-cub->player.angle- M_PI / 2) * (yyy - ((yy + 100)));
-						yyyy = sinf(-cub->player.angle - M_PI / 2) * (xxx - ((xx + 100))) + cosf(-cub->player.angle - M_PI / 2) * (yyy - ((yy + 100)));
-						xxxx += xx + 100;
-						yyyy += yy + 100;
-						
-						//int middle_x = xx + 100;
-						//int middle_y = yy + 100;
-						mlx_put_pixel_to_img(&cub->screen, xxxx, yyyy, create_trgb(0,0,255,0));
-					}
-				}
-			}
+			print_map_content(cub, cub->map.map[(int)player.y][(int)player.x],
+				screen, &map);
+			if (map.x == 10 && map.y == 10)
+				print_map(cub, screen, 0, create_trgb(0, 0, 255, 0));
 		}
 	}
 }

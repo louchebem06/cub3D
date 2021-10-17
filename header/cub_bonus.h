@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 11:24:55 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 15:01:41 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@
 # elif __linux__
 #  include "../base24-linux/bass.h"
 # endif
-
-typedef struct s_minimap
-{
-	t_img	tmp;
-	t_img	minimap;
-}			t_minimap;
 
 typedef struct t_music
 {
@@ -49,7 +43,6 @@ typedef struct s_cub
 	t_img		screen;
 	int			tick;
 	t_keys		keys;
-	t_minimap	minimap;
 	t_sound		sound;
 }				t_cub;
 
