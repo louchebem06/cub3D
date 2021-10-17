@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 17:35:31 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 23:18:15 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 
 # define WINDOWS_WIDTH 1280
 # define WINDOWS_HEIGHT 720
+# define WW WINDOWS_WIDTH
+# define WH	WINDOWS_HEIGHT
 
 void		cub3d(t_cub *cub);
 bool		is_in_air(const t_map *map, const t_position *ray,

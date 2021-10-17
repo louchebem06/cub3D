@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 22:44:04 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 23:43:22 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,39 +29,44 @@ static void	print_pointer(t_cub *cub, int color)
 	}
 }
 
-static t_img	*get_shooter(t_cub *cub, int img)
+static t_img	*get_anim(t_cub *cub)
 {
 	static long int	first = 0;
 	static int		anim = 0;
 	long int		cmp;
 
-	if (cub->keys.r)
+	if (!cub->keys.r)
+		return (NULL);
+	cmp = ft_get_current_time();
+	if (anim == 0)
 	{
-		cmp = ft_get_current_time();
-		if (anim == 0)
-			toggle(&cub->sound.recharge, true);
-		if (cmp - first > 400)
-		{
-			anim++;
-			first = ft_get_current_time();
-		}
-		if (anim == 1)
-			return (&cub->shooter.recharge1);
-		else if (anim == 2)
-			return (&cub->shooter.recharge2);
-		else if (anim == 3)
-			return (&cub->shooter.recharge3);
-		else if (anim == 4)
-			return (&cub->shooter.recharge2);
-		else if (anim == 5)
-			return (&cub->shooter.recharge1);
-		else if (anim == 6)
-		{
-			anim = 0;
-			cub->keys.r = false;
-			toggle(&cub->sound.recharge, true);
-		}
+		toggle(&cub->sound.recharge, true);
+		toggle(&cub->sound.recharge, true);
 	}
+	if (cmp - first > 400 && anim++)
+		first = ft_get_current_time();
+	if (anim == 1)
+		return (&cub->shooter.recharge1);
+	else if (anim == 2)
+		return (&cub->shooter.recharge2);
+	else if (anim == 3)
+		return (&cub->shooter.recharge3);
+	else if (anim == 4)
+		return (&cub->shooter.recharge2);
+	else if (anim == 5)
+		return (&cub->shooter.recharge1);
+	anim = 0;
+	cub->keys.r = false;
+	return (NULL);
+}
+
+static t_img	*get_shooter(t_cub *cub, int img)
+{
+	t_img	*anim;
+
+	anim = get_anim(cub);
+	if (anim)
+		return (anim);
 	if (img == 1)
 		return (&cub->shooter.viser);
 	else if (img == 2)
@@ -73,11 +78,17 @@ static t_img	*get_shooter(t_cub *cub, int img)
 	else if (img == 3)
 	{
 		toggle(&cub->sound.tir, true);
+		toggle(&cub->sound.tir, true);
 		return (&cub->shooter.viser_tirer);
 	}
 	return (&cub->shooter.first);
 }
 
+/*
+	MLX hooks using this function, if using pointer or not static
+	this function segfault.
+	Please dont touch static var !
+*/
 int	toggle_mouse(t_cub *cub, int button, bool state)
 {
 	static bool	btn1 = false;
@@ -99,66 +110,33 @@ int	toggle_mouse(t_cub *cub, int button, bool state)
 	return (0);
 }
 
-bool	ismove(t_cub *cub)
-{
-	if (cub->keys.down || cub->keys.up || cub->keys.left || cub->keys.right)
-		return (true);
-	return (false);
-}
-
 void	shooter(t_cub *cub)
 {
 	const int		img = toggle_mouse(0, 0, 0);
-	const t_img		*shooter = get_shooter(cub, img);
+	const t_img		*s = get_shooter(cub, img);
 	static long int	first = 0;
-	long int		cmp;
+	const long int	cmp = ft_get_current_time();
 	static bool		move = false;
 
-	print_pointer(cub, create_trgb(0, 255, 0, 0));
-	if (img == 3 || img == 1)
+	print_pointer(cub, create_trgb(0, 89, 150, 189));
+	if (!cub->keys.r && (img == 3 || img == 1))
 	{
-		mlx_put_img_to_img(&cub->screen, shooter,
-			(WINDOWS_WIDTH / 2) - (shooter->width / 2),
-			WINDOWS_HEIGHT - shooter->height);
+		mlx_put_img_to_img(&cub->screen, s,
+			WW / 2 - s->width / 2, WH - s->height);
+		toggle_mouse(cub, 1, false);
+		return ;
 	}
+	else if ((ismove(cub) && cmp - first >= 200)
+		|| (!ismove(cub) && cmp - first >= 500) || first == 0)
+	{
+		first = ft_get_current_time();
+		move = !move;
+	}
+	if (move && ismove(cub))
+		mlx_put_img_to_img(&cub->screen, s, WW / 1.55, WH - s->height);
+	else if (move)
+		mlx_put_img_to_img(&cub->screen, s, WW / 1.5, WH - s->height + 10);
 	else
-	{
-		cmp = ft_get_current_time();
-		if ((ismove(cub) && cmp - first >= 200) || (!ismove(cub) && cmp - first >= 500) || first == 0)
-		{
-			first = ft_get_current_time();
-			if (move)
-				move = false;
-			else
-				move = true;
-		}
-		if (ismove(cub))
-		{
-			if (move)
-			{
-				if (ismove(cub))
-					mlx_put_img_to_img(&cub->screen, shooter,
-						WINDOWS_WIDTH / 1.55, WINDOWS_HEIGHT - shooter->height);
-			}
-			else
-			{
-				mlx_put_img_to_img(&cub->screen, shooter,
-					WINDOWS_WIDTH / 1.5, WINDOWS_HEIGHT - shooter->height);
-			}
-		}
-		else
-		{
-			if (move)
-			{
-				mlx_put_img_to_img(&cub->screen, shooter,
-					WINDOWS_WIDTH / 1.5, WINDOWS_HEIGHT - shooter->height + 10);
-			}
-			else
-			{
-				mlx_put_img_to_img(&cub->screen, shooter,
-					WINDOWS_WIDTH / 1.5, WINDOWS_HEIGHT - shooter->height);
-			}
-		}
-	}
+		mlx_put_img_to_img(&cub->screen, s, WW / 1.5, WH - s->height);
 	toggle_mouse(cub, 1, false);
 }

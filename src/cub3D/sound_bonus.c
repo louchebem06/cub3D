@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:04:09 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 22:41:37 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 23:39:30 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ void	init_sound(t_cub *cub)
 
 void	toggle(t_music *music, bool restart)
 {
-	QWORD end = BASS_StreamGetFilePosition(music->file, BASS_FILEPOS_END);
-	QWORD cur = BASS_StreamGetFilePosition(music->file, BASS_FILEPOS_CURRENT);
+	const QWORD	end = BASS_StreamGetFilePosition(music->file, BASS_FILEPOS_END);
+	const QWORD	cur = BASS_StreamGetFilePosition(music->file,
+													BASS_FILEPOS_CURRENT);
+
 	if (cur < end && cur != 0)
 		return ;
 	if (!music->state)
