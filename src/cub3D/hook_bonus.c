@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:49:21 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/15 16:07:08 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 11:10:34 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static int	close_click(int keycode, t_cub *cub)
 {
 	(void) cub;
 	(void) keycode;
-	free_sound();
 	exit(0);
 	return (0);
 }
@@ -39,7 +38,7 @@ static int	key_press(int keycode, t_cub *cub)
 		cub->keys.arrow_r = true;
 	if (keycode == KEY_ECHAP)
 	{
-		free_sound();
+		free_sound(cub);
 		free_cub(cub);
 		close_click(0, cub);
 	}

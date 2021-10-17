@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 08:02:18 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/15 16:22:00 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 11:54:16 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 #  include "../base24-linux/bass.h"
 # endif
 
-HSTREAM	init_sound(char const *sound);
-void	free_sound(void);
+void	init_sound(t_cub *cub);
+void	free_sound(t_cub *cub);
+void	toggle(t_music *music, bool restart);
 
 #endif

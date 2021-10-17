@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/15 16:36:38 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 11:53:07 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ static void	update_pos(t_cub *cub, float angle, float dist)
 
 static void	move(t_cub *cub)
 {
-	HSTREAM	pas;
-
-	pas = init_sound("pas");
 	if (cub->keys.up)
 		update_pos(cub, 0, 0.2);
 	if (cub->keys.down)
@@ -63,9 +60,7 @@ static void	move(t_cub *cub)
 	else if (cub->player.angle >= 2 * M_PI)
 		cub->player.angle -= 2 * M_PI;
 	if (cub->keys.up || cub->keys.down || cub->keys.left || cub->keys.right)
-		BASS_ChannelPlay(pas, 0);
-	else
-		BASS_ChannelPause(pas);
+		toggle(&cub->sound.step_classic, false);
 }
 
 #ifdef __linux__

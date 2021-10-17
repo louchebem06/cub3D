@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 06:39:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/16 04:59:44 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/17 11:17:56 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 
 void	cub3d(t_cub *cub)
 {
-	HSTREAM	s;
-
-	s = init_sound("main");
-	BASS_ChannelPlay(s, 0);
+	init_sound(cub);
+	BASS_ChannelPlay(cub->sound.main.file, 0);
 	cub->map.map = cub->config.map;
 	cub->map.width = cub->config.map_x;
 	cub->map.height = cub->config.map_y;
