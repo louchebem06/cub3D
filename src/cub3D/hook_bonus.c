@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:49:21 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 19:02:08 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 21:49:14 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static int	key_press(int keycode, t_cub *cub)
 		cub->keys.arrow_l = true;
 	if (keycode == KEY_ARROW_RIGHT)
 		cub->keys.arrow_r = true;
+	if (keycode == KEY_R)
+		cub->keys.r = true;
 	if (keycode == KEY_ECHAP)
 	{
 		free_image(cub);

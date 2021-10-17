@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 19:26:54 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 21:26:42 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB_BONUS_H
 
 # include "cub3d.h"
+# include "utils_bonus.h"
 # include "struct_bonus.h"
 # ifdef __APPLE__
 #  include "../base24-osx/bass.h"
@@ -36,7 +37,7 @@ typedef struct s_sound
 typedef struct s_shooter
 {
 	t_img	first;
-	t_img	second;
+	t_img	recharge3;
 	t_img	recharge1;
 	t_img	recharge2;
 	t_img	viser;

@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:28:05 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/17 18:14:29 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 21:26:27 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	generate_i(t_cub *cub, t_img *img, char *file)
 static void	generate_img_shooter(t_cub *cub)
 {
 	generate_i(cub, &cub->shooter.first, "texture/Gun/first.xpm");
-	generate_i(cub, &cub->shooter.second, "texture/Gun/second.xpm");
+	generate_i(cub, &cub->shooter.recharge3, "texture/Gun/recharg3.xpm");
 	generate_i(cub, &cub->shooter.recharge1, "texture/Gun/recharg1.xpm");
 	generate_i(cub, &cub->shooter.recharge2, "texture/Gun/recharg2.xpm");
 	generate_i(cub, &cub->shooter.viser, "texture/Gun/viser.xpm");

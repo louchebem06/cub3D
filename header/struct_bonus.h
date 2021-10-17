@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 02:02:20 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 10:27:05 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/17 21:49:32 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_keys
 	bool	right;
 	bool	arrow_l;
 	bool	arrow_r;
+	bool	r;
 }	t_keys;
 
 #endif

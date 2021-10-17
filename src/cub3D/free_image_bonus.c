@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 17:35:58 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 18:02:18 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/17 21:27:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	free_image(t_cub *cub)
 	mlx_destroy_image(cub->win.mlx, cub->texture.stairs.img);
 	mlx_destroy_image(cub->win.mlx, cub->texture.bet.img);
 	mlx_destroy_image(cub->win.mlx, cub->shooter.first.img);
-	mlx_destroy_image(cub->win.mlx, cub->shooter.second.img);
+	mlx_destroy_image(cub->win.mlx, cub->shooter.recharge3.img);
 	mlx_destroy_image(cub->win.mlx, cub->shooter.recharge1.img);
 	mlx_destroy_image(cub->win.mlx, cub->shooter.recharge2.img);
 	mlx_destroy_image(cub->win.mlx, cub->shooter.viser.img);
