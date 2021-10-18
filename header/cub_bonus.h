@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 23:48:19 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/18 05:50:33 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ typedef struct s_cub
 char	get_map_char(const t_map *map, const t_position *ray,
 			const t_position *p);
 void	generate_img_bonus(t_cub *c);
+void	fps(t_cub *cub);
 
 #endif

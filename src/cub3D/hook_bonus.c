@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:49:21 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 21:49:14 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/18 05:54:20 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int	key_press(int keycode, t_cub *cub)
 		free_image(cub);
 		free_sound(cub);
 		free_cub(cub);
+		fps(NULL);
 		close_click(0, cub);
 	}
 	return (0);
