@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 23:57:28 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/18 05:44:35 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,31 +68,63 @@ static void	move(t_cub *cub)
 
 int	render_next_frame(t_cub *cub)
 {
+	static int		fps = 0;
+	static long int	time = 0;
+	static char		*ptr_fps;
+
 	if (cub->tick++ < 200)
 		return (0);
 	move(cub);
 	draw(cub);
-	sprite(cub);
 	move_mouse(cub);
 	shooter(cub);
 	minimap(cub, WINDOWS_WIDTH - 215, WINDOWS_HEIGHT - 215);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 	cub->tick = 0;
+	fps++;
+	if (ft_get_current_time() - time >= 1000 || time == 0)
+	{
+		if (ptr_fps)
+			free(ptr_fps);
+		ptr_fps = ft_itoa(fps);
+		fps = 0;
+		time = ft_get_current_time();
+	}
+	mlx_string_put(cub->win.mlx, cub->win.win, 10, 20,
+		create_trgb(0, 0, 255, 0), "FPS : ");
+	mlx_string_put(cub->win.mlx, cub->win.win, 50, 20,
+		create_trgb(0, 0, 255, 0), ptr_fps);
 	return (0);
 }
 #elif __APPLE__
 
 int	render_next_frame(t_cub *cub)
 {
+	static int		fps = 0;
+	static long int	time = 0;
+	static char		*ptr_fps;
+
 	if (cub->tick++ < 200)
 		return (0);
 	move(cub);
 	draw(cub);
-	sprite(cub);
 	shooter(cub);
 	minimap(cub, WINDOWS_WIDTH - 215, WINDOWS_HEIGHT - 215);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 	cub->tick = 0;
+	fps++;
+	if (ft_get_current_time() - time >= 1000 || time == 0)
+	{
+		if (ptr_fps)
+			free(ptr_fps);
+		ptr_fps = ft_itoa(fps);
+		fps = 0;
+		time = ft_get_current_time();
+	}
+	mlx_string_put(cub->win.mlx, cub->win.win, 10, 20,
+		create_trgb(0, 0, 255, 0), "FPS : ");
+	mlx_string_put(cub->win.mlx, cub->win.win, 50, 20,
+		create_trgb(0, 0, 255, 0), ptr_fps);
 	return (0);
 }
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/17 10:52:39 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/18 04:20:38 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,6 @@ static void	draw_col_mdr(t_cub *cub, int x, int size, const t_position *ray_pos,
 		mlx_put_pixel_to_img(&cub->screen, x, y, color);
 	}
 }
-
 
 void	draw(t_cub *cub)
 {
