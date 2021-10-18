@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:28:05 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/17 23:50:34 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/18 23:45:49 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,23 @@ static void	generate_img_sprite(t_cub *cub)
 
 void	generate_img_bonus(t_cub *cub)
 {
+	const char	ch_doll[] = "texture/Sprite/Doll/AnyConv.com__Layer ";
+	char		*file;
+	char		*tmp;
+	char		*nb;
+	int			i;
+
+	i = -1;
+	while (++i < 35)
+	{
+		nb = ft_itoa(i + 1);
+		tmp = ft_strjoin(ch_doll, nb);
+		file = ft_strjoin(tmp, ".xpm");
+		generate_i(cub, &cub->sprite.doll[i], file);
+		free(nb);
+		free(tmp);
+		free(file);
+	}
 	generate_img_shooter(cub);
 	generate_img_wall(cub);
 	generate_img_sprite(cub);

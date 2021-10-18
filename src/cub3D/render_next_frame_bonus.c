@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/18 05:49:50 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/18 23:48:34 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	render_next_frame(t_cub *cub)
 		return (0);
 	move(cub);
 	draw(cub);
+	sprite(cub);
 	move_mouse(cub);
 	shooter(cub);
 	minimap(cub, WINDOWS_WIDTH - 215, WINDOWS_HEIGHT - 215);
@@ -88,6 +89,7 @@ int	render_next_frame(t_cub *cub)
 		return (0);
 	move(cub);
 	draw(cub);
+	sprite(cub);
 	shooter(cub);
 	minimap(cub, WINDOWS_WIDTH - 215, WINDOWS_HEIGHT - 215);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
