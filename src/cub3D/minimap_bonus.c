@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/20 04:37:31 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/21 19:33:52 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,23 +86,35 @@ static void	print_map_content(t_cub *cub, char c, t_position screen,
 static void	print_border(t_cub *cub, t_position screen)
 {
 	t_position		map;
-	int				tmp;
-	const t_rgb		color = {rand() % 256, rand() % 256, rand() % 256};
-	const int		size = rand() % 10;
+	float			tmp;
+	static t_rgb	color = {255, 0, 0};
+	const int		size = 5;
 
-	screen.x -= size;
-	screen.y -= size;
-	map.y = screen.y - 1;
-	while (++map.y < 200 + (size * 2) + screen.y)
+	map.y = screen.y - size - 1;
+	while (++map.y < 200 + (size * 2) + screen.y - size)
 	{
-		map.x = screen.x - 1;
-		while (++map.x < 200 + (size * 2) + screen.x)
+		map.x = screen.x - size - 1;
+		while (++map.x < 200 + (size * 2) + screen.x - size)
 		{
-			tmp = hypotf(map.x - (100 + size + screen.x),
-					map.y - (100 + size + screen.y));
+			tmp = hypotf(map.x - (100 + screen.x),
+					map.y - (100 + screen.y));
 			if (tmp >= 100 && tmp < 100 + size)
+			{
 				mlx_put_pixel_to_img(&cub->screen, map.x, map.y,
 					create_trgb(0, color.r, color.g, color.b));
+				if (color.r == 255 && color.g < 255 && color.b == 0)
+					color.g++;
+				else if (color.r > 0 && color.g == 255 && color.b == 0)
+					color.r--;
+				else if (color.g == 255 && color.b < 255 && color.r == 0)
+					color.b++;
+				else if (color.g > 0 && color.b == 255 && color.r == 0)
+					color.g--;
+				else if (color.b == 255 && color.r < 255 && color.g == 0)
+					color.r++;
+				else if (color.b > 0 && color.r == 255 && color.g == 0)
+					color.b--;
+			}
 		}		
 	}
 }
