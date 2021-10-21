@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_bonus.h                                      :+:      :+:    :+:   */
+/*   isrotate_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/17 20:57:14 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/21 21:07:16 by bledda           ###   ########.fr       */
+/*   Created: 2021/10/21 21:06:31 by bledda            #+#    #+#             */
+/*   Updated: 2021/10/21 21:08:28 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_BONUS_H
-# define UTILS_BONUS_H
+#include "../../header/utils_bonus.h"
 
-# include <sys/time.h>
-# include <sys/types.h>
-# include "cub_bonus.h"
-
-long int	ft_get_current_time(void);
-bool		ismove(t_cub *cub);
-bool		isrotate(t_cub *cub);
-
-#endif
+bool	isrotate(t_cub *cub)
+{
+	if (cub->keys.arrow_l || cub->keys.arrow_r)
+		return (true);
+	return (false);
+}
