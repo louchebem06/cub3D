@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/20 03:25:25 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/21 19:02:56 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -136,6 +136,11 @@ SRCS_PARSING_OBJS_COMMUN	= ${SRCS_PARSING_COMMUN:.c=.o}
 SRCS_UTILS_OBJS_COMMUN		= ${SRCS_UTILS_COMMUN:.c=.o}
 SRCS_CUB3D_OBJS_COMMUN		= ${SRCS_CUB3D_COMMUN:.c=.o}
 
+SRCS_OBJS_COMMUN_B			= ${SRCS_COMMUN:.c=_B.o}
+SRCS_PARSING_OBJS_COMMUN_B	= ${SRCS_PARSING_COMMUN:.c=_B.o}
+SRCS_UTILS_OBJS_COMMUN_B	= ${SRCS_UTILS_COMMUN:.c=_B.o}
+SRCS_CUB3D_OBJS_COMMUN_B	= ${SRCS_CUB3D_COMMUN:.c=_B.o}
+
 SRCS_OBJS_MANDA				= ${SRCS_MANDA:.c=.o}
 SRCS_PARSING_OBJS_MANDA		= ${SRCS_PARSING_MANDA:.c=.o}
 SRCS_UTILS_OBJS_MANDA		= ${SRCS_UTILS_MANDA:.c=.o}
@@ -147,6 +152,7 @@ SRCS_UTILS_OBJS_BONUS		= ${SRCS_UTILS_BONUS:.c=.o}
 SRCS_CUB3D_OBJS_BONUS		= ${SRCS_CUB3D_BONUS:.c=.o}
 
 OBJS_COMMUN					= $(SRCS_OBJS_COMMUN) $(SRCS_PARSING_OBJS_COMMUN) $(SRCS_UTILS_OBJS_COMMUN) $(SRCS_CUB3D_OBJS_COMMUN)
+OBJS_COMMUN_B				= $(SRCS_OBJS_COMMUN_B) $(SRCS_PARSING_OBJS_COMMUN_B) $(SRCS_UTILS_OBJS_COMMUN_B) $(SRCS_CUB3D_OBJS_COMMUN_B)
 OBJS_MANDA					= $(SRCS_OBJS_MANDA) $(SRCS_PARSING_OBJS_MANDA) $(SRCS_UTILS_OBJS_MANDA) $(SRCS_CUB3D_OBJS_MANDA)
 OBJS_BONUS					= $(SRCS_OBJS_BONUS) $(SRCS_PARSING_OBJS_BONUS) $(SRCS_UTILS_OBJS_BONUS) $(SRCS_CUB3D_OBJS_BONUS)
 ####################################################################################
@@ -156,6 +162,7 @@ CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror -O3
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
+REMAKE				= @make --no-print-directory
 LIB					= ./libft/libft.a ./mlx_utils/mlx_utils.a -lm
 
 UNAME_S				= $(shell uname -s)
@@ -168,7 +175,7 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 ifdef CUB3D_BONUS
-OBJS 				= $(OBJS_COMMUN) $(OBJS_BONUS)
+OBJS 				= $(OBJS_COMMUN_B) $(OBJS_BONUS)
 HEADERS 			= $(HEADERS_COMMUN) $(HEADERS_BONUS)
 ifeq ($(UNAME_S),Linux)
 	EXEC_BASE24		= $(MAKE_EXT) ./base24-linux
@@ -216,12 +223,18 @@ all:		${NAME}
 			@$(CC) -c $(CFLAGS) $(DEFINE) -o $@ $<
 			@printf $(reset)
 
+%_B.o: %.c	$(HEADERS)
+			@printf $(yellow)
+			@printf "Generating cub3D objects... %-28.28s\r" $@
+			@$(CC) -c $(CFLAGS) $(DEFINE) -o $@ $<
+			@printf $(reset)
+
 re: 		fclean all
 
 clean:
 			$(MAKE_EXT) ./libft clean
 			$(MAKE_EXT) ./mlx_utils clean
-			@${RM} ${OBJS_COMMUN} ${OBJS_MANDA} ${OBJS_BONUS}
+			@${RM} ${OBJS_COMMUN} ${OBJS_COMMUN_B} ${OBJS_MANDA} ${OBJS_BONUS}
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Object files have been deleted 🚮\n"
@@ -240,7 +253,7 @@ fclean:		clean
 			@printf $(reset)
 
 bonus:
-			@$(MAKE) CUB3D_BONUS=1
+			$(REMAKE) CUB3D_BONUS=1
 
 .PHONY: 	all clean fclean re bonus
 #################################################################################
