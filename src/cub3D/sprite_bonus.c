@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/18 23:55:00 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/21 15:53:55 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sprite(t_cub *cub)
 {
-	unsigned int color;
+	unsigned int	color;
 	static long int	first = 0;
 	static int		i = 0;
 	long int		cmp;
@@ -22,7 +22,7 @@ void	sprite(t_cub *cub)
 	cmp = ft_get_current_time();
 	if (cmp - first > 10 && i++)
 		first = ft_get_current_time();
-	if (i == 36)
+	if (i == 35)
 		i = 0;
 	for (int y = 0; y  < cub->sprite.doll[i].height; y++)
 	{

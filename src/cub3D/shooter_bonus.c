@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 23:43:22 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/21 15:58:47 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,8 @@ static t_img	*get_shooter(t_cub *cub, int img)
 	return (&cub->shooter.first);
 }
 
-/*
-	MLX hooks using this function, if using pointer or not static
-	this function segfault.
-	Please dont touch static var !
-*/
+#ifdef __APPLE__
+
 int	toggle_mouse(t_cub *cub, int button, bool state)
 {
 	static bool	btn1 = false;
@@ -109,6 +106,29 @@ int	toggle_mouse(t_cub *cub, int button, bool state)
 		btn2 = state;
 	return (0);
 }
+#elif __linux__
+
+int	toggle_mouse(t_cub *cub, int button, bool state)
+{
+	static bool	btn1 = false;
+	static bool	btn2 = false;
+
+	if (!cub)
+	{
+		if (btn1 && btn2)
+			return (3);
+		else if (btn1)
+			return (2);
+		else if (btn2)
+			return (1);
+	}
+	if (button == 1)
+		btn1 = state;
+	if (button == 3)
+		btn2 = state;
+	return (0);
+}
+#endif
 
 void	shooter(t_cub *cub)
 {
