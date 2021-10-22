@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/22 19:02:25 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/22 19:35:40 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ HEADER_FILES_COMMUN 		= ft_config.h \
 								cub3d.h
 
 HEADER_FILES_MANDA 			= cub.h \
-								struct.h \
+								struct.h
 
 HEADER_FILES_BONUS 			= minimap_bonus.h \
 								mouse_bonus.h \

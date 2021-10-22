@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 19:00:08 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 19:30:04 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static t_img	*get_anim(t_cub *cub)
 			cub->keys.r = false;
 			return (NULL);
 		}
-		while (cub->shooter.balle != 8 && cub->shooter.reserve != 0)
+		while (cub->shooter.balle != VAL_CHAR && cub->shooter.reserve != 0)
 		{
 			cub->shooter.reserve--;
 			cub->shooter.balle++;
