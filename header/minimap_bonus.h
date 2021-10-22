@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:31:40 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/20 02:25:11 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 02:59:36 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 
 void	minimap(t_cub *cub, const int x, const int y);
 void	print_nsew(t_cub *cub, const int x, const int y);
+void	print_border(t_cub *cub, t_position screen);
 
 #endif
