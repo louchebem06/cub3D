@@ -6,20 +6,12 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 02:38:18 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 15:44:40 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/shooter_bonus.h"
 #include "../../header/sound_bonus.h"
-
-#ifdef __APPLE__
-
-const int	g_btn = 2;
-#elif __linux__
-
-const int	g_btn = 3;
-#endif
 
 static void	print_pointer(t_cub *cub, int color)
 {
@@ -101,9 +93,9 @@ int	toggle_mouse(t_cub *cub, int button, bool state)
 		else if (btn2)
 			return (1);
 	}
-	if (button == 1)
+	if (button == BTN1)
 		btn1 = state;
-	if (button == g_btn)
+	else if (button == BTN2)
 		btn2 = state;
 	return (0);
 }

@@ -6,11 +6,12 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:04:09 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 23:39:30 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 16:14:41 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
+#include "../../header/cub_bonus.h"
 #include "../../header/sound_bonus.h"
 
 void	init_sound(t_cub *cub)
@@ -39,9 +40,11 @@ void	toggle(t_music *music, bool restart)
 	const QWORD	cur = BASS_StreamGetFilePosition(music->file,
 													BASS_FILEPOS_CURRENT);
 
-	if (cur < end && cur != 0)
+	printf("%ld\n", cur);
+	printf("%ld\n", end);
+	if (cur < end && cur > 0)
 		return ;
-	if (!music->state)
+	if (!music->state || cur == end)
 	{
 		BASS_ChannelPlay(music->file, restart);
 		music->state = true;
