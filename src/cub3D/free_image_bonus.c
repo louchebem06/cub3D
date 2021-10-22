@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 17:35:58 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/18 23:47:06 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 02:15:41 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	free_image(t_cub *cub)
 	int	i;
 
 	i = -1;
-	while (++i < 35)
+	while (++i < 6)
 		mlx_destroy_image(cub->win.mlx, cub->sprite.doll[i].img);
 	free_img_sprite(cub);
 	free_img_classic(cub);

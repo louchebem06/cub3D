@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:49:21 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/21 16:04:28 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 02:33:37 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ void	hook(t_cub *cub)
 	mlx_hook(cub->win.win, 2, 1, key_press, cub);
 	mlx_hook(cub->win.win, 3, 2, key_release, cub);
 	mlx_hook(cub->win.win, 17, 0, close_click, cub);
-	// J'arrive pas a trouver event pour le unclick mouse
-	//mlx_hook(cub->win.win, 5, 0, mouse_unclick, cub);
+	mlx_hook(cub->win.win, 5, 1l << 3, mouse_unclick, cub);
 	mlx_mouse_hook(cub->win.win, mouse_hook, cub);
 	mlx_loop_hook(cub->win.mlx, render_next_frame, cub);
 	mlx_loop(cub->win.mlx);

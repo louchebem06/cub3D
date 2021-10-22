@@ -6,12 +6,20 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/21 15:58:47 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 02:38:18 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/shooter_bonus.h"
 #include "../../header/sound_bonus.h"
+
+#ifdef __APPLE__
+
+const int	g_btn = 2;
+#elif __linux__
+
+const int	g_btn = 3;
+#endif
 
 static void	print_pointer(t_cub *cub, int color)
 {
@@ -39,10 +47,7 @@ static t_img	*get_anim(t_cub *cub)
 		return (NULL);
 	cmp = ft_get_current_time();
 	if (anim == 0)
-	{
 		toggle(&cub->sound.recharge, true);
-		toggle(&cub->sound.recharge, true);
-	}
 	if (cmp - first > 400 && anim++)
 		first = ft_get_current_time();
 	if (anim == 1)
@@ -72,20 +77,16 @@ static t_img	*get_shooter(t_cub *cub, int img)
 	else if (img == 2)
 	{
 		toggle(&cub->sound.tir, true);
-		toggle(&cub->sound.tir, true);
 		return (&cub->shooter.tirer);
 	}
 	else if (img == 3)
 	{
-		toggle(&cub->sound.tir, true);
 		toggle(&cub->sound.tir, true);
 		return (&cub->shooter.viser_tirer);
 	}
 	return (&cub->shooter.first);
 }
 
-#ifdef __APPLE__
-
 int	toggle_mouse(t_cub *cub, int button, bool state)
 {
 	static bool	btn1 = false;
@@ -102,33 +103,10 @@ int	toggle_mouse(t_cub *cub, int button, bool state)
 	}
 	if (button == 1)
 		btn1 = state;
-	if (button == 2)
+	if (button == g_btn)
 		btn2 = state;
 	return (0);
 }
-#elif __linux__
-
-int	toggle_mouse(t_cub *cub, int button, bool state)
-{
-	static bool	btn1 = false;
-	static bool	btn2 = false;
-
-	if (!cub)
-	{
-		if (btn1 && btn2)
-			return (3);
-		else if (btn1)
-			return (2);
-		else if (btn2)
-			return (1);
-	}
-	if (button == 1)
-		btn1 = state;
-	if (button == 3)
-		btn2 = state;
-	return (0);
-}
-#endif
 
 void	shooter(t_cub *cub)
 {
@@ -142,7 +120,7 @@ void	shooter(t_cub *cub)
 	if (!cub->keys.r && (img == 3 || img == 1))
 	{
 		mlx_put_img_to_img(&cub->screen, s,
-			WW / 2 - s->width / 2, WH - s->height);
+			WW / 2 - (s->width - 47) / 2, WH - s->height);
 		toggle_mouse(cub, 1, false);
 		return ;
 	}
@@ -153,10 +131,10 @@ void	shooter(t_cub *cub)
 		move = !move;
 	}
 	if (move && ismove(cub))
-		mlx_put_img_to_img(&cub->screen, s, WW / 1.55, WH - s->height);
+		mlx_put_img_to_img(&cub->screen, s, WW / 1.55, WH - s->height + 47);
 	else if (move)
-		mlx_put_img_to_img(&cub->screen, s, WW / 1.5, WH - s->height + 10);
+		mlx_put_img_to_img(&cub->screen, s, WW / 1.5, WH - s->height + 57);
 	else
-		mlx_put_img_to_img(&cub->screen, s, WW / 1.5, WH - s->height);
+		mlx_put_img_to_img(&cub->screen, s, WW / 1.5, WH - s->height + 47);
 	toggle_mouse(cub, 1, false);
 }

@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:19:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/21 15:57:23 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 02:34:19 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ int	mouse_hook(int button, int x, int y, t_cub *cub)
 	(void)x;
 	(void)y;
 	toggle_mouse(cub, button, true);
-	printf("%d\n", button);
-	puts("click");
+	return (0);
+}
+
+int	mouse_unclick(int button, t_cub *cub)
+{
+	toggle_mouse(cub, button, false);
 	return (0);
 }
 
@@ -38,14 +42,6 @@ int	move_mouse(int x, int y, t_cub *cub)
 		cub->player.angle += M_PI / 30;
 	mlx_mouse_move(cub->win.win, WINDOWS_WIDTH / 2, WINDOWS_HEIGHT / 2);
 	mlx_mouse_hide();
-	return (0);
-}
-
-int	mouse_unclick(int button, t_cub *cub)
-{
-	(void)cub;
-	toggle_mouse(cub, button, false);
-	puts("unclick");
 	return (0);
 }
 #elif __linux__
@@ -68,13 +64,5 @@ void	move_mouse(t_cub *cub)
 	mlx_mouse_move(cub->win.mlx, cub->win.win,
 		WINDOWS_WIDTH / 2, WINDOWS_HEIGHT / 2);
 	mlx_mouse_hide(cub->win.mlx, cub->win.win);
-}
-
-int	mouse_unclick(int button, t_cub *cub)
-{
-	(void)cub;
-	toggle_mouse(cub, button, false);
-	puts("unclick");
-	return (0);
 }
 #endif
