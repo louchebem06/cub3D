@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 03:25:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 03:17:33 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 18:01:42 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 static void	update_color(t_rgb *color)
 {
+	static bool	inter = false;
+
+	inter = !inter;
+	if (inter)
+		return ;
 	if (color->r == 255 && color->g < 255 && color->b == 0)
 		color->g++;
 	else if (color->r > 0 && color->g == 255 && color->b == 0)

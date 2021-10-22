@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/20 02:25:33 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 16:24:55 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include "../../header/shooter_bonus.h"
 #include "../../header/sound_bonus.h"
 #include "../../header/sprite_bonus.h"
+
+static const int	g_minimap_x = 15;
+static const int	g_minimap_y = WINDOWS_HEIGHT - 215;
 
 static float	distance(t_position *p1, t_position *p2)
 {
@@ -75,9 +78,9 @@ int	render_next_frame(t_cub *cub)
 	sprite(cub);
 	move_mouse(cub);
 	shooter(cub);
-	minimap(cub, WINDOWS_WIDTH - 215, WINDOWS_HEIGHT - 215);
+	minimap(cub, g_minimap_x, g_minimap_y);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
-	print_nsew(cub, WINDOWS_WIDTH - 215, WINDOWS_HEIGHT - 215);
+	print_nsew(cub, g_minimap_x, g_minimap_y);
 	cub->tick = 0;
 	fps(cub);
 	return (0);
@@ -92,9 +95,9 @@ int	render_next_frame(t_cub *cub)
 	draw(cub);
 	sprite(cub);
 	shooter(cub);
-	minimap(cub, WINDOWS_WIDTH - 215, WINDOWS_HEIGHT - 215);
+	minimap(cub, g_minimap_x, g_minimap_y);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
-	print_nsew(cub, WINDOWS_WIDTH - 215, WINDOWS_HEIGHT - 215);
+	print_nsew(cub, g_minimap_x, g_minimap_y);
 	cub->tick = 0;
 	fps(cub);
 	return (0);

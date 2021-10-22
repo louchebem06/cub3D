@@ -6,12 +6,13 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 15:44:40 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 18:30:41 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/shooter_bonus.h"
 #include "../../header/sound_bonus.h"
+#include "../../header/cub_bonus.h"
 
 static void	print_pointer(t_cub *cub, int color)
 {
@@ -23,7 +24,7 @@ static void	print_pointer(t_cub *cub, int color)
 	{
 		x = -1;
 		while (++x < 10)
-			if (hypotf(x - 5, y - 5) <= 4)
+			if (hypotf(x - 5, y - 5) < 5)
 				mlx_put_pixel_to_img(&cub->screen, WINDOWS_WIDTH / 2 + x,
 					WINDOWS_HEIGHT / 2 + y, color);
 	}
@@ -79,27 +80,6 @@ static t_img	*get_shooter(t_cub *cub, int img)
 	return (&cub->shooter.first);
 }
 
-int	toggle_mouse(t_cub *cub, int button, bool state)
-{
-	static bool	btn1 = false;
-	static bool	btn2 = false;
-
-	if (!cub)
-	{
-		if (btn1 && btn2)
-			return (3);
-		else if (btn1)
-			return (2);
-		else if (btn2)
-			return (1);
-	}
-	if (button == BTN1)
-		btn1 = state;
-	else if (button == BTN2)
-		btn2 = state;
-	return (0);
-}
-
 void	shooter(t_cub *cub)
 {
 	const int		img = toggle_mouse(0, 0, 0);
@@ -109,20 +89,16 @@ void	shooter(t_cub *cub)
 	static bool		move = false;
 
 	print_pointer(cub, create_trgb(0, 89, 150, 189));
-	if (!cub->keys.r && (img == 3 || img == 1))
-	{
-		mlx_put_img_to_img(&cub->screen, s,
-			WW / 2 - (s->width - 47) / 2, WH - s->height);
-		toggle_mouse(cub, 1, false);
-		return ;
-	}
-	else if ((ismove(cub) && cmp - first >= 200)
-		|| (!ismove(cub) && cmp - first >= 500) || first == 0)
+	if (first == 0 || (ismove(cub) && cmp - first >= 200)
+		|| (!ismove(cub) && cmp - first >= 500))
 	{
 		first = ft_get_current_time();
 		move = !move;
 	}
-	if (move && ismove(cub))
+	if (!cub->keys.r && (img == 3 || img == 1))
+		mlx_put_img_to_img(&cub->screen, s,
+			WW / 2 - (s->width - 47) / 2, WH - s->height);
+	else if (move && ismove(cub))
 		mlx_put_img_to_img(&cub->screen, s, WW / 1.55, WH - s->height + 47);
 	else if (move)
 		mlx_put_img_to_img(&cub->screen, s, WW / 1.5, WH - s->height + 57);

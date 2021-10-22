@@ -6,12 +6,33 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:19:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 02:34:19 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 18:16:29 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/mouse_bonus.h"
 #include "../../header/shooter_bonus.h"
+
+int	toggle_mouse(t_cub *cub, int button, bool state)
+{
+	static bool	btn1 = false;
+	static bool	btn2 = false;
+
+	if (!cub)
+	{
+		if (btn1 && btn2)
+			return (3);
+		else if (btn1)
+			return (2);
+		else if (btn2)
+			return (1);
+	}
+	if (button == BTN1)
+		btn1 = state;
+	else if (button == BTN2)
+		btn2 = state;
+	return (0);
+}
 
 int	mouse_hook(int button, int x, int y, t_cub *cub)
 {
