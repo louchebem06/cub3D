@@ -6,17 +6,25 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:20:12 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 19:37:56 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 18:50:32 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MOUSE_BONUS_H
 # define MOUSE_BONUS_H
 
+# define BTN1 1
+# ifdef __APPLE__
+#  define BTN2 2
+# elif __linux__
+#  define BTN2 3
+# endif
+
 # include "cub3d.h"
 
 int		mouse_unclick(int button, t_cub *cub);
 int		mouse_click(int button, t_cub *cub);
+int		toggle_mouse(t_cub *cub, int button, bool state);
 
 # ifdef __APPLE__
 

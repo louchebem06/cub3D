@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 16:24:55 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 19:01:46 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	render_next_frame(t_cub *cub)
 	print_nsew(cub, g_minimap_x, g_minimap_y);
 	cub->tick = 0;
 	fps(cub);
+	print_balle(cub);
 	return (0);
 }
 #elif __APPLE__
@@ -100,6 +101,7 @@ int	render_next_frame(t_cub *cub)
 	print_nsew(cub, g_minimap_x, g_minimap_y);
 	cub->tick = 0;
 	fps(cub);
+	print_balle(cub);
 	return (0);
 }
 #endif

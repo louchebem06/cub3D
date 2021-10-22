@@ -6,12 +6,11 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:19:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 18:16:29 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 18:49:56 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/mouse_bonus.h"
-#include "../../header/shooter_bonus.h"
 
 int	toggle_mouse(t_cub *cub, int button, bool state)
 {

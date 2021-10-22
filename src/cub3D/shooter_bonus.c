@@ -6,13 +6,14 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 18:30:41 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 19:00:08 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/shooter_bonus.h"
 #include "../../header/sound_bonus.h"
 #include "../../header/cub_bonus.h"
+#include "../../header/mouse_bonus.h"
 
 static void	print_pointer(t_cub *cub, int color)
 {
@@ -40,7 +41,19 @@ static t_img	*get_anim(t_cub *cub)
 		return (NULL);
 	cmp = ft_get_current_time();
 	if (anim == 0)
+	{
+		if (cub->shooter.reserve == 0)
+		{
+			cub->keys.r = false;
+			return (NULL);
+		}
+		while (cub->shooter.balle != 8 && cub->shooter.reserve != 0)
+		{
+			cub->shooter.reserve--;
+			cub->shooter.balle++;
+		}
 		toggle(&cub->sound.recharge, true);
+	}
 	if (cmp - first > 400 && anim++)
 		first = ft_get_current_time();
 	if (anim == 1)
@@ -67,16 +80,20 @@ static t_img	*get_shooter(t_cub *cub, int img)
 		return (anim);
 	if (img == 1)
 		return (&cub->shooter.viser);
-	else if (img == 2)
+	else if (img == 2 && cub->shooter.balle > 0)
 	{
+		cub->shooter.balle--;
 		toggle(&cub->sound.tir, true);
 		return (&cub->shooter.tirer);
 	}
-	else if (img == 3)
+	else if (img == 3 && cub->shooter.balle > 0)
 	{
+		cub->shooter.balle--;
 		toggle(&cub->sound.tir, true);
 		return (&cub->shooter.viser_tirer);
 	}
+	if (img == 3 || img == 1)
+		return (&cub->shooter.viser);
 	return (&cub->shooter.first);
 }
 

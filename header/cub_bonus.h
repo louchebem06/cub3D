@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 02:15:25 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 19:02:56 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_shooter
 	t_img	viser;
 	t_img	viser_tirer;
 	t_img	tirer;
+	int		balle;
+	int		reserve;
 }			t_shooter;
 
 typedef struct s_sprite
@@ -78,5 +80,6 @@ char	get_map_char(const t_map *map, const t_position *ray,
 			const t_position *p);
 void	generate_img_bonus(t_cub *c);
 void	fps(t_cub *cub);
+void	print_balle(t_cub *cub);
 
 #endif
