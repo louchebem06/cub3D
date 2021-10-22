@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:04:09 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 16:14:41 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 16:18:08 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	toggle(t_music *music, bool restart)
 	const QWORD	cur = BASS_StreamGetFilePosition(music->file,
 													BASS_FILEPOS_CURRENT);
 
-	printf("%ld\n", cur);
-	printf("%ld\n", end);
 	if (cur < end && cur > 0)
 		return ;
 	if (!music->state || cur == end)
