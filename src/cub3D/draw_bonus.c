@@ -6,11 +6,12 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/18 04:20:38 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/23 01:26:30 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
+#include "../../header/cub_bonus.h"
 
 static t_img	*get_texture_direction(t_cub *cub, const t_position *ray_pos)
 {

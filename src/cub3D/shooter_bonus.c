@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 19:30:04 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/23 01:48:20 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,35 @@ static void	print_pointer(t_cub *cub, int color)
 	}
 }
 
+static bool	update_balle(t_cub *cub, bool recharge, int img)
+{
+	if (!recharge)
+		return (false);
+	else if (cub->shooter.reserve == 0)
+	{
+		cub->keys.r = false;
+		return (false);
+	}
+	while (img == 0 && cub->shooter.balle != VAL_CHAR
+		&& cub->shooter.reserve != 0)
+	{
+		cub->shooter.reserve--;
+		cub->shooter.balle++;
+	}
+	return (true);
+}
+
 static t_img	*get_anim(t_cub *cub)
 {
 	static long int	first = 0;
 	static int		anim = 0;
 	long int		cmp;
 
-	if (!cub->keys.r)
+	if (!update_balle(cub, cub->keys.r, anim))
 		return (NULL);
 	cmp = ft_get_current_time();
 	if (anim == 0)
-	{
-		if (cub->shooter.reserve == 0)
-		{
-			cub->keys.r = false;
-			return (NULL);
-		}
-		while (cub->shooter.balle != VAL_CHAR && cub->shooter.reserve != 0)
-		{
-			cub->shooter.reserve--;
-			cub->shooter.balle++;
-		}
 		toggle(&cub->sound.recharge, true);
-	}
 	if (cmp - first > 400 && anim++)
 		first = ft_get_current_time();
 	if (anim == 1)
