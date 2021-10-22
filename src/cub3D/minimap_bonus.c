@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/21 19:33:52 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/22 02:59:16 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,42 +81,6 @@ static void	print_map_content(t_cub *cub, char c, t_position screen,
 		print_map(cub, screen, map, create_trgb(0, 255, 255, 0));
 	else if (ft_isset_tab(c, "@$"))
 		print_map(cub, screen, map, create_trgb(0, 255, 0, 255));
-}
-
-static void	print_border(t_cub *cub, t_position screen)
-{
-	t_position		map;
-	float			tmp;
-	static t_rgb	color = {255, 0, 0};
-	const int		size = 5;
-
-	map.y = screen.y - size - 1;
-	while (++map.y < 200 + (size * 2) + screen.y - size)
-	{
-		map.x = screen.x - size - 1;
-		while (++map.x < 200 + (size * 2) + screen.x - size)
-		{
-			tmp = hypotf(map.x - (100 + screen.x),
-					map.y - (100 + screen.y));
-			if (tmp >= 100 && tmp < 100 + size)
-			{
-				mlx_put_pixel_to_img(&cub->screen, map.x, map.y,
-					create_trgb(0, color.r, color.g, color.b));
-				if (color.r == 255 && color.g < 255 && color.b == 0)
-					color.g++;
-				else if (color.r > 0 && color.g == 255 && color.b == 0)
-					color.r--;
-				else if (color.g == 255 && color.b < 255 && color.r == 0)
-					color.b++;
-				else if (color.g > 0 && color.b == 255 && color.r == 0)
-					color.g--;
-				else if (color.b == 255 && color.r < 255 && color.g == 0)
-					color.r++;
-				else if (color.b > 0 && color.r == 255 && color.g == 0)
-					color.b--;
-			}
-		}		
-	}
 }
 
 void	minimap(t_cub *cub, const int x, const int y)
