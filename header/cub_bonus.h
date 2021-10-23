@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/23 17:06:10 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/23 17:41:25 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_cub
 	t_player			player;
 	t_texture			texture;
 	t_img				screen;
+	t_img				screen2;
+	int					tick;
 	unsigned long long	last_f;
 	t_keys				keys;
 	t_sound				sound;

@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 06:39:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/23 17:08:58 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/23 17:46:03 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	cub3d(t_cub *cub)
 	cub->win.mlx = mlx_init();
 	cub->win.win = mlx_new_window(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT,
 			"cub3D");
+	cub->screen2.img = mlx_new_image(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT);
+	create_img(&cub->screen2, cub->screen2.img);
+	cub->screen2.width = WINDOWS_WIDTH;
+	cub->screen2.height = WINDOWS_HEIGHT;
 	generate_img(cub);
 	generate_img_bonus(cub);
 	hook(cub);
