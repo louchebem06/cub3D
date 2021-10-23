@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fps_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 05:50:00 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/18 05:53:10 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/23 17:10:36 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	fps(t_cub *cub)
 {
-	static int		fps = 0;
-	static long int	time = 0;
-	static char		*ptr_fps;
+	static int					fps = 0;
+	static unsigned long long	time = 0;
+	static char					*ptr_fps;
 
 	if (!cub)
 	{

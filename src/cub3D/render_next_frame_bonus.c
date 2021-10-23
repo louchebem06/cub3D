@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_next_frame_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 19:01:46 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/23 17:17:25 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,9 @@ static void	move(t_cub *cub)
 
 int	render_next_frame(t_cub *cub)
 {
-	if (cub->tick++ < 200)
+	if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
 		return (0);
+	cub->last_f = ft_get_current_time();
 	move(cub);
 	draw(cub);
 	sprite(cub);
@@ -81,7 +82,6 @@ int	render_next_frame(t_cub *cub)
 	minimap(cub, g_minimap_x, g_minimap_y);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 	print_nsew(cub, g_minimap_x, g_minimap_y);
-	cub->tick = 0;
 	fps(cub);
 	print_balle(cub);
 	return (0);
@@ -90,8 +90,9 @@ int	render_next_frame(t_cub *cub)
 
 int	render_next_frame(t_cub *cub)
 {
-	if (cub->tick++ < 200)
+	if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
 		return (0);
+	cub->last_f = ft_get_current_time();
 	move(cub);
 	draw(cub);
 	sprite(cub);
@@ -99,7 +100,6 @@ int	render_next_frame(t_cub *cub)
 	minimap(cub, g_minimap_x, g_minimap_y);
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 	print_nsew(cub, g_minimap_x, g_minimap_y);
-	cub->tick = 0;
 	fps(cub);
 	print_balle(cub);
 	return (0);

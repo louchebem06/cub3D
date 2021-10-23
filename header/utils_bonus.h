@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 20:57:14 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/21 21:07:16 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/23 16:48:46 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <sys/types.h>
 # include "cub_bonus.h"
 
-long int	ft_get_current_time(void);
-bool		ismove(t_cub *cub);
-bool		isrotate(t_cub *cub);
+unsigned long long	ft_get_current_time(void);
+bool				ismove(t_cub *cub);
+bool				isrotate(t_cub *cub);
 
 #endif

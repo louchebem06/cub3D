@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 06:39:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 19:31:27 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/23 17:08:58 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	cub3d(t_cub *cub)
 {
 	init_sound(cub);
 	BASS_ChannelPlay(cub->sound.main.file, 0);
+	cub->last_f = ft_get_current_time();
 	cub->shooter.balle = VAL_CHAR;
 	cub->shooter.reserve = VAL_RESERVE;
 	cub->map.map = cub->config.map;

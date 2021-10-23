@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/23 02:02:34 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/23 16:27:34 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sprite(t_cub *cub)
 	long int		cmp;
 
 	cmp = ft_get_current_time();
-	if (cmp - first > 10 && i++)
+	if (cmp - first > 100 && i++)
 		first = ft_get_current_time();
 	if (i == 6)
 		i = 0;

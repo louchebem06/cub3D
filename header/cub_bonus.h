@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 19:02:56 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/23 17:06:10 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,17 @@ typedef struct s_sprite
 
 typedef struct s_cub
 {
-	t_vars		win;
-	t_config	config;
-	t_map		map;
-	t_player	player;
-	t_texture	texture;
-	t_img		screen;
-	int			tick;
-	t_keys		keys;
-	t_sound		sound;
-	t_shooter	shooter;
-	t_sprite	sprite;
+	t_vars				win;
+	t_config			config;
+	t_map				map;
+	t_player			player;
+	t_texture			texture;
+	t_img				screen;
+	unsigned long long	last_f;
+	t_keys				keys;
+	t_sound				sound;
+	t_shooter			shooter;
+	t_sprite			sprite;
 }				t_cub;
 
 char	get_map_char(const t_map *map, const t_position *ray,
