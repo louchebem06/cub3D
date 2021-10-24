@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/23 17:41:25 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/23 19:12:42 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ typedef struct s_cub
 	t_texture			texture;
 	t_img				screen;
 	t_img				screen2;
-	int					tick;
 	unsigned long long	last_f;
 	t_keys				keys;
 	t_sound				sound;
@@ -78,10 +77,12 @@ typedef struct s_cub
 	t_sprite			sprite;
 }				t_cub;
 
-char	get_map_char(const t_map *map, const t_position *ray,
-			const t_position *p);
-void	generate_img_bonus(t_cub *c);
-void	fps(t_cub *cub);
-void	print_balle(t_cub *cub);
+char		get_map_char(const t_map *map, const t_position *ray,
+				const t_position *p);
+void		generate_img_bonus(t_cub *c);
+void		fps(t_cub *cub);
+void		print_balle(t_cub *cub);
+t_position	ray_cast_sprite(const t_position *p, const float angle,
+				const t_map *map);
 
 #endif

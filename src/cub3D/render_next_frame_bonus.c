@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/23 17:50:02 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/23 18:03:34 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,9 @@ static void	move(t_cub *cub)
 
 int	render_next_frame(t_cub *cub)
 {
-	//if (cub->tick++ < 200)
-	//	return (0);
 	if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
 		return (0);
 	cub->last_f = ft_get_current_time();
-	cub->tick = 0;
 	move(cub);
 	draw(cub);
 	sprite(cub);
@@ -94,12 +91,9 @@ int	render_next_frame(t_cub *cub)
 
 int	render_next_frame(t_cub *cub)
 {
-	//if (cub->tick++ < 200)
-	//	return (0);
 	if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
 		return (0);
 	cub->last_f = ft_get_current_time();
-	cub->tick = 0;
 	move(cub);
 	draw(cub);
 	sprite(cub);
