@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/24 04:12:20 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/24 22:05:58 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,26 @@ typedef struct s_shooter
 	int		reserve;
 }			t_shooter;
 
+typedef struct t_item_sprite
+{
+	t_position	pos;
+	t_img		*s;
+	t_img		**s_anim;
+}	t_item_sprite;
+
+
 typedef struct s_sprite
 {
-	t_img	woman;
-	t_img	man;
-	t_img	intel;
-	t_img	door;
-	t_img	circle;
-	t_img	lit;
-	t_img	tree;
-	t_img	doll[6];
+	t_img			woman;
+	t_img			man;
+	t_img			intel;
+	t_img			door;
+	t_img			circle;
+	t_img			lit;
+	t_img			tree;
+	t_img			doll[6];
+	t_item_sprite	*config;
+	int				item;
 }		t_sprite;
 
 typedef struct s_cub

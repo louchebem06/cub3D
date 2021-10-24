@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/22 19:35:40 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/24 21:05:51 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,7 @@ FOLDER_CUB3D				= $(addprefix ${FOLDER_SRC},cub3D/)
 #  COMMUN
 SRCS_FILES_COMMUN			= main.c
 
-SRCS_PARSING_FILES_COMMUN	= ft_config.c \
-								ft_extension.c \
+SRCS_PARSING_FILES_COMMUN	= ft_extension.c \
 								get_file.c \
 								get_values.c \
 								get_values_utils.c \
@@ -74,7 +73,8 @@ SRCS_FILES_MANDA			=
 SRCS_PARSING_FILES_MANDA	= forbiden_char_map.c \
 								min_char_map.c \
 								wall_check_map.c \
-								create_player_info.c
+								create_player_info.c \
+								ft_config.c
 
 SRCS_UTILS_FILES_MANDA		=
 
@@ -91,7 +91,8 @@ SRCS_FILES_BONUS			=
 SRCS_PARSING_FILES_BONUS	= forbiden_char_map_bonus.c \
 								min_char_map_bonus.c \
 								wall_check_map_bonus.c \
-								create_player_info_bonus.c
+								create_player_info_bonus.c \
+								ft_config_bonus.c
 
 SRCS_UTILS_FILES_BONUS		= ft_get_current_time_bonus.c \
 								ismove_bonus.c \
