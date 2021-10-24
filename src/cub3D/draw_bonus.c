@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/24 05:24:23 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/24 05:46:12 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,13 +215,13 @@ float	angle_diff(float a1, float a2)
 
 static t_img	*get_sprite(t_cub *cub, const t_position *ray_pos)
 {
-	static int	i = -1;
-	static bool	move = false;
-	const char	c = get_map_char(&cub->map, ray_pos, &cub->player.pos);
-	static unsigned long long time = 0;
+	static int					i = -1;
+	static bool					move = false;
+	static unsigned long long	time = 0;
+	const unsigned long long	diff_time = ft_get_current_time() - time;
+	const char					c = get_map_char(&cub->map, ray_pos,
+													&cub->player.pos);
 
-	if (time == 0)
-		time = ft_get_current_time();
 	if (c == 'F')
 		return (&cub->sprite.woman);
 	else if (c == 'O')
@@ -236,24 +236,17 @@ static t_img	*get_sprite(t_cub *cub, const t_position *ray_pos)
 		return (&cub->sprite.man);
 	else if (c == 'A')
 		return (&cub->sprite.tree);
-	else if (c == '|')
+	if (!time || (i == 5 && diff_time > 1000) || (i != 5 && diff_time > 150))
 	{
-		if ((i == 5 && ft_get_current_time()- time > 1000)
-			|| (ft_get_current_time()- time > 150 && i != 5))
-		{
-			time = ft_get_current_time();
-			if (!move)
-				i++;
-			else
-				i--;
-			if (i == 5)
-				move = true;
-			else if (i == 0)
-				move = false;
-		}
-		return (&cub->sprite.doll[i]);
+		time = ft_get_current_time();
+		if (!move)
+			i += 2;
+		if (--i == 0)
+			move = false;
+		else if (i == 5)
+			move = true;
 	}
-	return (NULL);
+	return (&cub->sprite.doll[i]);
 }
 
 void	draw(t_cub *cub)
