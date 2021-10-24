@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_image_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 17:35:58 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/23 18:10:47 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/24 04:12:05 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,5 @@ void	free_image(t_cub *cub)
 	free_img_classic(cub);
 	free_img_wall(cub);
 	free_img_shooter(cub);
-	mlx_destroy_image(cub->win.mlx, cub->screen2.img);
 	mlx_destroy_image(cub->win.mlx, cub->screen.img);
 }

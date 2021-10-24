@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 06:39:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/23 18:07:09 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/24 04:36:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,9 @@ void	cub3d(t_cub *cub)
 	cub->map.width = cub->config.map_x;
 	cub->map.height = cub->config.map_y;
 	cub->win.mlx = mlx_init();
-	cub->win.win = mlx_new_window(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT,
-			"cub3D");
-	cub->screen2.img = mlx_new_image(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT);
-	create_img(&cub->screen2, cub->screen2.img);
-	cub->screen2.width = WINDOWS_WIDTH;
-	cub->screen2.height = WINDOWS_HEIGHT;
 	generate_img(cub);
 	generate_img_bonus(cub);
+	cub->win.win = mlx_new_window(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT,
+			"cub3D");
 	hook(cub);
 }

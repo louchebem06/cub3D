@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_next_frame_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/23 18:03:34 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/24 04:39:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,7 @@ int	render_next_frame(t_cub *cub)
 	move_mouse(cub);
 	shooter(cub);
 	minimap(cub, g_minimap_x, g_minimap_y);
-	mlx_put_img_to_img(&cub->screen2, &cub->screen, 0, 0);
-	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen2.img, 0, 0);
+	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 	print_nsew(cub, g_minimap_x, g_minimap_y);
 	fps(cub);
 	print_balle(cub);
@@ -99,11 +98,11 @@ int	render_next_frame(t_cub *cub)
 	sprite(cub);
 	shooter(cub);
 	minimap(cub, g_minimap_x, g_minimap_y);
-	mlx_put_img_to_img(&cub->screen2, &cub->screen, 0, 0);
-	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen2.img, 0, 0);
+	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
 	print_nsew(cub, g_minimap_x, g_minimap_y);
 	fps(cub);
 	print_balle(cub);
+	mlx_do_sync(cub->win.mlx);
 	return (0);
 }
 #endif

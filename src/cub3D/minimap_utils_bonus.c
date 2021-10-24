@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 03:25:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/23 02:38:25 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/24 04:35:34 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	print_border(t_cub *cub, t_position screen)
 static t_position	direction(t_position ray, t_position pos, float value)
 {
 	const t_position	direction = {
-		pos.x * cos(value) + pos.y * sin(value) + ray.x,
-		-pos.x * sin(value) + pos.y * cos(value) + ray.y
+		pos.x * cosf(value) + pos.y * sinf(value) + ray.x,
+		-pos.x * sinf(value) + pos.y * cosf(value) + ray.y
 	};
 
 	return (direction);
@@ -79,8 +79,8 @@ void	print_nsew(t_cub *cub, int const x, int const y)
 		direction(ray, pos, cub->player.angle),
 		direction(ray, pos, cub->player.angle + M_PI / 4),
 		direction(ray, pos, cub->player.angle - M_PI / 4),
-		direction(ray, pos, cub->player.angle - M_PI / 1.33),
-		direction(ray, pos, cub->player.angle + M_PI / 1.33)
+		direction(ray, pos, cub->player.angle - M_PI * 0.75),
+		direction(ray, pos, cub->player.angle + M_PI * 0.75)
 	};
 
 	mlx_string_put(cub->win.mlx, cub->win.win, dir[0].x, dir[0].y, color, "N");

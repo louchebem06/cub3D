@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/24 02:36:13 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/24 05:24:23 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,49 @@ float	angle_diff(float a1, float a2)
 	return (fix_angle(diff));
 }
 
+static t_img	*get_sprite(t_cub *cub, const t_position *ray_pos)
+{
+	static int	i = -1;
+	static bool	move = false;
+	const char	c = get_map_char(&cub->map, ray_pos, &cub->player.pos);
+	static unsigned long long time = 0;
+
+	if (time == 0)
+		time = ft_get_current_time();
+	if (c == 'F')
+		return (&cub->sprite.woman);
+	else if (c == 'O')
+		return (&cub->sprite.circle);
+	else if (c == 'L')
+		return (&cub->sprite.lit);
+	else if (c == 'P')
+		return (&cub->sprite.door);
+	else if (c == 'I')
+		return (&cub->sprite.intel);
+	else if (c == 'H')
+		return (&cub->sprite.man);
+	else if (c == 'A')
+		return (&cub->sprite.tree);
+	else if (c == '|')
+	{
+		if ((i == 5 && ft_get_current_time()- time > 1000)
+			|| (ft_get_current_time()- time > 150 && i != 5))
+		{
+			time = ft_get_current_time();
+			if (!move)
+				i++;
+			else
+				i--;
+			if (i == 5)
+				move = true;
+			else if (i == 0)
+				move = false;
+		}
+		return (&cub->sprite.doll[i]);
+	}
+	return (NULL);
+}
+
 void	draw(t_cub *cub)
 {
 	float		size;
@@ -220,6 +263,7 @@ void	draw(t_cub *cub)
 	t_position	cray;
 	int			x;
 	float		angle;
+	unsigned int color;
 
 	size = 0;
 	x = -1;
@@ -235,7 +279,7 @@ void	draw(t_cub *cub)
 			size = 1;
 		draw_col_mdr(cub, x, cub->screen.height / size, &ray, angle);
 		ray = ray_cast_sprite(&cub->player.pos, cub->player.angle + angle,
-				&cub->map);
+		 		&cub->map);
 		if (ray.x == -1)
 			continue ;
 		t_position rray = ray;
@@ -250,18 +294,21 @@ void	draw(t_cub *cub)
 		rray.x += 0.5;
 		rray.y += 0.5;
 		t_position cray2 = (t_position) {rray.x - cub->player.pos.x, rray.y - cub->player.pos.y};
-		float sangle = angle_diff(atan2f(cray2.y, cray2.x), cub->player.angle + angle);
-		printf("diff angle %f\n", sangle * 180 / M_PI);
+		//float sangle = angle_diff(atan2f(cray2.y, cray2.x), cub->player.angle + angle);
+		//printf("diff angle %f\n", sangle * 180 / M_PI);
 		float size2 = hypotf(cray2.x, cray2.y);
 		if (size2 == 0)
 			size2 = 1;
 		int lol = cub->screen.height / size2;
 		int		am = (cub->screen.height - lol) / 2;
+		t_img *s = get_sprite(cub, &rray);
 		for (int y = am; y < cub->screen.height - am; y++)
 		{
-			unsigned int color = 0;
-			color = mlx_get_pixel_img(&cub->sprite.woman,  * cub->sprite.woman.width, cub->sprite.woman.height * (y - am) / lol);
-			mlx_put_pixel_to_img(&cub->screen, x, y, color);
+			color = mlx_get_pixel_img(s,
+					(x - (WW / 2) + (s->width / 2)) % s->width,
+					(y - am));
+			if (color != 0)
+				mlx_put_pixel_to_img(&cub->screen, x, y, color);
 		}
 	}
 }

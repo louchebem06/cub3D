@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_img_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:28:05 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/23 18:08:27 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/24 04:11:56 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,4 @@ void	generate_img_bonus(t_cub *cub)
 	generate_img_shooter(cub);
 	generate_img_wall(cub);
 	generate_img_sprite(cub);
-	create_img(&cub->screen2,
-		mlx_new_image(cub->win.mlx, WW, WH));
-	cub->screen.width = WW;
-	cub->screen.height = WH;
 }
