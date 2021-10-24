@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/24 05:46:12 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/24 22:56:04 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,30 +189,6 @@ static void	draw_col_mdr(t_cub *cub, int x, int size, const t_position *ray_pos,
 	}
 }
 
-float	fix_angle(float angle)
-{
-	bool	cont;
-
-	cont = true;
-	while (cont)
-	{
-		if (angle < 0)
-			angle += 2 * M_PI;
-		else if (angle >= 2 * M_PI)
-			angle -= 2 * M_PI;
-		else
-			cont = false;
-	}
-	return (angle);
-}
-
-float	angle_diff(float a1, float a2)
-{
-	const float	diff = a1 - a2;
-
-	return (fix_angle(diff));
-}
-
 static t_img	*get_sprite(t_cub *cub, const t_position *ray_pos)
 {
 	static int					i = -1;
@@ -271,37 +247,41 @@ void	draw(t_cub *cub)
 		if (size == 0)
 			size = 1;
 		draw_col_mdr(cub, x, cub->screen.height / size, &ray, angle);
-		ray = ray_cast_sprite(&cub->player.pos, cub->player.angle + angle,
-		 		&cub->map);
-		if (ray.x == -1)
-			continue ;
-		t_position rray = ray;
-		if (cub->player.pos.x > ray.x)
-			rray.x = ceilf(rray.x - 1);
-		else
-			rray.x = floorf(rray.x);
-		if (cub->player.pos.y > ray.y)
-			rray.y = ceilf(rray.y - 1);
-		else
-			rray.y = floorf(rray.y);
-		rray.x += 0.5;
-		rray.y += 0.5;
-		t_position cray2 = (t_position) {rray.x - cub->player.pos.x, rray.y - cub->player.pos.y};
-		//float sangle = angle_diff(atan2f(cray2.y, cray2.x), cub->player.angle + angle);
+		//ray = ray_cast_sprite(&cub->player.pos, cub->player.angle + angle,
+		// 		&cub->map);
+		//if (ray.x == -1)
+		//	continue ;
+		//float sdist = hypotf(ray.x - cub->player.pos.x, ray.y - cub->player.pos.y);
+		//if (sdist == 0)
+		//	sdist = 1;
+		//t_position rray = ray;
+		//if (cub->player.pos.x > ray.x)
+		//	rray.x = ceilf(rray.x - 1);
+		//else
+		//	rray.x = floorf(rray.x);
+		//if (cub->player.pos.y > ray.y)
+		//	rray.y = ceilf(rray.y - 1);
+		//else
+		//	rray.y = floorf(rray.y);
+		//rray.x += 0.5;
+		//rray.y += 0.5;
+		//////rray.x += cosf(angle) * 0.5;
+		//////rray.y += sinf(angle) * 0.5;
+		//t_position cray2 = (t_position) {rray.x - cub->player.pos.x, rray.y - cub->player.pos.y};
+		//////t_position batard = (t_position) {cray.x - cray2.x, cray.y - cray2.y};
+		//float sangle = angle_diff(atan2f(cray2.y, cray2.x), cub->player.angle);
 		//printf("diff angle %f\n", sangle * 180 / M_PI);
-		float size2 = hypotf(cray2.x, cray2.y);
-		if (size2 == 0)
-			size2 = 1;
-		int lol = cub->screen.height / size2;
-		int		am = (cub->screen.height - lol) / 2;
-		t_img *s = get_sprite(cub, &rray);
-		for (int y = am; y < cub->screen.height - am; y++)
-		{
-			color = mlx_get_pixel_img(s,
-					(x - (WW / 2) + (s->width / 2)) % s->width,
-					(y - am));
-			if (color != 0)
-				mlx_put_pixel_to_img(&cub->screen, x, y, color);
-		}
+		//////float size2 = (cray.x * cray2.y - cray.y * cray2.x) / (hypotf(cray2.x, cray2.y) * hypotf(cray.x, cray.y));
+		//float ddist = hypotf(rray.x - cub->player.pos.x, rray.y - cub->player.pos.y);
+		//if (ddist == 0)
+		//	ddist = 1;
+		//int lol = cub->screen.height / ddist;
+		//int		am = (cub->screen.height - lol) / 2;
+		//t_img *s = get_sprite(cub, &ray);
+
+		//for (int y = am; y < cub->screen.height - am; y++)
+		//{
+		//	color = mlx_get_pixel_img(s, 35535 * cub->screen.width * s->width, (float) (y - am) / lol * s->height);
+		//}
 	}
 }
