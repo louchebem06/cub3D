@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 03:18:19 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 05:19:34 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,28 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 	px = 0;
 	py = 0;
 	y = 0;
+	if (scale * src->width > 2500)
+		scale = 2500 / src->width ;
 	while (y < src->height)
 	{
 		x = 0;
+		if (py > WH)
+			continue ;
 		while (x < src->width)
 		{
 			px = (x / src->width) * scale;
+			if (px > WW)
+				continue ;
 			unsigned int color = mlx_get_pixel_img(src, x, y);
 			for (int i = 0; i <= ceilf(scale); i++)
 				for (int j = 0; j <= ceilf(scale); j++)
-					mlx_put_pixel_to_img(dest, px * src->width + center.x - (src->width / 2) * scale + i, py * src->height - (src->height / 2) * scale + center.y + j, color);
+				{
+					int xx = px * src->width + center.x - (src->width / 2) * scale + i;
+					int yy = py * src->height - (src->height / 2) * scale + center.y + j;
+					if (xx > WW || yy > WH)
+						continue;
+					mlx_put_pixel_to_img(dest, xx, yy, color);
+				}
 			x++;
 		}
 		y++;
@@ -40,6 +52,11 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 static float ft_dot(t_position a, t_position b)
 {
 	return (a.x * b.x + a.y * b.y);
+}
+
+static float moyen(t_position point)
+{
+	return (point.x + point.y / 2);
 }
 
 void	sprite(t_cub *cub)
@@ -56,10 +73,14 @@ void	sprite(t_cub *cub)
 		t_position dsprite =  {sprite_pos.x - p->pos.x, sprite_pos.y - p->pos.y};
 		float dist = hypotf(dsprite.x, dsprite.y);
 		t_position dir =  {cosf(cub->player.angle), sinf(cub->player.angle)};
+		float dot = (dir.x * dsprite.x + dir.y * dsprite.y) / dist;
+		
+		if (dot < 0.5)
+			continue ;
+
 		float s_angle = atan2f(dsprite.y, dsprite.x);
 		float p_angle = p->angle;
 		float diff_angle = fmaxf(s_angle, p_angle) - fminf(s_angle, p_angle);
-		//float dot = (dir.x * dsprite.x + dir.y * dsprite.y) / dist;
 		//float cam_dist = dist * cosf(s_angle + M_PI / 2);
 		t_position udsprite =  {dsprite.x / dist, dsprite.y / dist};
 		t_position plane = {dir.x * cosf(M_PI / 2) - dir.y * sinf(M_PI / 2),
@@ -79,6 +100,7 @@ void	sprite(t_cub *cub)
 		// printf("dir X : %f\n", dir.x);
 		// printf("dir y : %f\n", dir.y);
 		// printf("\n");
+
 
 		double invDet = 1.0 / (plane.x * dir.y - dir.y * plane.y); //required for correct matrix multiplication
 
@@ -115,8 +137,8 @@ void	sprite(t_cub *cub)
 			s = cub->sprite.config[i].s_anim[img];
 		}
 		float scal = ((WW / 2.0f) / s->width);
-		int sh = (int)((WH / transformY)*scal);
-		int spriteScreenY = (int)((WH - sh) / 2);
+		//int sh = (int)((WH / transformY)*scal);
+		//int spriteScreenY = (int)((WH - sh) / 2);
 		int y = WH / 2;
 		put_img(&cub->screen, s, (t_position){spriteScreenX, y},
 					(scal / (dist * ft_dot(dir, udsprite))));
