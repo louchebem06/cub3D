@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 06:14:55 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 16:55:43 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,36 @@ static float ft_dot(t_position a, t_position b)
 	return (a.x * b.x + a.y * b.y);
 }
 
+static float moyen(t_position pos)
+{
+	return ((pos.x + pos.y) / 2);
+}
+
+static void	sort_sprite(t_position player, t_item_sprite *config, int item)
+{
+	const float		p_m = moyen(player);
+	t_item_sprite	temp;
+	float			tmp[2];
+
+	for (int i = 0; i + 1 < item; i++)
+	{
+		tmp[0] = fmaxf(p_m, moyen(config[i].pos)) - fminf(p_m, moyen(config[i].pos));
+		tmp[1] = fmaxf(p_m, moyen(config[i + 1].pos)) - fminf(p_m, moyen(config[i + 1].pos));
+		if (tmp[1] < tmp[0])
+		{
+			temp.pos = config[i + 1].pos;
+			temp.s = config[i + 1].s;
+			temp.s_anim = config[i + 1].s_anim;
+			config[i + 1].pos = config[i].pos;
+			config[i + 1].s = config[i].s;
+			config[i + 1].s_anim = config[i].s_anim;
+			config[i].pos = temp.pos;
+			config[i].s = temp.s;
+			config[i].s_anim = temp.s_anim;
+		}
+	}
+}
+
 void	sprite(t_cub *cub)
 {
 	static unsigned long long	time = 0;
@@ -61,7 +91,8 @@ void	sprite(t_cub *cub)
 	static int img = 0;
 	static bool move = false;
 
-	for (int i = 0; i < cub->sprite.item; i++)
+	sort_sprite(cub->player.pos, cub->sprite.config, cub->sprite.item);
+	for (int i = cub->sprite.item - 1; i >= 0; i--)
 	{
 		t_player *p = &cub->player;
 		t_position sprite_pos = cub->sprite.config[i].pos;

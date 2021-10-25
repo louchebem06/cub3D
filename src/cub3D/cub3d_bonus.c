@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 06:39:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 06:21:56 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 17:02:26 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,5 @@ void	cub3d(t_cub *cub)
 	generate_img_bonus(cub);
 	cub->win.win = mlx_new_window(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT,
 			"cub3D");
-	for (int i = 0; i < cub->sprite.item; i++)
-		printf("x : %f\ny : %f\nS : %p\nS_anim : %p\n\n",
-				cub->sprite.config[i].pos.x,
-				cub->sprite.config[i].pos.y,
-				cub->sprite.config[i].s,
-				cub->sprite.config[i].s_anim);
 	hook(cub);
 }

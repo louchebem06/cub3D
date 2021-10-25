@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 03:25:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 05:34:27 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 11:37:37 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,65 +67,22 @@ static t_position	direction(t_position ray, t_position pos, float value)
 	return (direction);
 }
 
-static void	update_slow(float angle, float *slow)
-{
-	static float	angle_s = -10;
-	static bool		move = false;
-	static bool		first = false;
-	static bool		dir = false;
-
-	if (angle_s == -10)
-		angle_s = angle;
-	if (!move && angle == angle_s)
-	{
-		first = true;
-		move = true;
-	}
-	if (move)
-	{
-		if ((int)*slow == 1 || (int)*slow == -1)
-			first = false;
-		if (dir)
-		{
-			if (first && *slow > -1.0f)
-				*slow -= 0.1f;
-			else if (!first && *slow < 0)
-				*slow += 0.1f;
-		}
-		else
-		{
-			if (first && *slow < 1.0f)
-				*slow += 0.1f;
-			else if (!first && *slow > 0)
-				*slow -= 0.1f;	
-		}
-	}
-	if (*slow <= 0 && angle != angle_s)
-	{
-		dir = (angle > angle_s) ? true : false;
-		move = false;
-	}
-	angle_s = angle;
-}
-
 void	print_nsew(t_cub *cub, int const x, int const y)
 {
 	const int			color = create_trgb(0, 255, 255, 255);
 	const t_position	ray = {x + 95, y + 105};
 	const t_position	pos = {x + 95 - ray.x, y + 5 - ray.y};
-	static float		slow = 0;
 	const t_position	dir[8] = {
-		direction(ray, pos, cub->player.angle + slow + M_PI / 2),
-		direction(ray, pos, cub->player.angle + slow - M_PI / 2),
-		direction(ray, pos, cub->player.angle + slow - M_PI),
-		direction(ray, pos, cub->player.angle + slow),
-		direction(ray, pos, cub->player.angle + slow + M_PI / 4),
-		direction(ray, pos, cub->player.angle + slow - M_PI / 4),
-		direction(ray, pos, cub->player.angle + slow - M_PI * 0.75),
-		direction(ray, pos, cub->player.angle + slow + M_PI * 0.75)
+		direction(ray, pos, cub->player.angle + M_PI / 2),
+		direction(ray, pos, cub->player.angle - M_PI / 2),
+		direction(ray, pos, cub->player.angle - M_PI),
+		direction(ray, pos, cub->player.angle),
+		direction(ray, pos, cub->player.angle + M_PI / 4),
+		direction(ray, pos, cub->player.angle - M_PI / 4),
+		direction(ray, pos, cub->player.angle - M_PI * 0.75),
+		direction(ray, pos, cub->player.angle + M_PI * 0.75)
 	};
 
-	update_slow(cub->player.angle, &slow);
 	mlx_string_put(cub->win.mlx, cub->win.win, dir[0].x, dir[0].y, color, "N");
 	mlx_string_put(cub->win.mlx, cub->win.win, dir[1].x, dir[1].y, color, "S");
 	mlx_string_put(cub->win.mlx, cub->win.win, dir[2].x, dir[2].y, color, "W");
