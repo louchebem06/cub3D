@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 02:15:03 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 02:16:27 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,6 @@ static float ft_dot(t_position a, t_position b)
 {
 	return (a.x * b.x + a.y * b.y);
 }
-
-// static float	ft_scaling(int width)
-// {
-// 	float	i;
-
-// 	i = 1;
-// 	if (width * i < WW / 2)
-// 	{
-// 		while (width * i < WW / 2)
-// 			i += 0.1f;
-// 	}
-// 	else if (width * i > WW / 2)
-// 	{
-// 		while (width * i > WW / 2)
-// 			i -= 0.1f;
-// 	}
-// 	return (i);
-// }
 
 void	sprite(t_cub *cub)
 {
