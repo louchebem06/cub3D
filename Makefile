@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/25 06:15:12 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/25 10:05:29 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -162,8 +162,8 @@ OBJS_BONUS					= $(SRCS_OBJS_BONUS) $(SRCS_PARSING_OBJS_BONUS) $(SRCS_UTILS_OBJS
 
 #	COMPILATION		################################################################
 CC					= gcc
-#CFLAGS  			= -Wall -Wextra -O3
-CFLAGS  			= -Wall -Wextra -Werror -O3
+CFLAGS  			= -Wall -Wextra -O3
+#CFLAGS  			= -Wall -Wextra -Werror -O3
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 REMAKE				= @make --no-print-directory
@@ -175,7 +175,7 @@ ifeq ($(UNAME_S),Linux)
 	LIBS 			= $(LIB) -lmlx -lXext -lX11
 endif
 ifeq ($(UNAME_S),Darwin)
-	LIBS 			= $(LIB) -lmlx -framework OpenGL -framework AppKit
+	LIBS 			= $(LIB) ./libmlx.dylib -framework OpenGL -framework AppKit
 endif
 
 ifdef CUB3D_BONUS
@@ -205,6 +205,8 @@ $(NAME):	${OBJS}
 			@printf $(reset)
 			$(MAKE_EXT) ./libft
 			$(MAKE_EXT) ./mlx_utils
+			$(MAKE_EXT) ./mlx_mac
+			@cp -r ./mlx_mac/libmlx.dylib ./
 			$(EXEC_BASE24)
 			@printf $(yellow)
 			$(MSG_BASE24)
@@ -238,6 +240,7 @@ re: 		fclean all
 clean:
 			$(MAKE_EXT) ./libft clean
 			$(MAKE_EXT) ./mlx_utils clean
+			$(MAKE_EXT) ./mlx_mac clean
 			@${RM} ${OBJS_COMMUN} ${OBJS_COMMUN_B} ${OBJS_MANDA} ${OBJS_BONUS}
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
@@ -249,7 +252,7 @@ fclean:		clean
 			$(MAKE_EXT) ./libft fclean
 			$(MAKE_EXT) ./mlx_utils fclean
 			$(MAKE_EXT) ./base24-linux clean
-			@${RM} $(NAME) base24-osx/intel libbass.dylib libbass.so
+			@${RM} $(NAME) base24-osx/intel libbass.dylib libbass.so libmlx.dylib
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Your folder is now clean 🧹\n"
