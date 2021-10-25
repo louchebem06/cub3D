@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 16:55:43 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 19:53:02 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,37 +49,42 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 	}
 }
 
-static float ft_dot(t_position a, t_position b)
+static float	ft_dot(t_position a, t_position b)
 {
 	return (a.x * b.x + a.y * b.y);
 }
 
-static float moyen(t_position pos)
+static float	mean(t_position pos, float value)
 {
-	return ((pos.x + pos.y) / 2);
+	const float	mean_v = (pos.x + pos.y) / 2;
+
+	return (fmaxf(value, mean_v) - fminf(value, mean_v));
 }
 
 static void	sort_sprite(t_position player, t_item_sprite *config, int item)
 {
-	const float		p_m = moyen(player);
+	const float		p_m = mean(player, 0);
 	t_item_sprite	temp;
 	float			tmp[2];
+	int				i;
+	int				j;
 
-	for (int i = 0; i + 1 < item; i++)
+	j = -1;
+	while (++j + 1 < item)
 	{
-		tmp[0] = fmaxf(p_m, moyen(config[i].pos)) - fminf(p_m, moyen(config[i].pos));
-		tmp[1] = fmaxf(p_m, moyen(config[i + 1].pos)) - fminf(p_m, moyen(config[i + 1].pos));
-		if (tmp[1] < tmp[0])
+		i = -1;
+		while (++i + 1 < item)
 		{
-			temp.pos = config[i + 1].pos;
-			temp.s = config[i + 1].s;
-			temp.s_anim = config[i + 1].s_anim;
-			config[i + 1].pos = config[i].pos;
-			config[i + 1].s = config[i].s;
-			config[i + 1].s_anim = config[i].s_anim;
-			config[i].pos = temp.pos;
-			config[i].s = temp.s;
-			config[i].s_anim = temp.s_anim;
+			tmp[0] = mean(config[i].pos, p_m);
+			tmp[1] = mean(config[i + 1].pos, p_m);
+			if (tmp[1] < tmp[0])
+			{
+				temp = (t_item_sprite){config[i + 1].pos,
+					config[i + 1].s, config[i + 1].s_anim};
+				config[i + 1] = (t_item_sprite){config[i].pos,
+					config[i].s, config[i].s_anim};
+				config[i] = (t_item_sprite){temp.pos, temp.s, temp.s_anim};
+			}
 		}
 	}
 }
