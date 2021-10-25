@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/25 10:05:29 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/25 10:16:52 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -176,6 +176,7 @@ ifeq ($(UNAME_S),Linux)
 endif
 ifeq ($(UNAME_S),Darwin)
 	LIBS 			= $(LIB) ./libmlx.dylib -framework OpenGL -framework AppKit
+	MLX_MAC			= $(MAKE_EXT) ./mlx_mac
 endif
 
 ifdef CUB3D_BONUS
@@ -205,7 +206,7 @@ $(NAME):	${OBJS}
 			@printf $(reset)
 			$(MAKE_EXT) ./libft
 			$(MAKE_EXT) ./mlx_utils
-			$(MAKE_EXT) ./mlx_mac
+			@$(MLX_MAC)
 			@cp -r ./mlx_mac/libmlx.dylib ./
 			$(EXEC_BASE24)
 			@printf $(yellow)
