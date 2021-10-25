@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 02:16:27 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 02:21:40 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 {
+	const float	width_scale = scale / src->width;
+	const float	height_scale = scale / src->height;
 	float px,py;
 	float y,x;
 
@@ -25,7 +27,7 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 		x = 0;
 		while (x < src->width)
 		{
-			px = (x / src->width) * scale;
+			px = x * width_scale;
 			unsigned int color = mlx_get_pixel_img(src, x, y);
 			for (int i = 0; i <= ceilf(scale); i++)
 				for (int j = 0; j <= ceilf(scale); j++)
@@ -33,7 +35,7 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 			x++;
 		}
 		y++;
-		py = (y / src->height) * scale;
+		py = y * height_scale;
 	}
 }
 
