@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 02:01:51 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 02:15:03 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,24 @@ static float ft_dot(t_position a, t_position b)
 {
 	return (a.x * b.x + a.y * b.y);
 }
+
+// static float	ft_scaling(int width)
+// {
+// 	float	i;
+
+// 	i = 1;
+// 	if (width * i < WW / 2)
+// 	{
+// 		while (width * i < WW / 2)
+// 			i += 0.1f;
+// 	}
+// 	else if (width * i > WW / 2)
+// 	{
+// 		while (width * i > WW / 2)
+// 			i -= 0.1f;
+// 	}
+// 	return (i);
+// }
 
 void	sprite(t_cub *cub)
 {
@@ -97,6 +115,6 @@ void	sprite(t_cub *cub)
 		if (!cub->sprite.config[i].s)
 			continue ;
 		put_img(&cub->screen, cub->sprite.config[i].s, (t_position){spriteScreenX, y},
-					(1 / (dist * ft_dot(dir, udsprite))));
+					((WW / 2 / cub->sprite.config[i].s->width) / (dist * ft_dot(dir, udsprite))));
 	}
 }
