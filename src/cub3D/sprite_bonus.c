@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 02:21:40 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 03:18:19 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 {
-	const float	width_scale = scale / src->width;
-	const float	height_scale = scale / src->height;
 	float px,py;
 	float y,x;
 
@@ -27,7 +25,7 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 		x = 0;
 		while (x < src->width)
 		{
-			px = x * width_scale;
+			px = (x / src->width) * scale;
 			unsigned int color = mlx_get_pixel_img(src, x, y);
 			for (int i = 0; i <= ceilf(scale); i++)
 				for (int j = 0; j <= ceilf(scale); j++)
@@ -35,7 +33,7 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 			x++;
 		}
 		y++;
-		py = y * height_scale;
+		py = (y / src->height) * scale;
 	}
 }
 
@@ -46,6 +44,11 @@ static float ft_dot(t_position a, t_position b)
 
 void	sprite(t_cub *cub)
 {
+	static unsigned long long	time = 0;
+	const unsigned long long	diff_time = ft_get_current_time() - time;
+	static int img = 0;
+	static bool move = false;
+
 	for (int i = 0; i < cub->sprite.item; i++)
 	{
 		t_player *p = &cub->player;
@@ -84,7 +87,7 @@ void	sprite(t_cub *cub)
 
 		int spriteScreenX = (int)((WW / 2) * (1 + transformX / transformY));
 
-		if (cosf(diff_angle) < 0)
+		if (cosf(diff_angle) < 0.1)
 			continue ;
 		//float x = WW / 2;
 	//	printf("%f\n%f\n", tanf(diff_angle) * dist, sinf());
@@ -95,10 +98,27 @@ void	sprite(t_cub *cub)
 		//float x = ft_dot(plane, udsprite);
 		//printf("%f\n", S);
 		//float x = W + ((W * S));
-		float y = WH / 2;
-		if (!cub->sprite.config[i].s)
-			continue ;
-		put_img(&cub->screen, cub->sprite.config[i].s, (t_position){spriteScreenX, y},
-					((WW / 2 / cub->sprite.config[i].s->width) / (dist * ft_dot(dir, udsprite))));
+		//float y = WH / 2;
+		t_img *s = cub->sprite.config[i].s;
+		if (!s)
+		{
+			if (!time || (img == 5 && diff_time > 1000) || (img != 5 && diff_time > 150))
+			{
+				time = ft_get_current_time();
+				if (!move)
+					img += 2;
+				if (--img == 0)
+					move = false;
+				else if (img == 5)
+					move = true;
+			}
+			s = cub->sprite.config[i].s_anim[img];
+		}
+		float scal = ((WW / 2.0f) / s->width);
+		int sh = (int)((WH / transformY)*scal);
+		int spriteScreenY = (int)((WH - sh) / 2);
+		int y = WH / 2;
+		put_img(&cub->screen, s, (t_position){spriteScreenX, y},
+					(scal / (dist * ft_dot(dir, udsprite))));
 	}
 }
