@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 05:19:34 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 06:14:55 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 	while (y < src->height)
 	{
 		x = 0;
-		if (py > WH)
+		if (py >= WH)
 			continue ;
 		while (x < src->width)
 		{
 			px = (x / src->width) * scale;
-			if (px > WW)
+			if (px >= WW)
 				continue ;
 			unsigned int color = mlx_get_pixel_img(src, x, y);
 			for (int i = 0; i <= ceilf(scale); i++)
@@ -38,7 +38,7 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 				{
 					int xx = px * src->width + center.x - (src->width / 2) * scale + i;
 					int yy = py * src->height - (src->height / 2) * scale + center.y + j;
-					if (xx > WW || yy > WH)
+					if (xx >= WW || yy >= WH)
 						continue;
 					mlx_put_pixel_to_img(dest, xx, yy, color);
 				}
@@ -52,11 +52,6 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 static float ft_dot(t_position a, t_position b)
 {
 	return (a.x * b.x + a.y * b.y);
-}
-
-static float moyen(t_position point)
-{
-	return (point.x + point.y / 2);
 }
 
 void	sprite(t_cub *cub)
@@ -75,7 +70,7 @@ void	sprite(t_cub *cub)
 		t_position dir =  {cosf(cub->player.angle), sinf(cub->player.angle)};
 		float dot = (dir.x * dsprite.x + dir.y * dsprite.y) / dist;
 		
-		if (dot < 0.5)
+		if (dot < 0.59)
 			continue ;
 
 		float s_angle = atan2f(dsprite.y, dsprite.x);

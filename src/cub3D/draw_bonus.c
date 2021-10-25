@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/25 03:56:14 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 06:16:04 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,41 +189,41 @@ static void	draw_col_mdr(t_cub *cub, int x, int size, const t_position *ray_pos,
 	}
 }
 
-static t_img	*get_sprite(t_cub *cub, const t_position *ray_pos)
-{
-	static int					i = -1;
-	static bool					move = false;
-	static unsigned long long	time = 0;
-	const unsigned long long	diff_time = ft_get_current_time() - time;
-	const char					c = get_map_char(&cub->map, ray_pos,
-													&cub->player.pos);
+// static t_img	*get_sprite(t_cub *cub, const t_position *ray_pos)
+// {
+// 	static int					i = -1;
+// 	static bool					move = false;
+// 	static unsigned long long	time = 0;
+// 	const unsigned long long	diff_time = ft_get_current_time() - time;
+// 	const char					c = get_map_char(&cub->map, ray_pos,
+// 													&cub->player.pos);
 
-	if (c == 'F')
-		return (&cub->sprite.woman);
-	else if (c == 'O')
-		return (&cub->sprite.circle);
-	else if (c == 'L')
-		return (&cub->sprite.lit);
-	else if (c == 'P')
-		return (&cub->sprite.door);
-	else if (c == 'I')
-		return (&cub->sprite.intel);
-	else if (c == 'H')
-		return (&cub->sprite.man);
-	else if (c == 'A')
-		return (&cub->sprite.tree);
-	if (!time || (i == 5 && diff_time > 1000) || (i != 5 && diff_time > 150))
-	{
-		time = ft_get_current_time();
-		if (!move)
-			i += 2;
-		if (--i == 0)
-			move = false;
-		else if (i == 5)
-			move = true;
-	}
-	return (&cub->sprite.doll[i]);
-}
+// 	if (c == 'F')
+// 		return (&cub->sprite.woman);
+// 	else if (c == 'O')
+// 		return (&cub->sprite.circle);
+// 	else if (c == 'L')
+// 		return (&cub->sprite.lit);
+// 	else if (c == 'P')
+// 		return (&cub->sprite.door);
+// 	else if (c == 'I')
+// 		return (&cub->sprite.intel);
+// 	else if (c == 'H')
+// 		return (&cub->sprite.man);
+// 	else if (c == 'A')
+// 		return (&cub->sprite.tree);
+// 	if (!time || (i == 5 && diff_time > 1000) || (i != 5 && diff_time > 150))
+// 	{
+// 		time = ft_get_current_time();
+// 		if (!move)
+// 			i += 2;
+// 		if (--i == 0)
+// 			move = false;
+// 		else if (i == 5)
+// 			move = true;
+// 	}
+// 	return (&cub->sprite.doll[i]);
+// }
 
 void	draw(t_cub *cub)
 {
@@ -232,7 +232,7 @@ void	draw(t_cub *cub)
 	t_position	cray;
 	int			x;
 	float		angle;
-	unsigned int color;
+	//unsigned int color;
 
 	size = 0;
 	x = -1;

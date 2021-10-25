@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 06:39:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 03:32:37 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 06:21:56 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	cub3d(t_cub *cub)
 {
-	//init_sound(cub);
+	init_sound(cub);
 	BASS_ChannelPlay(cub->sound.main.file, 0);
 	cub->last_f = ft_get_current_time();
 	cub->shooter.balle = VAL_CHAR;
