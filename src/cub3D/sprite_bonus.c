@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 19:53:02 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 20:01:08 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	sort_sprite(t_position player, t_item_sprite *config, int item)
 	while (++j + 1 < item)
 	{
 		i = -1;
-		while (++i + 1 < item)
+		while (++i + j + 1 < item)
 		{
 			tmp[0] = mean(config[i].pos, p_m);
 			tmp[1] = mean(config[i + 1].pos, p_m);
