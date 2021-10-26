@@ -6,13 +6,13 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:28:05 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/24 04:11:56 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/26 15:24:17 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub_bonus.h"
 
-static void	generate_i(t_cub *cub, t_img *img, char *file)
+void	generate_i(t_cub *cub, t_img *img, char *file)
 {
 	img->img = mlx_xpm_file_to_image(cub->win.mlx, file,
 			&img->width, &img->height);

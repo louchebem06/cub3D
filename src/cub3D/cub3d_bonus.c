@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 06:39:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 17:02:26 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/26 17:31:07 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 void	cub3d(t_cub *cub)
 {
 	init_sound(cub);
-	BASS_ChannelPlay(cub->sound.main.file, 0);
 	cub->last_f = ft_get_current_time();
 	cub->shooter.balle = VAL_CHAR;
 	cub->shooter.reserve = VAL_RESERVE;
@@ -28,7 +27,9 @@ void	cub3d(t_cub *cub)
 	cub->win.mlx = mlx_init();
 	generate_img(cub);
 	generate_img_bonus(cub);
+	generate_img_intro(cub);
 	cub->win.win = mlx_new_window(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT,
 			"cub3D");
+	BASS_ChannelPlay(cub->sound.main.file, 0);
 	hook(cub);
 }
