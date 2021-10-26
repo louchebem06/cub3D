@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:22:48 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/26 21:04:33 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/26 21:50:04 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,59 @@
 
 #define IMG_INTRO 465
 
-static void	create_img_intro(t_cub *cub, int start, int end)
+static char	*add_zero(int i)
+{
+	char	*tmp[2];
+
+	tmp[0] = ft_calloc(sizeof(char *), 2);
+	tmp[0][0] = '0';
+	while (--i > 0)
+	{
+		tmp[1] = ft_strdup(tmp[0]);
+		free(tmp[0]);
+		tmp[0] = ft_strjoin(tmp[1], "0");
+		free(tmp[1]);
+	}
+	return (tmp[0]);
+}
+
+static char	*file_name(int i)
 {
 	const char	ch_intro[] = "texture/intro29s/intro";
 	char		*file;
-	char		*tmp[2];
-	char		*nb;
+	char		*tmp[3];
+	char		*nb[2];
+	int			nb_zero;
+
+	nb[0] = ft_itoa(i);
+	nb[1] = ft_itoa(IMG_INTRO);
+	if (ft_strlen(nb[0]) != ft_strlen(nb[1]))
+	{
+		nb_zero = ft_strlen(nb[1]) - ft_strlen(nb[0]);
+		tmp[2] = add_zero(nb_zero);
+		tmp[1] = ft_strjoin(ch_intro, tmp[2]);
+		tmp[0] = ft_strjoin(tmp[1], nb[0]);
+		free(tmp[1]);
+		free(tmp[2]);
+	}
+	else
+		tmp[0] = ft_strjoin(ch_intro, nb[0]);
+	file = ft_strjoin(tmp[0], ".xpm");
+	free(nb[0]);
+	free(tmp[0]);
+	return (file);
+}
+
+static void	create_img_intro(t_cub *cub, int start, int end)
+{
+	char		*file;
 	int			i;
 
 	i = start;
 	while (++i < end)
 	{
-		nb = ft_itoa(i);
-		if (i < 10)
-		{
-			tmp[1] = ft_strjoin(ch_intro, "00");
-			tmp[0] = ft_strjoin(tmp[1], nb);
-			free(tmp[1]);
-		}
-		else if (i < 100)
-		{
-			tmp[1] = ft_strjoin(ch_intro, "0");
-			tmp[0] = ft_strjoin(tmp[1], nb);
-			free(tmp[1]);
-		}
-		else
-			tmp[0] = ft_strjoin(ch_intro, nb);
-		file = ft_strjoin(tmp[0], ".xpm");
+		file = file_name(i);
 		generate_i(cub, &cub->intro[i], file);
-		free(nb);
-		free(tmp[0]);
 		free(file);
 	}
 }
