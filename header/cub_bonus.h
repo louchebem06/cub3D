@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/23 17:06:10 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/24 01:45:41 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_cub
 	t_sound				sound;
 	t_shooter			shooter;
 	t_sprite			sprite;
+	t_img				intro[465];
 }				t_cub;
 
 char	get_map_char(const t_map *map, const t_position *ray,
@@ -81,5 +82,6 @@ char	get_map_char(const t_map *map, const t_position *ray,
 void	generate_img_bonus(t_cub *c);
 void	fps(t_cub *cub);
 void	print_balle(t_cub *cub);
+void	intro(t_cub *cub);
 
 #endif

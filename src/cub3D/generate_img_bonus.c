@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:28:05 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/22 02:18:39 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/24 01:42:19 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,42 @@ static void	generate_img_sprite(t_cub *cub)
 	generate_i(cub, &cub->sprite.tree, "texture/Sprite/tree.xpm");
 }
 
+static void	generate_img_intro(t_cub *cub)
+{
+	const char	ch_intro[] = "texture/intro29s/intro";
+	char		*file;
+	char		*tmp[2];
+	char		*nb;
+	int			i;
+
+	i = -1;
+	printf("Loading intro\n");
+	while (++i < 465)
+	{
+		printf("Loading intro %d/464\r", i + 1);
+		nb = ft_itoa(i);
+		if (i < 10)
+		{
+			tmp[1] = ft_strjoin(ch_intro, "00");
+			tmp[0] = ft_strjoin(tmp[1], nb);
+			free(tmp[1]);
+		}
+		else if (i < 100)
+		{
+			tmp[1] = ft_strjoin(ch_intro, "0");
+			tmp[0] = ft_strjoin(tmp[1], nb);
+			free(tmp[1]);
+		}
+		else
+			tmp[0] = ft_strjoin(ch_intro, nb);
+		file = ft_strjoin(tmp[0], ".xpm");
+		generate_i(cub, &cub->intro[i], file);
+		free(nb);
+		free(tmp[0]);
+		free(file);
+	}
+}
+
 void	generate_img_bonus(t_cub *cub)
 {
 	const char	ch_doll[] = "texture/Sprite/Doll/";
@@ -89,4 +125,5 @@ void	generate_img_bonus(t_cub *cub)
 	generate_img_shooter(cub);
 	generate_img_wall(cub);
 	generate_img_sprite(cub);
+	generate_img_intro(cub);
 }
