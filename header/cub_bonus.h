@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/26 16:16:11 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/26 20:21:06 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_cub
 	t_shooter			shooter;
 	t_sprite			sprite;
 	t_img				intro[465];
+	bool				no_intro;
 }				t_cub;
 
 char		get_map_char(const t_map *map, const t_position *ray,

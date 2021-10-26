@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/26 20:00:03 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/26 20:17:29 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ FOLDER_UTILS				= $(addprefix ${FOLDER_SRC},utils/)
 FOLDER_CUB3D				= $(addprefix ${FOLDER_SRC},cub3D/)
 
 #  COMMUN
-SRCS_FILES_COMMUN			= main.c
+SRCS_FILES_COMMUN			=
 
 SRCS_PARSING_FILES_COMMUN	= ft_extension.c \
 								get_file.c \
@@ -68,7 +68,7 @@ SRCS_CUB3D_FILES_COMMUN		= is_in_air.c \
 								generate_img.c
 
 #  MANDA
-SRCS_FILES_MANDA			=
+SRCS_FILES_MANDA			= main.c
 
 SRCS_PARSING_FILES_MANDA	= forbiden_char_map.c \
 								min_char_map.c \
@@ -86,7 +86,7 @@ SRCS_CUB3D_FILES_MANDA		= render_next_frame.c \
 								free_image.c
 
 #  BONUS
-SRCS_FILES_BONUS			=
+SRCS_FILES_BONUS			= main_bonus.c
 
 SRCS_PARSING_FILES_BONUS	= forbiden_char_map_bonus.c \
 								min_char_map_bonus.c \
