@@ -6,12 +6,13 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 21:05:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 09:47:06 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/26 13:21:38 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
 #include "../../header/cub_bonus.h"
+#include "../../header/init.h"
 
 static int	get_nb_sprite(t_cub *cub, const char *ls_sprite)
 {
@@ -93,7 +94,6 @@ int	ft_config(t_cub *cub, const char *file)
 	int		fd;
 	char	**data_file;
 
-	*cub = (t_cub){0};
 	data_file = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1 || !ft_extension(file, ".cub"))

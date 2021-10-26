@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/12 02:29:52 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/26 13:21:41 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_config(t_cub *cub, const char *file)
 	int		fd;
 	char	**data_file;
 
-	*cub = (t_cub){0};
 	data_file = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1 || !ft_extension(file, ".cub"))
