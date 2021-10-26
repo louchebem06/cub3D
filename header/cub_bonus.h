@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/26 20:21:06 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 01:32:01 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct t_item_sprite
 	t_img		**s_anim;
 }	t_item_sprite;
 
-
 typedef struct s_sprite
 {
 	t_img			woman;
@@ -77,7 +76,6 @@ typedef struct s_thread
 	int		id_thread;
 	int		nb_thread;
 }		t_thread;
-
 
 typedef struct s_cub
 {
@@ -105,6 +103,5 @@ void		print_balle(t_cub *cub);
 t_position	ray_cast_sprite(const t_position *p, const float angle,
 				const t_map *map);
 void		generate_img_intro(t_cub *cub);
-
 
 #endif

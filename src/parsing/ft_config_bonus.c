@@ -6,13 +6,14 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 21:05:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/26 13:21:38 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 01:02:36 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
 #include "../../header/cub_bonus.h"
 #include "../../header/init.h"
+#include "../../header/ft_config_bonus.h"
 
 static int	get_nb_sprite(t_cub *cub, const char *ls_sprite)
 {
@@ -106,5 +107,6 @@ or the file could not be opened\n", RED);
 	if (!get_values(&data_file, cub) || !map_is_valid(cub))
 		return (0);
 	get_data_sprite(cub);
+	replace_ground(cub);
 	return (1);
 }

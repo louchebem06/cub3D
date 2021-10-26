@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/26 20:17:29 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/27 01:27:07 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ HEADER_FILES_BONUS 			= minimap_bonus.h \
 								cub_bonus.h \
 								struct_bonus.h \
 								utils_bonus.h \
-								sprite_bonus.h
+								sprite_bonus.h \
+								ft_config_bonus.h
 
 FOLDER_HEADER				= header/
 FOLDER_SRC					= src/
@@ -92,7 +93,8 @@ SRCS_PARSING_FILES_BONUS	= forbiden_char_map_bonus.c \
 								min_char_map_bonus.c \
 								wall_check_map_bonus.c \
 								create_player_info_bonus.c \
-								ft_config_bonus.c
+								ft_config_bonus.c \
+								replace_ground_bonus.c
 
 SRCS_UTILS_FILES_BONUS		= ft_get_current_time_bonus.c \
 								ismove_bonus.c \
@@ -163,7 +165,7 @@ OBJS_BONUS					= $(SRCS_OBJS_BONUS) $(SRCS_PARSING_OBJS_BONUS) $(SRCS_UTILS_OBJS
 
 #	COMPILATION		################################################################
 CC					= gcc
-CFLAGS  			= -Wall -Wextra -Werror -O3
+CFLAGS  			= -Wall -Wextra -O3
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 REMAKE				= @make --no-print-directory
