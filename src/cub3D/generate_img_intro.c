@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:22:48 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/26 20:04:48 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/26 21:04:33 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 # define THREAD_IMG_INTRO 1
 #endif
 
-static void	*create_intro(void *cur_thread)
+#define IMG_INTRO 465
+
+static void	create_img_intro(t_cub *cub, int start, int end)
 {
 	const char	ch_intro[] = "texture/intro29s/intro";
 	char		*file;
@@ -29,16 +31,7 @@ static void	*create_intro(void *cur_thread)
 	char		*nb;
 	int			i;
 
-	t_thread *thread = (t_thread *)cur_thread;
-	t_cub *cub = (t_cub *)thread->main;
-
-	int value = 465 / thread->nb_thread;
-	int rem = 465 % thread->nb_thread;
-	int start = (value * (thread->id_thread)); 
-	int end = value * (thread->id_thread + 1);
-	if (thread->id_thread == thread->nb_thread - 1)
-		end += rem;
-	i = start - 1;
+	i = start;
 	while (++i < end)
 	{
 		nb = ft_itoa(i);
@@ -62,6 +55,24 @@ static void	*create_intro(void *cur_thread)
 		free(tmp[0]);
 		free(file);
 	}
+}
+
+static void	*generate_data_intro(void *cur_thread)
+{
+	t_thread	*thread;
+	t_cub		*cub;
+	int			rem;
+	int			start;
+	int			end;
+
+	thread = (t_thread *)cur_thread;
+	cub = (t_cub *)thread->main;
+	rem = IMG_INTRO % thread->nb_thread;
+	start = ((IMG_INTRO / thread->nb_thread) * (thread->id_thread)) - 1;
+	end = (IMG_INTRO / thread->nb_thread) * (thread->id_thread + 1);
+	if (thread->id_thread + 1 == thread->nb_thread)
+		end += rem;
+	create_img_intro(cub, start, end);
 	pthread_exit(0);
 }
 
@@ -77,7 +88,7 @@ void	generate_img_intro(t_cub *cub)
 		t[i].id_thread = i;
 		t[i].nb_thread = THREAD_IMG_INTRO;
 		t[i].main = cub;
-		pthread_create(&thread[i], NULL, create_intro, &t[i]);
+		pthread_create(&thread[i], NULL, generate_data_intro, &t[i]);
 	}
 	i = -1;
 	while (++i < THREAD_IMG_INTRO)
