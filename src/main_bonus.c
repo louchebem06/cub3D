@@ -6,19 +6,28 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:17:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/26 20:22:53 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/26 20:35:40 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
+#include <sys/stat.h>
 
 int	main(int ac, const char **av)
 {
-	t_cub	cub;
+	t_cub		cub;
+	const char	folder[] = "texture/intro29s/";
+	struct stat	stats;
 
+	stat(folder, &stats);
 	cub.no_intro = false;
 	if (ac == 3 && !ft_strncmp(av[2], "NO_INTRO", 8) && ft_strlen(av[2]) == 8)
 		cub.no_intro = true;
+	if (!S_ISDIR(stats.st_mode) && !cub.no_intro)
+	{
+		ft_error("Error:\n\t-Intro skip, folder for intro is not found!\n", RED);
+		cub.no_intro = true;
+	}
 	if ((ac == 2 || cub.no_intro) && ft_config(&cub, av[1]))
 	{
 		cub.keys = (t_keys){false};
