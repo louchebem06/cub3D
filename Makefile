@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/26 17:33:43 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/26 20:00:03 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -162,7 +162,7 @@ OBJS_BONUS					= $(SRCS_OBJS_BONUS) $(SRCS_PARSING_OBJS_BONUS) $(SRCS_UTILS_OBJS
 ####################################################################################
 
 #	COMPILATION		################################################################
-CC					= clang
+CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror -O3
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
@@ -176,7 +176,7 @@ ifeq ($(UNAME_S),Linux)
 endif
 ifeq ($(UNAME_S),Darwin)
 	LIBS 			= $(LIB) ./libmlx.dylib -framework OpenGL -framework AppKit
-	MLX_MAC			= $(MAKE_EXT) ./mlx_mac
+	MLX_MAC			= $(MAKE_EXT) ./mlx_mac && cp -r ./mlx_mac/libmlx.dylib ./
 endif
 
 ifdef CUB3D_BONUS
@@ -207,7 +207,6 @@ $(NAME):	${OBJS}
 			$(MAKE_EXT) ./libft
 			$(MAKE_EXT) ./mlx_utils
 			@$(MLX_MAC)
-			@cp -r ./mlx_mac/libmlx.dylib ./
 			$(EXEC_BASE24)
 			@printf $(yellow)
 			$(MSG_BASE24)

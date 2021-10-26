@@ -6,14 +6,20 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:22:48 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/26 17:30:59 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/26 20:04:48 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
 #include "../../header/cub_bonus.h"
 
-#define THREAD_IMG_INTRO 3
+#ifdef __APPLE__
+
+# define THREAD_IMG_INTRO 3
+#elif __linux__
+
+# define THREAD_IMG_INTRO 1
+#endif
 
 static void	*create_intro(void *cur_thread)
 {
@@ -56,7 +62,7 @@ static void	*create_intro(void *cur_thread)
 		free(tmp[0]);
 		free(file);
 	}
-	return (NULL);
+	pthread_exit(0);
 }
 
 void	generate_img_intro(t_cub *cub)
