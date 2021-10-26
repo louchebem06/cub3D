@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/15 12:37:02 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/26 13:20:40 by bledda           ###   ########.fr       */
+/*   Created: 2021/10/26 12:12:28 by bledda            #+#    #+#             */
+/*   Updated: 2021/10/26 12:13:58 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/cub3d.h"
+#ifndef INIT_H
+# define INIT_H
 
-void	cub3d(t_cub *cub)
-{
-	cub->tick = 0;
-	cub->map.map = cub->config.map;
-	cub->map.width = cub->config.map_x;
-	cub->map.height = cub->config.map_y;
-	cub->win.mlx = mlx_init();
-	cub->win.win = mlx_new_window(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT,
-			"cub3D");
-	generate_img(cub);
-	hook(cub);
-}
+//init struct
+//init cub et other bonus
+void	init_cub(t_cub *cub);
+
+#endif

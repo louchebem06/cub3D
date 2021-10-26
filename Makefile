@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/24 01:47:53 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/26 13:22:07 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,7 @@ FOLDER_CUB3D				= $(addprefix ${FOLDER_SRC},cub3D/)
 #  COMMUN
 SRCS_FILES_COMMUN			= main.c
 
-SRCS_PARSING_FILES_COMMUN	= ft_config.c \
-								ft_extension.c \
+SRCS_PARSING_FILES_COMMUN	= ft_extension.c \
 								get_file.c \
 								get_values.c \
 								get_values_utils.c \
@@ -74,7 +73,8 @@ SRCS_FILES_MANDA			=
 SRCS_PARSING_FILES_MANDA	= forbiden_char_map.c \
 								min_char_map.c \
 								wall_check_map.c \
-								create_player_info.c
+								create_player_info.c \
+								ft_config.c
 
 SRCS_UTILS_FILES_MANDA		=
 
@@ -91,7 +91,8 @@ SRCS_FILES_BONUS			=
 SRCS_PARSING_FILES_BONUS	= forbiden_char_map_bonus.c \
 								min_char_map_bonus.c \
 								wall_check_map_bonus.c \
-								create_player_info_bonus.c
+								create_player_info_bonus.c \
+								ft_config_bonus.c
 
 SRCS_UTILS_FILES_BONUS		= ft_get_current_time_bonus.c \
 								ismove_bonus.c \
@@ -161,7 +162,7 @@ OBJS_BONUS					= $(SRCS_OBJS_BONUS) $(SRCS_PARSING_OBJS_BONUS) $(SRCS_UTILS_OBJS
 ####################################################################################
 
 #	COMPILATION		################################################################
-CC					= gcc
+CC					= clang
 CFLAGS  			= -Wall -Wextra -Werror -O3
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
@@ -174,7 +175,8 @@ ifeq ($(UNAME_S),Linux)
 	LIBS 			= $(LIB) -lmlx -lXext -lX11
 endif
 ifeq ($(UNAME_S),Darwin)
-	LIBS 			= $(LIB) -lmlx -framework OpenGL -framework AppKit
+	LIBS 			= $(LIB) ./libmlx.dylib -framework OpenGL -framework AppKit
+	MLX_MAC			= $(MAKE_EXT) ./mlx_mac
 endif
 
 ifdef CUB3D_BONUS
@@ -204,6 +206,8 @@ $(NAME):	${OBJS}
 			@printf $(reset)
 			$(MAKE_EXT) ./libft
 			$(MAKE_EXT) ./mlx_utils
+			@$(MLX_MAC)
+			@cp -r ./mlx_mac/libmlx.dylib ./
 			$(EXEC_BASE24)
 			@printf $(yellow)
 			$(MSG_BASE24)
@@ -237,6 +241,7 @@ re: 		fclean all
 clean:
 			$(MAKE_EXT) ./libft clean
 			$(MAKE_EXT) ./mlx_utils clean
+			$(MAKE_EXT) ./mlx_mac clean
 			@${RM} ${OBJS_COMMUN} ${OBJS_COMMUN_B} ${OBJS_MANDA} ${OBJS_BONUS}
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
@@ -248,7 +253,7 @@ fclean:		clean
 			$(MAKE_EXT) ./libft fclean
 			$(MAKE_EXT) ./mlx_utils fclean
 			$(MAKE_EXT) ./base24-linux clean
-			@${RM} $(NAME) base24-osx/intel libbass.dylib libbass.so
+			@${RM} $(NAME) base24-osx/intel libbass.dylib libbass.so libmlx.dylib
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Your folder is now clean 🧹\n"

@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 17:35:58 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/24 01:30:08 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/24 04:12:05 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,5 @@ void	free_image(t_cub *cub)
 	free_img_classic(cub);
 	free_img_wall(cub);
 	free_img_shooter(cub);
+	mlx_destroy_image(cub->win.mlx, cub->screen.img);
 }

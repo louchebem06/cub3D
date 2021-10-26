@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_next_frame_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/23 17:17:25 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/25 04:02:29 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	render_next_frame(t_cub *cub)
 	print_nsew(cub, g_minimap_x, g_minimap_y);
 	fps(cub);
 	print_balle(cub);
+	mlx_do_sync(cub->win.mlx);
 	return (0);
 }
 #endif

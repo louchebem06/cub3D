@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/23 01:26:30 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 06:16:04 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,42 @@ static void	draw_col_mdr(t_cub *cub, int x, int size, const t_position *ray_pos,
 	}
 }
 
+// static t_img	*get_sprite(t_cub *cub, const t_position *ray_pos)
+// {
+// 	static int					i = -1;
+// 	static bool					move = false;
+// 	static unsigned long long	time = 0;
+// 	const unsigned long long	diff_time = ft_get_current_time() - time;
+// 	const char					c = get_map_char(&cub->map, ray_pos,
+// 													&cub->player.pos);
+
+// 	if (c == 'F')
+// 		return (&cub->sprite.woman);
+// 	else if (c == 'O')
+// 		return (&cub->sprite.circle);
+// 	else if (c == 'L')
+// 		return (&cub->sprite.lit);
+// 	else if (c == 'P')
+// 		return (&cub->sprite.door);
+// 	else if (c == 'I')
+// 		return (&cub->sprite.intel);
+// 	else if (c == 'H')
+// 		return (&cub->sprite.man);
+// 	else if (c == 'A')
+// 		return (&cub->sprite.tree);
+// 	if (!time || (i == 5 && diff_time > 1000) || (i != 5 && diff_time > 150))
+// 	{
+// 		time = ft_get_current_time();
+// 		if (!move)
+// 			i += 2;
+// 		if (--i == 0)
+// 			move = false;
+// 		else if (i == 5)
+// 			move = true;
+// 	}
+// 	return (&cub->sprite.doll[i]);
+// }
+
 void	draw(t_cub *cub)
 {
 	float		size;
@@ -196,6 +232,7 @@ void	draw(t_cub *cub)
 	t_position	cray;
 	int			x;
 	float		angle;
+	//unsigned int color;
 
 	size = 0;
 	x = -1;
@@ -206,14 +243,45 @@ void	draw(t_cub *cub)
 		cray = ray;
 		cray.x -= cub->player.pos.x;
 		cray.y -= cub->player.pos.y;
-		size = hypotf(cray.x, cray.y);
-		size *= cosf(angle);
+		size = hypotf(cray.x, cray.y) * cosf(angle);
 		if (size == 0)
 			size = 1;
-		//if (get_map_char(&cub->map, &ray, &cub->player.pos) == '1')
-		//	draw_col(cub, x, cub->screen.height / size, &ray);
-		//else
-		//	draw_col_lol(cub, x, cub->screen.height / size, &ray);
 		draw_col_mdr(cub, x, cub->screen.height / size, &ray, angle);
+		//ray = ray_cast_sprite(&cub->player.pos, cub->player.angle + angle,
+		// 		&cub->map);
+		//if (ray.x == -1)
+		//	continue ;
+		//float sdist = hypotf(ray.x - cub->player.pos.x, ray.y - cub->player.pos.y);
+		//if (sdist == 0)
+		//	sdist = 1;
+		//t_position rray = ray;
+		//if (cub->player.pos.x > ray.x)
+		//	rray.x = ceilf(rray.x - 1);
+		//else
+		//	rray.x = floorf(rray.x);
+		//if (cub->player.pos.y > ray.y)
+		//	rray.y = ceilf(rray.y - 1);
+		//else
+		//	rray.y = floorf(rray.y);
+		//rray.x += 0.5;
+		//rray.y += 0.5;
+		//////rray.x += cosf(angle) * 0.5;
+		//////rray.y += sinf(angle) * 0.5;
+		//t_position cray2 = (t_position) {rray.x - cub->player.pos.x, rray.y - cub->player.pos.y};
+		//////t_position batard = (t_position) {cray.x - cray2.x, cray.y - cray2.y};
+		//float sangle = angle_diff(atan2f(cray2.y, cray2.x), cub->player.angle);
+		//printf("diff angle %f\n", sangle * 180 / M_PI);
+		//////float size2 = (cray.x * cray2.y - cray.y * cray2.x) / (hypotf(cray2.x, cray2.y) * hypotf(cray.x, cray.y));
+		//float ddist = hypotf(rray.x - cub->player.pos.x, rray.y - cub->player.pos.y);
+		//if (ddist == 0)
+		//	ddist = 1;
+		//int lol = cub->screen.height / ddist;
+		//int		am = (cub->screen.height - lol) / 2;
+		//t_img *s = get_sprite(cub, &ray);
+
+		//for (int y = am; y < cub->screen.height - am; y++)
+		//{
+		//	color = mlx_get_pixel_img(s, 35535 * cub->screen.width * s->width, (float) (y - am) / lol * s->height);
+		//}
 	}
 }

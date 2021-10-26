@@ -6,14 +6,18 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 23:18:15 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/25 10:03:29 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <mlx.h>
+# ifdef __APPLE__
+#  include "../mlx_mac/mlx.h"
+# elif __linux__
+#  include <mlx.h>
+# endif
 # include <stdio.h>
 # include "../libft/header/libft.h"
 # include "../mlx_utils/header/mlx_keycode.h"
