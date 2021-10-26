@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 04:02:29 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/26 16:21:02 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "../../header/shooter_bonus.h"
 #include "../../header/sound_bonus.h"
 #include "../../header/sprite_bonus.h"
+#include "../../header/utils_bonus.h"
 
 static const int	g_minimap_x = 15;
 static const int	g_minimap_y = WINDOWS_HEIGHT - 215;
@@ -71,38 +72,60 @@ static void	move(t_cub *cub)
 
 int	render_next_frame(t_cub *cub)
 {
-	if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
-		return (0);
-	cub->last_f = ft_get_current_time();
-	move(cub);
-	draw(cub);
-	sprite(cub);
-	move_mouse(cub);
-	shooter(cub);
-	minimap(cub, g_minimap_x, g_minimap_y);
-	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
-	print_nsew(cub, g_minimap_x, g_minimap_y);
-	fps(cub);
-	print_balle(cub);
+	static int	i = -1;
+
+	if (i == 465)
+	{
+		if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
+			return (0);
+		cub->last_f = ft_get_current_time();
+		move(cub);
+		draw(cub);
+		sprite(cub);
+		move_mouse(cub);
+		shooter(cub);
+		minimap(cub, g_minimap_x, g_minimap_y);
+		mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
+		print_nsew(cub, g_minimap_x, g_minimap_y);
+		fps(cub);
+		print_balle(cub);
+	}
+	else if (++i < 465)
+	{
+		mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->intro[i].img, 0, 0);
+		mlx_destroy_image(cub->win.mlx, cub->intro[i].img);
+		usleep(34000);
+	}
 	return (0);
 }
 #elif __APPLE__
 
 int	render_next_frame(t_cub *cub)
 {
-	if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
-		return (0);
-	cub->last_f = ft_get_current_time();
-	move(cub);
-	draw(cub);
-	sprite(cub);
-	shooter(cub);
-	minimap(cub, g_minimap_x, g_minimap_y);
-	mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
-	print_nsew(cub, g_minimap_x, g_minimap_y);
-	fps(cub);
-	print_balle(cub);
-	mlx_do_sync(cub->win.mlx);
+	static int	i = -1;
+
+	if (i == 465)
+	{
+		if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
+			return (0);
+		cub->last_f = ft_get_current_time();
+		move(cub);
+		draw(cub);
+		sprite(cub);
+		shooter(cub);
+		minimap(cub, g_minimap_x, g_minimap_y);
+		mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
+		print_nsew(cub, g_minimap_x, g_minimap_y);
+		fps(cub);
+		print_balle(cub);
+		mlx_do_sync(cub->win.mlx);
+	}
+	else if (++i < 465)
+	{
+		mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->intro[i].img, 0, 0);
+		mlx_destroy_image(cub->win.mlx, cub->intro[i].img);
+		usleep(34000);
+	}
 	return (0);
 }
 #endif

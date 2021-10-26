@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/24 22:05:58 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/26 16:16:11 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ typedef struct s_sprite
 	int				item;
 }		t_sprite;
 
+typedef struct s_thread
+{
+	void	*main;
+	int		id_thread;
+	int		nb_thread;
+}		t_thread;
+
+
 typedef struct s_cub
 {
 	t_vars				win;
@@ -87,6 +95,15 @@ typedef struct s_cub
 	t_img				intro[465];
 }				t_cub;
 
+char		get_map_char(const t_map *map, const t_position *ray,
+				const t_position *p);
+void		generate_img_bonus(t_cub *c);
+void		generate_i(t_cub *cub, t_img *img, char *file);
+void		fps(t_cub *cub);
+void		print_balle(t_cub *cub);
+t_position	ray_cast_sprite(const t_position *p, const float angle,
+				const t_map *map);
+void		generate_img_intro(t_cub *cub);
 
 
 #endif
