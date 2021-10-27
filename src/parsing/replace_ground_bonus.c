@@ -6,11 +6,12 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 00:53:49 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 01:32:30 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 16:35:41 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config_bonus.h"
+#include "../../header/cub_bonus.h"
 
 static int	max(const int *tab, const int size)
 {
@@ -76,6 +77,34 @@ static bool	isset_in_map(const char *set, char **map)
 	return (false);
 }
 
+static void	map_sprite(t_cub *cub, char **map)
+{
+	const char	set[] = "NSEWL";
+	int			y;
+	int			x;
+	int			i;
+
+	cub->config.map_s = ft_calloc(sizeof(char *), cub->config.map_y + 1);
+	y = -1;
+	while (++y < cub->config.map_y)
+		cub->config.map_s[y] = ft_strdup(map[y]);
+	y = -1;
+	while (cub->config.map_s[++y])
+	{
+		x = -1;
+		while (cub->config.map_s[y][++x])
+		{
+			i = -1;
+			while (set[++i])
+			{
+				if (cub->config.map_s[y][x] == set[i])
+					cub->config.map_s[y][x] = \
+						floor_texture(cub->config.map_s, x, y);
+			}
+		}
+	}
+}
+
 void	replace_ground(t_cub *cub)
 {
 	const char	set[] = "NSEWLPOFHI|Aa";
@@ -84,6 +113,7 @@ void	replace_ground(t_cub *cub)
 	int			x;
 	int			i;
 
+	map_sprite(cub, cub->config.map);
 	while (isset_in_map(set, cub->config.map))
 	{
 		y = -1;

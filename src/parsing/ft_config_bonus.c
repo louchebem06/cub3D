@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 21:05:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 15:24:35 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 16:27:41 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static void	add_valud_sprite(t_cub *cub, t_item_sprite *config, char c)
 	}
 	else if (c == 'A')
 		config->s = &cub->sprite.tree;
-	config->c = c;
 }
 
 static void	get_data_sprite(t_cub *cub)
