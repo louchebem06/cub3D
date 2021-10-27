@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/27 01:27:07 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/27 15:16:06 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -165,7 +165,7 @@ OBJS_BONUS					= $(SRCS_OBJS_BONUS) $(SRCS_PARSING_OBJS_BONUS) $(SRCS_UTILS_OBJS
 
 #	COMPILATION		################################################################
 CC					= gcc
-CFLAGS  			= -Wall -Wextra -O3
+CFLAGS  			= -Wall -Wextra -Werror -O3
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 REMAKE				= @make --no-print-directory
