@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/26 14:57:26 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 01:50:07 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,24 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 {
 	float px,py;
 	float y,x;
+	unsigned int color;
 
 	px = 0;
 	py = 0;
-	y = 0;
+	y = -1;
 	if (scale * src->width > 2500)
 		scale = 2500 / src->width ;
-	while (y < src->height)
+	while (++y < src->height)
 	{
-		x = 0;
+		x = -1;
 		if (py >= WH)
 			continue ;
-		while (x < src->width)
+		while (++x < src->width)
 		{
 			px = (x / src->width) * scale;
 			if (px >= WW)
 				continue ;
-			unsigned int color = mlx_get_pixel_img(src, x, y);
+			color = mlx_get_pixel_img(src, x, y);
 			for (int i = 0; i <= ceilf(scale); i++)
 				for (int j = 0; j <= ceilf(scale); j++)
 				{
@@ -42,9 +43,7 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 						continue;
 					mlx_put_pixel_to_img(dest, xx, yy, color);
 				}
-			x++;
 		}
-		y++;
 		py = (y / src->height) * scale;
 	}
 }

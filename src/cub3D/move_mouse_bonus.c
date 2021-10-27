@@ -6,17 +6,20 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:19:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 18:49:56 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 02:06:54 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/mouse_bonus.h"
+#include "../../header/cub_bonus.h"
 
 int	toggle_mouse(t_cub *cub, int button, bool state)
 {
 	static bool	btn1 = false;
 	static bool	btn2 = false;
 
+	if (!cub->no_intro)
+		return (0);
 	if (!cub)
 	{
 		if (btn1 && btn2)
@@ -37,12 +40,17 @@ int	mouse_hook(int button, int x, int y, t_cub *cub)
 {
 	(void)x;
 	(void)y;
+
+	if (!cub->no_intro)
+		return (0);
 	toggle_mouse(cub, button, true);
 	return (0);
 }
 
 int	mouse_unclick(int button, t_cub *cub)
 {
+	if (!cub->no_intro)
+		return (0);
 	toggle_mouse(cub, button, false);
 	return (0);
 }
@@ -51,7 +59,9 @@ int	mouse_unclick(int button, t_cub *cub)
 
 int	move_mouse(int x, int y, t_cub *cub)
 {
-	if (x < 0 || y < 0 || y > WINDOWS_HEIGHT || x > WINDOWS_WIDTH)
+	if (!cub->no_intro || y <= 10)
+		return (0);
+	if (x <= 0 || y <= 0 || y >= WINDOWS_HEIGHT || x >= WINDOWS_WIDTH)
 	{
 		mlx_mouse_show();
 		return (0);
@@ -71,8 +81,10 @@ void	move_mouse(t_cub *cub)
 	int	x;
 	int	y;
 
+	if (!cub->no_intro || y <= 10)
+		return (0);
 	mlx_mouse_get_pos(cub->win.mlx, cub->win.win, &x, &y);
-	if (x < 0 || y < 0 || y > WINDOWS_HEIGHT || x > WINDOWS_WIDTH)
+	if (x <= 0 || y <= 0 || y >= WINDOWS_HEIGHT || x >= WINDOWS_WIDTH)
 	{
 		mlx_mouse_show(cub->win.mlx, cub->win.win);
 		return ;

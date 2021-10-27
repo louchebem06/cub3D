@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:49:21 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/26 17:30:31 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 01:58:44 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../header/mouse_bonus.h"
 #include "../../header/sound_bonus.h"
 #include "../../header/shooter_bonus.h"
+#include "../../header/cub_bonus.h"
 
 static int	close_click(int keycode, t_cub *cub)
 {
@@ -25,6 +26,8 @@ static int	close_click(int keycode, t_cub *cub)
 
 static int	key_press(int keycode, t_cub *cub)
 {
+	if (!cub->no_intro)
+		return (0);
 	if (keycode == KEY_W)
 		cub->keys.up = true;
 	if (keycode == KEY_S)
@@ -52,6 +55,8 @@ static int	key_press(int keycode, t_cub *cub)
 
 static int	key_release(int keycode, t_cub *cub)
 {
+	if (!cub->no_intro)
+		return (0);
 	if (keycode == KEY_W)
 		cub->keys.up = false;
 	if (keycode == KEY_S)
