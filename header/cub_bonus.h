@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 02:35:12 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 15:23:36 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct t_item_sprite
 	t_position	pos;
 	t_img		*s;
 	t_img		**s_anim;
+	char		c;
 }	t_item_sprite;
 
 typedef struct s_sprite
