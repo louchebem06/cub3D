@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 16:26:16 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 00:28:23 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,62 +48,6 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 	}
 }
 
-// #include <pthread.h>
-// static void	*generate_sprite_in_screen(void *ptr_thread)
-// {
-// 	float px,py;
-// 	float y,x;
-// 	unsigned int color;
-	
-// 	t_thread *thread = (t_thread *)ptr_thread;
-// 	px = 0;
-// 	y = thread->id_thread;
-// 	x = -1;
-// 	t_img *dest = (t_img *)thread->second;
-// 	t_img *src = (t_img *)thread->main;
-// 	t_position *center = (t_position *)thread->tree;
-// 	float scale = *(float *)thread->fore;
-// 	py = (y / src->height) * scale;
-// 	while (++x < src->width)
-// 	{
-// 		px = (x / src->width) * scale;
-// 		color = mlx_get_pixel_img(src, x, y);
-// 		for (int i = 0; i <= ceilf(scale); i++)
-// 			for (int j = 0; j <= ceilf(scale); j++)
-// 			{
-// 				int xx = px * src->width + center->x - (src->width / 2) * scale + i;
-// 				int yy = py * src->height - (src->height / 2) * scale + center->y + j;
-// 				mlx_put_pixel_to_img(dest, xx, yy, color);
-// 			}
-// 	}
-// 	pthread_exit(0);
-// }
-
-// static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
-// {
-// 	if (scale * src->width > 2500)
-// 		scale = 2500 / src->width ;
-
-// 	t_thread	t[src->height];
-// 	pthread_t	thread[src->height];
-// 	int			i;
-
-// 	i = -1;
-// 	while (++i < src->height)
-// 	{
-// 		t[i].id_thread = i;
-// 		t[i].nb_thread = src->height;
-// 		t[i].main = src;
-// 		t[i].second = dest;
-// 		t[i].tree = &center;
-// 		t[i].fore = &scale;
-// 		pthread_create(&thread[i], NULL, generate_sprite_in_screen, &t[i]);
-// 	}
-// 	i = -1;
-// 	while (++i < src->height)
-// 		pthread_join(thread[i], NULL);
-// }
-
 static float	ft_dot(t_position a, t_position b)
 {
 	return (a.x * b.x + a.y * b.y);
@@ -144,6 +88,21 @@ static void	sort_sprite(t_position player, t_item_sprite *config, int item)
 	}
 }
 
+static void	print_pointer(t_cub *cub, int x, int color)
+{
+	int	xx;
+	int	y;
+
+	y = -1;
+	while (++y < 10)
+	{
+		xx = x - 5;
+		while (++xx < 5 + x)
+				mlx_put_pixel_to_img(&cub->screen, xx,
+					WINDOWS_HEIGHT / 2 + y, color);
+	}
+}
+
 void	sprite(t_cub *cub)
 {
 	static unsigned long long	time = 0;
@@ -160,17 +119,21 @@ void	sprite(t_cub *cub)
 		float dist = hypotf(dsprite.x, dsprite.y);
 		t_position dir =  {cosf(cub->player.angle), sinf(cub->player.angle)};
 		float dot = (dir.x * dsprite.x + dir.y * dsprite.y) / dist;
-		
-		if (dot < 0.59)
-			continue ;
 
 		float s_angle = atan2f(dsprite.y, dsprite.x);
 		float p_angle = p->angle;
-		float diff_angle = fmaxf(s_angle, p_angle) - fminf(s_angle, p_angle);
+		float diff_angle = s_angle + 2 * M_PI - p_angle;
 		//float cam_dist = dist * cosf(s_angle + M_PI / 2);
 		t_position udsprite =  {dsprite.x / dist, dsprite.y / dist};
-		t_position plane = {dir.x * cosf(M_PI / 2) - dir.y * sinf(M_PI / 2),
-							dir.x * sinf(M_PI / 2) + dir.y * cosf(M_PI / 2)};
+		//t_position plane = {(dir.x * cosf(M_PI / 2) - dir.y * sinf(M_PI / 2)),
+		//					(dir.x * sinf(M_PI / 2) + dir.y * cosf(M_PI / 2))};
+
+		float toast_p = (0.6 * tanf(diff_angle)) + 0.5;
+
+		if (dot <= 0)
+			continue ;
+		if (toast_p <= 0 || toast_p >= 1)
+			continue ;
 
 		// printf("dist : %f\n", dist);
 		// printf("dir X : %f\ndir Y : %f\n", dir.x, dir.y);
@@ -186,17 +149,6 @@ void	sprite(t_cub *cub)
 		// printf("dir X : %f\n", dir.x);
 		// printf("dir y : %f\n", dir.y);
 		// printf("\n");
-
-
-		double invDet = 1.0 / (plane.x * dir.y - dir.y * plane.y); //required for correct matrix multiplication
-
-		double transformX = invDet * (dir.y * dsprite.x - dir.x * dsprite.y);
-		double transformY = invDet * (-plane.y * dsprite.x + plane.x * dsprite.y); //this is actually the depth inside the screen, that what Z is in 3D
-
-		int spriteScreenX = (int)((WW / 2) * (1 + transformX / transformY));
-
-		if (cosf(diff_angle) < 0.1)
-			continue ;
 		//float x = WW / 2;
 	//	printf("%f\n%f\n", tanf(diff_angle) * dist, sinf());
 		//float W = WW / 2;
@@ -222,11 +174,10 @@ void	sprite(t_cub *cub)
 			}
 			s = cub->sprite.config[i].s_anim[img];
 		}
-		float scal = ((WW / 2.0f) / s->width);
-		//int sh = (int)((WH / transformY)*scal);
-		//int spriteScreenY = (int)((WH - sh) / 2);
-		int y = WH / 2;
-		put_img(&cub->screen, s, (t_position){spriteScreenX, y},
-					(scal / (dist * ft_dot(dir, udsprite))));
+		float scale = ((WW / 2.0f) / s->width);
+		float mdr = scale / (dist * ft_dot(dir, udsprite));
+		put_img(&cub->screen, s, (t_position){(WW) * toast_p, (WH / 2) - (mdr * s->height) / 2 + (WH / 2) / (dist * ft_dot(dir, udsprite)) },
+					scale / (dist * ft_dot(dir, udsprite)));
+
 	}
 }
