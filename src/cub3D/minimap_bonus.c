@@ -6,11 +6,12 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 02:59:16 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 16:22:44 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minimap_bonus.h"
+#include "../../header/cub_bonus.h"
 
 static void	print_background(t_cub *cub, const int x, const int y)
 {
@@ -83,6 +84,31 @@ static void	print_map_content(t_cub *cub, char c, t_position screen,
 		print_map(cub, screen, map, create_trgb(0, 255, 0, 255));
 }
 
+// static void	toggle_sprite_map(t_cub *cub)
+// {
+// 	static bool	inser = false;
+// 	int			i;
+
+// 	i = -1;
+// 	inser = !inser;
+// 	if (inser)
+// 	{
+// 		while (++i < cub->sprite.item)
+// 		{
+// 			cub->sprite.config[i].ground = cub->config.map[(int)(cub->sprite.config[i].pos.y)][(int)(cub->sprite.config[i].pos.x)];
+// 			cub->map.map[(int)(cub->sprite.config[i].pos.y)][(int)(cub->sprite.config[i].pos.x)] = cub->sprite.config[i].c;
+// 			cub->config.map[(int)(cub->sprite.config[i].pos.y)][(int)(cub->sprite.config[i].pos.x)] = cub->sprite.config[i].c;
+// 		}
+// 	}
+// 	else
+// 	{
+// 		cub->map.map[(int)(cub->sprite.config[i].pos.y)]
+// 		[(int)(cub->sprite.config[i].pos.x)] = cub->sprite.config[i].ground;
+// 		cub->config.map[(int)(cub->sprite.config[i].pos.y)]
+// 		[(int)(cub->sprite.config[i].pos.x)] = cub->sprite.config[i].ground;
+// 	}
+// }
+
 void	minimap(t_cub *cub, const int x, const int y)
 {
 	const t_position	screen = {x, y};
@@ -91,6 +117,7 @@ void	minimap(t_cub *cub, const int x, const int y)
 
 	map.y = -1;
 	print_background(cub, x, y);
+	//toggle_sprite_map(cub);
 	while (++map.y < 20)
 	{
 		map.x = -1;
@@ -108,5 +135,9 @@ void	minimap(t_cub *cub, const int x, const int y)
 				print_map(cub, screen, 0, create_trgb(0, 0, 255, 0));
 		}
 	}
+	//toggle_sprite_map(cub);
+	for (int i = 0; cub->map.map[i]; i++)
+		printf("%s\n", cub->map.map[i]);
+	exit(1);
 	print_border(cub, screen);
 }

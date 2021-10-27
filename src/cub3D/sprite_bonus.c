@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 15:25:26 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 16:01:47 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,10 @@ static void	sort_sprite(t_position player, t_item_sprite *config, int item)
 			if (tmp[1] < tmp[0])
 			{
 				temp = (t_item_sprite){config[i + 1].pos,
-					config[i + 1].s, config[i + 1].s_anim, config[i].c};
+					config[i + 1].s, config[i + 1].s_anim, config[i + 1].c, config[i + 1].ground};
 				config[i + 1] = (t_item_sprite){config[i].pos,
-					config[i].s, config[i].s_anim, config[i].c};
-				config[i] = (t_item_sprite){temp.pos, temp.s, temp.s_anim, temp.c};
+					config[i].s, config[i].s_anim, config[i].c, config[i].ground};
+				config[i] = (t_item_sprite){temp.pos, temp.s, temp.s_anim, temp.c, temp.ground};
 			}
 		}
 	}
