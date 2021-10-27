@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 01:50:07 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 02:52:14 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,62 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 		py = (y / src->height) * scale;
 	}
 }
+
+// #include <pthread.h>
+// static void	*generate_sprite_in_screen(void *ptr_thread)
+// {
+// 	float px,py;
+// 	float y,x;
+// 	unsigned int color;
+	
+// 	t_thread *thread = (t_thread *)ptr_thread;
+// 	px = 0;
+// 	y = thread->id_thread;
+// 	x = -1;
+// 	t_img *dest = (t_img *)thread->second;
+// 	t_img *src = (t_img *)thread->main;
+// 	t_position *center = (t_position *)thread->tree;
+// 	float scale = *(float *)thread->fore;
+// 	py = (y / src->height) * scale;
+// 	while (++x < src->width)
+// 	{
+// 		px = (x / src->width) * scale;
+// 		color = mlx_get_pixel_img(src, x, y);
+// 		for (int i = 0; i <= ceilf(scale); i++)
+// 			for (int j = 0; j <= ceilf(scale); j++)
+// 			{
+// 				int xx = px * src->width + center->x - (src->width / 2) * scale + i;
+// 				int yy = py * src->height - (src->height / 2) * scale + center->y + j;
+// 				mlx_put_pixel_to_img(dest, xx, yy, color);
+// 			}
+// 	}
+// 	pthread_exit(0);
+// }
+
+// static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
+// {
+// 	if (scale * src->width > 2500)
+// 		scale = 2500 / src->width ;
+
+// 	t_thread	t[src->height];
+// 	pthread_t	thread[src->height];
+// 	int			i;
+
+// 	i = -1;
+// 	while (++i < src->height)
+// 	{
+// 		t[i].id_thread = i;
+// 		t[i].nb_thread = src->height;
+// 		t[i].main = src;
+// 		t[i].second = dest;
+// 		t[i].tree = &center;
+// 		t[i].fore = &scale;
+// 		pthread_create(&thread[i], NULL, generate_sprite_in_screen, &t[i]);
+// 	}
+// 	i = -1;
+// 	while (++i < src->height)
+// 		pthread_join(thread[i], NULL);
+// }
 
 static float	ft_dot(t_position a, t_position b)
 {
