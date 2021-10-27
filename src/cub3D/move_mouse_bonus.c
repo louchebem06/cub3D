@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:19:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 15:16:48 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 17:02:15 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,12 @@ int	mouse_hook(int button, int x, int y, t_cub *cub)
 {
 	(void)x;
 	(void)y;
-
-	if (!cub->no_intro)
-		return (0);
 	toggle_mouse(cub, button, true);
 	return (0);
 }
 
 int	mouse_unclick(int button, t_cub *cub)
 {
-	if (!cub->no_intro)
-		return (0);
 	toggle_mouse(cub, button, false);
 	return (0);
 }

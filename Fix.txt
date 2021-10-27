@@ -1,3 +1,2 @@
 - Faut Fix le multithreading dans VM linux
-- Avant de enlever le sprite de la map stocker la valeur
-	pour afficher dans la minimap
+- Problemme mousse click in LInux a verifier sur macOS
