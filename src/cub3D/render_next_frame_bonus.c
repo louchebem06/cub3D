@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 01:55:44 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 15:18:01 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	render_next_frame(t_cub *cub)
 
 	if (cub->no_intro || i == 465)
 	{
+		cub->no_intro = true;
 		if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
 			return (0);
 		cub->last_f = ft_get_current_time();
