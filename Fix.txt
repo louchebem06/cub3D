@@ -1,2 +1,1 @@
 - Faut Fix le multithreading dans VM linux
-- Problemme mousse click in LInux a verifier sur macOS

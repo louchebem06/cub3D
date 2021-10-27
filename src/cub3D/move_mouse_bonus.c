@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:19:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 17:02:15 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/27 17:09:23 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	toggle_mouse(t_cub *cub, int button, bool state)
 	static bool	btn1 = false;
 	static bool	btn2 = false;
 
-	if (!cub->no_intro)
-		return (0);
 	if (!cub)
 	{
 		if (btn1 && btn2)
