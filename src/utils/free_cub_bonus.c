@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 03:04:24 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 03:13:07 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 13:11:55 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	free_cub(t_cub *cub)
 	while (cub->config.map[++i])
 	{
 		free(cub->config.map[i]);
-		free(cub->config.map_s[i]);
+		if (cub->config.map_s)
+			free(cub->config.map_s[i]);
 	}
 	free(cub->config.map);
 	free(cub->config.map_s);

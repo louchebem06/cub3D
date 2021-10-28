@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 06:21:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/12 02:22:16 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 13:08:04 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,28 @@ static void	error_ext(t_cub *cub)
 	free_cub(cub);
 }
 
+static bool	min_ligne(char **map)
+{
+	int	i;
+
+	i = -1;
+	while (map[++i])
+		;
+	if (i < 3)
+	{
+		ft_error("Error:\n\t-Minimun ligne for map is 3\n", RED);
+		return (false);
+	}
+	return (true);
+}
+
 int	map_is_valid(t_cub *cub)
 {
 	if (!remove_newlines(&cub->config.map) || remove_space_map(&cub->config.map)
 		|| empty_line_in_map(cub->config.map)
 		|| remove_end_space_map(&cub->config.map)
 		|| forbiden_char_map(cub->config.map) || min_char_map(cub->config.map)
+		|| !min_ligne(cub->config.map)
 		|| multi_pos_map(cub->config.map) || wall_check_map(cub))
 	{
 		free_cub(cub);
