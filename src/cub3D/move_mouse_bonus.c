@@ -53,7 +53,7 @@ int	mouse_unclick(int button, t_cub *cub)
 int	move_mouse(int x, int y, t_cub *cub)
 {
 	if (!cub->no_intro || y <= 10)
-		return ;
+		return (0);
 	if (x <= 0 || y <= 0 || y >= WINDOWS_HEIGHT || x >= WINDOWS_WIDTH)
 	{
 		mlx_mouse_show();

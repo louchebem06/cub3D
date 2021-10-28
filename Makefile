@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/28 00:17:22 by mmehran          ###   ########.fr        #
+#    Updated: 2021/10/28 03:00:05 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -165,12 +165,12 @@ OBJS_BONUS					= $(SRCS_OBJS_BONUS) $(SRCS_PARSING_OBJS_BONUS) $(SRCS_UTILS_OBJS
 
 #	COMPILATION		################################################################
 CC					= gcc
-#CFLAGS  			= -Wall -Wextra -Werror
-CFLAGS  			= -Wall -Wextra
+CFLAGS  			= -Wall -Wextra -Werror
+#CFLAGS  			= -Wall -Wextra
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 REMAKE				= @make --no-print-directory
-LIB					= ./libft/libft.a ./mlx_utils/mlx_utils.a -lm -lpthread
+LIB					= ./libft/libft.a ./mlx_utils/mlx_utils.a -lm
 
 UNAME_S				= $(shell uname -s)
 
@@ -193,6 +193,7 @@ ifeq ($(UNAME_S),Darwin)
 	EXEC_BASE24		= $(MAKE_EXT) ./base24-osx intel && cp -r ./base24-osx/intel/libbass.dylib ./
 	LIBS			+= libbass.dylib
 endif
+LIBS				+= -lpthread
 MSG_BASE24			= @printf "libbase24 is created.\n"
 DEFINE				= -D CUB_BONUS
 else

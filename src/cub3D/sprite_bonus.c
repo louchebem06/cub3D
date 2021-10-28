@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 00:28:23 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/28 03:01:08 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,21 +85,6 @@ static void	sort_sprite(t_position player, t_item_sprite *config, int item)
 				config[i] = (t_item_sprite){temp.pos, temp.s, temp.s_anim};
 			}
 		}
-	}
-}
-
-static void	print_pointer(t_cub *cub, int x, int color)
-{
-	int	xx;
-	int	y;
-
-	y = -1;
-	while (++y < 10)
-	{
-		xx = x - 5;
-		while (++xx < 5 + x)
-				mlx_put_pixel_to_img(&cub->screen, xx,
-					WINDOWS_HEIGHT / 2 + y, color);
 	}
 }
 
