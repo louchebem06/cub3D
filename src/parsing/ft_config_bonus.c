@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_config_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 21:05:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 16:27:41 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 12:08:25 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	get_nb_sprite(t_cub *cub, const char *ls_sprite)
 	return (size);
 }
 
-static void	add_valud_sprite(t_cub *cub, t_item_sprite *config, char c)
+static void	add_value_sprite(t_cub *cub, t_item_sprite *config, char c)
 {
 	const int	size_anim = 6;
 	int			i;
@@ -59,6 +59,7 @@ static void	add_valud_sprite(t_cub *cub, t_item_sprite *config, char c)
 	}
 	else if (c == 'A')
 		config->s = &cub->sprite.tree;
+	config->c = c;
 }
 
 static void	get_data_sprite(t_cub *cub)
@@ -83,7 +84,7 @@ static void	get_data_sprite(t_cub *cub)
 				cub->sprite.config[i].s = NULL;
 				cub->sprite.config[i].s_anim = NULL;
 				cub->sprite.config[i].pos = (t_position){(x + 0.5), (y + 0.5)};
-				add_valud_sprite(cub, &cub->sprite.config[i++],
+				add_value_sprite(cub, &cub->sprite.config[i++],
 					cub->config.map[y][x]);
 			}
 		}

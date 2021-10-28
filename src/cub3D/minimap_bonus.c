@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 16:25:55 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 12:07:40 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	print_background(t_cub *cub, const int x, const int y)
 				mlx_put_pixel_to_img(&cub->screen, map.x, map.y,
 					create_trgb(0, color.r, color.g, color.b));
 			}
-		}		
+		}
 	}
 }
 
@@ -109,5 +109,9 @@ void	minimap(t_cub *cub, const int x, const int y)
 				print_map(cub, screen, 0, create_trgb(0, 0, 255, 0));
 		}
 	}
+	//for (int i = 0; cub->config.map_s[i]; i++)
+	//{
+	//	printf("%s\n", cub->config.map_s[i]);
+	//}
 	print_border(cub, screen);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 16:26:46 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 11:52:57 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct t_item_sprite
 	t_position	pos;
 	t_img		*s;
 	t_img		**s_anim;
+	char		c;
 }	t_item_sprite;
 
 typedef struct s_sprite
@@ -106,5 +107,6 @@ void		print_balle(t_cub *cub);
 t_position	ray_cast_sprite(const t_position *p, const float angle,
 				const t_map *map);
 void		generate_img_intro(t_cub *cub);
+
 
 #endif

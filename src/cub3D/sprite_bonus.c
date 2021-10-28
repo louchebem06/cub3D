@@ -6,13 +6,13 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 00:28:23 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/28 12:02:56 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/sprite_bonus.h"
 
-static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
+static void	put_img(t_img *dest, t_img *src, t_position center, float scale, float fill)
 {
 	float px,py;
 	float y,x;
@@ -30,12 +30,12 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 			continue ;
 		while (++x < src->width)
 		{
-			px = (x / src->width) * scale;
+			px += (scale / src->width);
 			if (px >= WW)
 				continue ;
 			color = mlx_get_pixel_img(src, x, y);
-			for (int i = 0; i <= ceilf(scale); i++)
-				for (int j = 0; j <= ceilf(scale); j++)
+			for (int i = 0; i <= ceilf(scale * fill); i++)
+				for (int j = 0; j <= ceilf(scale * fill); j++)
 				{
 					int xx = px * src->width + center.x - (src->width / 2) * scale + i;
 					int yy = py * src->height - (src->height / 2) * scale + center.y + j;
@@ -44,7 +44,8 @@ static void	put_img(t_img *dest, t_img *src, t_position center, float scale)
 					mlx_put_pixel_to_img(dest, xx, yy, color);
 				}
 		}
-		py = (y / src->height) * scale;
+		px = 0;
+		py += (scale / src->height);
 	}
 }
 
@@ -79,27 +80,12 @@ static void	sort_sprite(t_position player, t_item_sprite *config, int item)
 			if (tmp[1] < tmp[0])
 			{
 				temp = (t_item_sprite){config[i + 1].pos,
-					config[i + 1].s, config[i + 1].s_anim};
+					config[i + 1].s, config[i + 1].s_anim, config[i + 1].c};
 				config[i + 1] = (t_item_sprite){config[i].pos,
-					config[i].s, config[i].s_anim};
-				config[i] = (t_item_sprite){temp.pos, temp.s, temp.s_anim};
+					config[i].s, config[i].s_anim, config[i].c};
+				config[i] = (t_item_sprite){temp.pos, temp.s, temp.s_anim, temp.c};
 			}
 		}
-	}
-}
-
-static void	print_pointer(t_cub *cub, int x, int color)
-{
-	int	xx;
-	int	y;
-
-	y = -1;
-	while (++y < 10)
-	{
-		xx = x - 5;
-		while (++xx < 5 + x)
-				mlx_put_pixel_to_img(&cub->screen, xx,
-					WINDOWS_HEIGHT / 2 + y, color);
 	}
 }
 
@@ -132,7 +118,7 @@ void	sprite(t_cub *cub)
 
 		if (dot <= 0)
 			continue ;
-		if (toast_p <= 0 || toast_p >= 1)
+		if (toast_p <= -0.1 || toast_p >= 1.1)
 			continue ;
 
 		// printf("dist : %f\n", dist);
@@ -176,8 +162,9 @@ void	sprite(t_cub *cub)
 		}
 		float scale = ((WW / 2.0f) / s->width);
 		float mdr = scale / (dist * ft_dot(dir, udsprite));
+		float tt = (dist) / 10;
 		put_img(&cub->screen, s, (t_position){(WW) * toast_p, (WH / 2) - (mdr * s->height) / 2 + (WH / 2) / (dist * ft_dot(dir, udsprite)) },
-					scale / (dist * ft_dot(dir, udsprite)));
+					scale / (dist * ft_dot(dir, udsprite)), (cub->sprite.config[i].c == 'P') ? fminf(tt, 1) : 1);
 
 	}
 }

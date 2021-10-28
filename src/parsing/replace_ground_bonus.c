@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_ground_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 00:53:49 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 16:35:41 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 12:10:28 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static bool	isset_in_map(const char *set, char **map)
 
 static void	map_sprite(t_cub *cub, char **map)
 {
-	const char	set[] = "NSEWL";
+	const char	set[] = "NSEW";
 	int			y;
 	int			x;
 	int			i;
