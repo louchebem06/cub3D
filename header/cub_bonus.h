@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 16:26:46 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 03:09:01 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,6 @@ typedef struct s_sprite
 typedef struct s_thread
 {
 	void	*main;
-	void	*second;
-	void	*tree;
-	void	*fore;
 	int		id_thread;
 	int		nb_thread;
 }		t_thread;

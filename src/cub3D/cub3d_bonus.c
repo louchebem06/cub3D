@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 06:39:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 15:57:22 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 03:15:58 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	cub3d(t_cub *cub)
 	cub->map.width = cub->config.map_x;
 	cub->map.height = cub->config.map_y;
 	cub->win.mlx = mlx_init();
+	if (!cub->win.mlx)
+	{
+		free_cub(cub);
+		ft_error("Error:\n\t-Env var is not foudn MLX init is bad\n", RED);
+		exit(1);
+	}
 	generate_img(cub);
 	generate_img_bonus(cub);
 	if (!cub->no_intro)

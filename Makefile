@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/28 03:00:05 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/28 03:05:33 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,6 @@ SRCS_UTILS_FILES_COMMUN		= add_value.c \
 								ft_error.c \
 								anti_rgb.c \
 								is_valid_int.c \
-								free_cub.c \
 								color_to_rgb.c
 
 SRCS_CUB3D_FILES_COMMUN		= is_in_air.c \
@@ -77,7 +76,7 @@ SRCS_PARSING_FILES_MANDA	= forbiden_char_map.c \
 								create_player_info.c \
 								ft_config.c
 
-SRCS_UTILS_FILES_MANDA		=
+SRCS_UTILS_FILES_MANDA		= free_cub.c
 
 SRCS_CUB3D_FILES_MANDA		= render_next_frame.c \
 								hook.c \
@@ -98,7 +97,8 @@ SRCS_PARSING_FILES_BONUS	= forbiden_char_map_bonus.c \
 
 SRCS_UTILS_FILES_BONUS		= ft_get_current_time_bonus.c \
 								ismove_bonus.c \
-								isrotate_bonus.c
+								isrotate_bonus.c \
+								free_cub_bonus.c
 
 SRCS_CUB3D_FILES_BONUS		= render_next_frame_bonus.c \
 								minimap_bonus.c \
