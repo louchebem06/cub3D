@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_ground_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 00:53:49 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 12:10:28 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/28 14:01:50 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	replace_ground(t_cub *cub)
 	int			y;
 	int			x;
 	int			i;
+	int			tour;
 
 	map_sprite(cub, cub->config.map);
 	while (isset_in_map(set, cub->config.map))
@@ -125,11 +126,14 @@ void	replace_ground(t_cub *cub)
 				i = -1;
 				while (set2[++i])
 				{
-					if (cub->config.map[y][x] == set[i])
+					if (cub->config.map[y][x] == set2[i])
 						cub->config.map[y][x] = \
 							floor_texture(cub->config.map, x, y);
+					if (tour == 10)
+						cub->config.map[y][x] = '0';
 				}
 			}
 		}
+		tour++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 02:30:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 13:37:28 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 13:41:42 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int	wall_check_map(t_cub *cub)
 			if (!check_direction_player_ground(cub->config.map, x, y, cub)
 				|| !check_direction_space(cub->config.map, x, y, cub))
 			{
-				ft_error("Error\n\t -Maps not valid\n", RED);
+				ft_error("Error\n\t-Maps not valid\n", RED);
 				return (1);
 			}
 		}
