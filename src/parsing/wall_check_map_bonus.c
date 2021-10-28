@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 02:30:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/15 02:55:30 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 13:37:28 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ static int	check_direction_player_ground(char **map, int x, int y, t_cub *cub)
 			if (!is_wall(map[y][d.right])
 				&& !is_player_ground(map[y][d.right]))
 				return (0);
+		if ((d.up < 0 || d.up >= d.y_map)
+			|| (d.down < 0 || d.down >= d.y_map)
+			|| (d.left < 0 || d.left >= d.x_map)
+			|| (d.right < 0 || d.right >= d.x_map))
+			return (0);
 	}
 	return (1);
 }

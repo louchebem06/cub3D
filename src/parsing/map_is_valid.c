@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 06:21:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 13:18:17 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 13:28:22 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	map_is_valid(t_cub *cub)
 		|| empty_line_in_map(cub->config.map)
 		|| remove_end_space_map(&cub->config.map)
 		|| forbiden_char_map(cub->config.map) || min_char_map(cub->config.map)
-		|| min_ligne(cub->config.map)
-		|| multi_pos_map(cub->config.map) || wall_check_map(cub))
+		|| multi_pos_map(cub->config.map) || wall_check_map(cub)
+		|| !min_ligne(cub->config.map))
 	{
 		free_cub(cub);
 		return (0);
