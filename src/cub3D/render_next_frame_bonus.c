@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 15:18:01 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 03:24:58 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@
 static const int	g_minimap_x = 15;
 static const int	g_minimap_y = WINDOWS_HEIGHT - 215;
 
-static float	distance(t_position *p1, t_position *p2)
-{
-	return (hypotf(p1->x - p2->x, p1->y - p2->y));
-}
-
 static void	update_pos(t_cub *cub, float angle, float dist)
 {
 	const float	cos = cosf(cub->player.angle + angle);
@@ -33,7 +28,7 @@ static void	update_pos(t_cub *cub, float angle, float dist)
 	t_position	ray;
 
 	ray = ray_cast(&cub->player.pos, cub->player.angle + angle, &cub->map);
-	if (distance(&cub->player.pos, &ray) > dist)
+	if (hypotf(cub->player.pos.x - ray.x, cub->player.pos.y - ray.y) > dist)
 	{
 		cub->player.pos.x += cos * dist;
 		cub->player.pos.y += sin * dist;
@@ -68,6 +63,14 @@ static void	move(t_cub *cub)
 		toggle(&cub->sound.step_classic, false);
 }
 
+static void	play_intro(t_cub *cub, int i)
+{
+	mlx_put_image_to_window(cub->win.mlx, cub->win.win,
+		cub->intro[i].img, 0, 0);
+	mlx_destroy_image(cub->win.mlx, cub->intro[i].img);
+	usleep(34000);
+}
+
 #ifdef __linux__
 
 int	render_next_frame(t_cub *cub)
@@ -86,17 +89,14 @@ int	render_next_frame(t_cub *cub)
 		move_mouse(cub);
 		shooter(cub);
 		minimap(cub, g_minimap_x, g_minimap_y);
-		mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
+		mlx_put_image_to_window(cub->win.mlx, cub->win.win,
+			cub->screen.img, 0, 0);
 		print_nsew(cub, g_minimap_x, g_minimap_y);
 		fps(cub);
 		print_balle(cub);
 	}
 	else if (++i < 465)
-	{
-		mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->intro[i].img, 0, 0);
-		mlx_destroy_image(cub->win.mlx, cub->intro[i].img);
-		usleep(34000);
-	}
+		play_intro(cub, i);
 	return (0);
 }
 #elif __APPLE__
@@ -116,18 +116,15 @@ int	render_next_frame(t_cub *cub)
 		sprite(cub);
 		shooter(cub);
 		minimap(cub, g_minimap_x, g_minimap_y);
-		mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->screen.img, 0, 0);
+		mlx_put_image_to_window(cub->win.mlx,
+			cub->win.win, cub->screen.img, 0, 0);
 		print_nsew(cub, g_minimap_x, g_minimap_y);
 		fps(cub);
 		print_balle(cub);
 		mlx_do_sync(cub->win.mlx);
 	}
 	else if (++i < 465)
-	{
-		mlx_put_image_to_window(cub->win.mlx, cub->win.win, cub->intro[i].img, 0, 0);
-		mlx_destroy_image(cub->win.mlx, cub->intro[i].img);
-		usleep(34000);
-	}
+		play_intro(cub, i);
 	return (0);
 }
 #endif

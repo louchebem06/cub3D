@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 16:25:55 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 03:26:56 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ void	minimap(t_cub *cub, const int x, const int y)
 				|| (int)player.x >= cub->map.width
 				|| (int)player.y >= cub->map.height)
 				continue ;
-			print_map_content(cub, cub->config.map_s[(int)player.y][(int)player.x],
+			print_map_content(cub,
+				cub->config.map_s[(int)player.y][(int)player.x],
 				screen, &map);
 			if (map.x == 10 && map.y == 10)
 				print_map(cub, screen, 0, create_trgb(0, 0, 255, 0));
