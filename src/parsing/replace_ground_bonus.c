@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 00:53:49 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 14:01:50 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 14:22:21 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static char	floor_texture(char **map, int x, int y)
 				choose[j]++;
 		}
 	}
-	if (!choose[0] && !choose[1] && !choose[2] && !choose[3] && !choose[4])
-		return ('a');
 	return (ground[max(choose, 5)]);
 }
 
@@ -107,12 +105,10 @@ static void	map_sprite(t_cub *cub, char **map)
 
 void	replace_ground(t_cub *cub)
 {
-	const char	set[] = "NSEWLPOFHI|Aa";
-	const char	set2[] = "NSEWLPOFHI|A";
+	const char	set[] = "NSEWLPOFHI|A";
 	int			y;
 	int			x;
 	int			i;
-	int			tour;
 
 	map_sprite(cub, cub->config.map);
 	while (isset_in_map(set, cub->config.map))
@@ -124,16 +120,13 @@ void	replace_ground(t_cub *cub)
 			while (cub->config.map[y][++x])
 			{
 				i = -1;
-				while (set2[++i])
+				while (set[++i])
 				{
-					if (cub->config.map[y][x] == set2[i])
+					if (cub->config.map[y][x] == set[i])
 						cub->config.map[y][x] = \
 							floor_texture(cub->config.map, x, y);
-					if (tour == 10)
-						cub->config.map[y][x] = '0';
 				}
 			}
 		}
-		tour++;
 	}
 }
