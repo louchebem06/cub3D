@@ -6,7 +6,11 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/10/28 11:52:57 by mmehran          ###   ########.fr       */
+=======
+/*   Updated: 2021/10/28 04:10:57 by bledda           ###   ########.fr       */
+>>>>>>> 6cfd2d15cc294087b07fa27dec3a0984d8b6959a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +38,7 @@ typedef struct s_sound
 	t_music	step_classic;
 	t_music	recharge;
 	t_music	tir;
+	t_music	sun;
 }			t_sound;
 
 typedef struct s_shooter
@@ -74,9 +79,6 @@ typedef struct s_sprite
 typedef struct s_thread
 {
 	void	*main;
-	void	*second;
-	void	*tree;
-	void	*fore;
 	int		id_thread;
 	int		nb_thread;
 }		t_thread;

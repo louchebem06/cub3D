@@ -6,11 +6,15 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 03:25:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/25 11:37:37 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 04:05:01 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minimap_bonus.h"
+
+/*
+	START RGB BORDER
+*/
 
 static void	update_color(t_rgb *color)
 {
@@ -56,6 +60,11 @@ void	print_border(t_cub *cub, t_position screen)
 		}
 	}
 }
+/* END RGB PART */
+
+/*
+	START LETTER MINIMAP
+*/
 
 static t_position	direction(t_position ray, t_position pos, float value)
 {
@@ -67,20 +76,31 @@ static t_position	direction(t_position ray, t_position pos, float value)
 	return (direction);
 }
 
+static float	ft_inertia(float player_angle)
+{
+	static float	angle = -1;
+	static double	inertia = 0;
+
+	if (angle == -1)
+		angle = player_angle;
+	return ((float)inertia);
+}
+
 void	print_nsew(t_cub *cub, int const x, int const y)
 {
 	const int			color = create_trgb(0, 255, 255, 255);
 	const t_position	ray = {x + 95, y + 105};
 	const t_position	pos = {x + 95 - ray.x, y + 5 - ray.y};
+	const float			inertia = ft_inertia(cub->player.angle);
 	const t_position	dir[8] = {
-		direction(ray, pos, cub->player.angle + M_PI / 2),
-		direction(ray, pos, cub->player.angle - M_PI / 2),
-		direction(ray, pos, cub->player.angle - M_PI),
-		direction(ray, pos, cub->player.angle),
-		direction(ray, pos, cub->player.angle + M_PI / 4),
-		direction(ray, pos, cub->player.angle - M_PI / 4),
-		direction(ray, pos, cub->player.angle - M_PI * 0.75),
-		direction(ray, pos, cub->player.angle + M_PI * 0.75)
+		direction(ray, pos, cub->player.angle + inertia + M_PI / 2),
+		direction(ray, pos, cub->player.angle + inertia - M_PI / 2),
+		direction(ray, pos, cub->player.angle + inertia - M_PI),
+		direction(ray, pos, cub->player.angle + inertia),
+		direction(ray, pos, cub->player.angle + inertia + M_PI / 4),
+		direction(ray, pos, cub->player.angle + inertia - M_PI / 4),
+		direction(ray, pos, cub->player.angle + inertia - M_PI * 0.75),
+		direction(ray, pos, cub->player.angle + inertia + M_PI * 0.75)
 	};
 
 	mlx_string_put(cub->win.mlx, cub->win.win, dir[0].x, dir[0].y, color, "N");
@@ -92,3 +112,4 @@ void	print_nsew(t_cub *cub, int const x, int const y)
 	mlx_string_put(cub->win.mlx, cub->win.win, dir[6].x, dir[6].y, color, "SW");
 	mlx_string_put(cub->win.mlx, cub->win.win, dir[7].x, dir[7].y, color, "NW");
 }
+/* END LETTER MINIMAP */

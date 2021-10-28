@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:22:48 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/26 21:50:04 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 12:45:25 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*add_zero(int i)
 {
 	char	*tmp[2];
 
-	tmp[0] = ft_calloc(sizeof(char *), 2);
+	tmp[0] = ft_calloc(sizeof(char), 2);
 	tmp[0][0] = '0';
 	while (--i > 0)
 	{
@@ -63,6 +63,7 @@ static char	*file_name(int i)
 	file = ft_strjoin(tmp[0], ".xpm");
 	free(nb[0]);
 	free(tmp[0]);
+	free(nb[1]);
 	return (file);
 }
 

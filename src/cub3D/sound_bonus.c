@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:04:09 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/24 04:36:19 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/28 04:44:04 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ void	init_sound(t_cub *cub)
 				"sound/tir.mp3", 0, 0, 0);
 		cub->sound.recharge.file = BASS_StreamCreateFile(FALSE,
 				"sound/recharge.mp3", 0, 0, 0);
+		cub->sound.sun.file = BASS_StreamCreateFile(FALSE,
+				"sound/123Soleil.mp3", 0, 0, BASS_SAMPLE_3D);
 		cub->sound.step_classic.state = false;
+		cub->sound.tir.state = false;
+		cub->sound.recharge.state = false;
 	}
 }
 
@@ -58,5 +62,6 @@ void	free_sound(t_cub *cub)
 	BASS_StreamFree(cub->sound.step_classic.file);
 	BASS_StreamFree(cub->sound.tir.file);
 	BASS_StreamFree(cub->sound.recharge.file);
+	BASS_StreamFree(cub->sound.sun.file);
 	BASS_Free();
 }
