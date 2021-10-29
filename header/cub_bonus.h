@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 13:08:38 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/29 13:56:55 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,5 @@ void		print_balle(t_cub *cub);
 t_position	ray_cast_sprite(const t_position *p, const float angle,
 				const t_map *map);
 void		generate_img_intro(t_cub *cub);
-
 
 #endif
