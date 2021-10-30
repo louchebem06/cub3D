@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 00:53:49 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/30 12:33:19 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 13:57:31 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	map_sprite(t_cub *cub, char **map)
 	}
 }
 
-static void	find_nearest(char **map, int x, int y)
+static void	find_nearest(t_cub *cub, char **map, int x, int y)
 {
 
 	char	result = '0';
@@ -109,7 +109,7 @@ static void	find_nearest(char **map, int x, int y)
 		for (int i = 0; i < 8; i++)
 		{
 			t_position w = edges[i];
-			if (w.x < 0 || w.y < 0 || w.x >= 5 || w.y >= 10)
+			if (w.x < 0 || w.y < 0 || w.x >= cub->config.map_x || w.y >= cub->config.map_y)
 				continue ;
 			if (ft_isset_tab(map[(int)w.y][(int)w.x], "0!`@$"))
 			{
@@ -142,7 +142,7 @@ void	replace_ground(t_cub *cub)
 		for (int x = 0; x < cub->config.map_x; x++)
 		{
 			if (ft_isset_tab(cub->config.map[y][x], "NSEWLPOFHI|A"))
-				find_nearest(cub->config.map, x, y);
+				find_nearest(cub, cub->config.map, x, y);
 		}
 	}
 	for (int i = 0; i < cub->config.map_y; i++)
