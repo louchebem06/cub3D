@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:22:48 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 12:45:25 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 14:51:40 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define THREAD_IMG_INTRO 1
 #endif
 
-#define IMG_INTRO 465
+#define IMG_INTRO 134
 
 static char	*add_zero(int i)
 {

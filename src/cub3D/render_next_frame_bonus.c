@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 03:24:58 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 14:51:05 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	play_intro(t_cub *cub, int i)
 	mlx_put_image_to_window(cub->win.mlx, cub->win.win,
 		cub->intro[i].img, 0, 0);
 	mlx_destroy_image(cub->win.mlx, cub->intro[i].img);
-	usleep(34000);
+	usleep((1000 / 15.0f) * 1000);
 }
 
 #ifdef __linux__
@@ -77,7 +77,7 @@ int	render_next_frame(t_cub *cub)
 {
 	static int	i = -1;
 
-	if (cub->no_intro || i == 465)
+	if (cub->no_intro || i == 134)
 	{
 		cub->no_intro = true;
 		if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
@@ -95,7 +95,7 @@ int	render_next_frame(t_cub *cub)
 		fps(cub);
 		print_balle(cub);
 	}
-	else if (++i < 465)
+	else if (++i < 134)
 		play_intro(cub, i);
 	return (0);
 }
@@ -105,7 +105,7 @@ int	render_next_frame(t_cub *cub)
 {
 	static int	i = -1;
 
-	if (cub->no_intro || i == 465)
+	if (cub->no_intro || i == 134)
 	{
 		cub->no_intro = true;
 		if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
@@ -123,7 +123,7 @@ int	render_next_frame(t_cub *cub)
 		print_balle(cub);
 		mlx_do_sync(cub->win.mlx);
 	}
-	else if (++i < 465)
+	else if (++i < 134)
 		play_intro(cub, i);
 	return (0);
 }
