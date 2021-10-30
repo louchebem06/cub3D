@@ -1,2 +1,2 @@
 - Faut Fix le multithreading dans VM linux
-- La map troll ne doit ni segfault ni etre valid
+- IDEE NDUVELLE TIMER A DECU DE ARBRE
