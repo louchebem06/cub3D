@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_img_intro.c                               :+:      :+:    :+:   */
+/*   generate_img_intro_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:22:48 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/30 14:51:40 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 20:47:41 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #ifdef __APPLE__
 
-# define THREAD_IMG_INTRO 3
+# define THREAD_IMG_INTRO 5
 #elif __linux__
 
 # define THREAD_IMG_INTRO 1
@@ -106,6 +106,7 @@ void	generate_img_intro(t_cub *cub)
 	pthread_t					thread[THREAD_IMG_INTRO];
 	int							i;
 
+	unsigned long long time = ft_get_current_time();
 	i = -1;
 	while (++i < THREAD_IMG_INTRO)
 	{
@@ -117,4 +118,5 @@ void	generate_img_intro(t_cub *cub)
 	i = -1;
 	while (++i < THREAD_IMG_INTRO)
 		pthread_join(thread[i], NULL);
+	printf("%f\n", (ft_get_current_time() -  time) / 1000.0f);
 }
