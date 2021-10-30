@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:13:05 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/30 12:21:58 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 15:17:29 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_position	pop_queue(t_queue *q)
 	t_qnode		*temp;
 	t_position	result;
 
+	result = (t_position){0};
 	if (q && q->head)
 	{
 		result = q->head->key;
