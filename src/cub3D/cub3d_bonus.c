@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 06:39:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 04:45:38 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/31 00:14:18 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	cub3d(t_cub *cub)
 	if (!cub->win.mlx)
 	{
 		free_cub(cub);
-		ft_error("Error:\n\t-Env var is not foudn MLX init is bad\n", RED);
+		ft_error("Error:\n\t-Env var is not found MLX init is bad\n", RED);
 		exit(1);
 	}
 	generate_img(cub);

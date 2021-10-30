@@ -6,11 +6,12 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:17:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 17:04:56 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/31 00:10:14 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
+#include "../header/cub_bonus.h"
 #include <sys/stat.h>
 
 int	main(int ac, const char **av)
