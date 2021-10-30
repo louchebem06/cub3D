@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/30 14:51:20 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 19:38:35 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #  include "../base24-linux/bass.h"
 # endif
 
-typedef struct t_music
+typedef struct s_music
 {
 	bool	state;
 	HSTREAM	file;
@@ -50,12 +50,13 @@ typedef struct s_shooter
 	int		reserve;
 }			t_shooter;
 
-typedef struct t_item_sprite
+typedef struct s_item_sprite
 {
 	t_position	pos;
 	t_img		*s;
 	t_img		**s_anim;
 	char		c;
+	float		dist;
 }	t_item_sprite;
 
 typedef struct s_sprite
@@ -93,6 +94,7 @@ typedef struct s_cub
 	t_shooter			shooter;
 	t_sprite			sprite;
 	t_img				intro[134];
+	float				z[1280];
 	bool				no_intro;
 }				t_cub;
 
@@ -102,8 +104,6 @@ void		generate_img_bonus(t_cub *c);
 void		generate_i(t_cub *cub, t_img *img, char *file);
 void		fps(t_cub *cub);
 void		print_balle(t_cub *cub);
-t_position	ray_cast_sprite(const t_position *p, const float angle,
-				const t_map *map);
 void		generate_img_intro(t_cub *cub);
 
 #endif

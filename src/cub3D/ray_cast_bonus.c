@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 23:43:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/23 23:52:15 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/30 15:42:59 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,37 +63,4 @@ t_position	ray_cast(const t_position *p, const float angle, const t_map *map)
 		c = get_map_char(map, &ray_pos, p);
 	}
 	return (ray_pos);
-}
-
-t_position	ray_cast_sprite(const t_position *p, const float angle,
-							const t_map *map)
-{
-	t_position	dir;
-	t_position	ray_pos;
-	char		c;
-
-	dir.x = cosf(angle);
-	dir.y = sinf(angle);
-	ray_pos = *p;
-	c = get_map_char(map, &ray_pos, p);
-	while (ft_isset_tab(c, "0!`@$"))
-	{
-		next(&ray_pos, &dir);
-		c = get_map_char(map, &ray_pos, p);
-	}
-	if (ft_isset_tab(c, "LPOFHI|A"))
-	{
-		//if (p->x > ray_pos.x)
-		//	ray_pos.x = ceilf(ray_pos.x - 1);
-		//else
-		//	ray_pos.x = floorf(ray_pos.x);
-		//if (p->y > ray_pos.y)
-		//	ray_pos.y = ceilf(ray_pos.y - 1);
-		//else
-		//	ray_pos.y = floorf(ray_pos.y);
-		//ray_pos.x += 0.5;
-		//ray_pos.y += 0.5;
-		return (ray_pos);
-	}
-	return ((t_position){-1, -1});
 }

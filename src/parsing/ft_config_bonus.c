@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 21:05:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 12:08:25 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/30 15:29:27 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	get_data_sprite(t_cub *cub)
 	int			x;
 	int			i;
 
-	cub->sprite.config = malloc(sizeof(t_item_sprite) * size);
+	cub->sprite.config = ft_calloc(size, sizeof(t_item_sprite));
 	cub->sprite.item = size;
 	i = 0;
 	y = -1;
@@ -81,8 +81,6 @@ static void	get_data_sprite(t_cub *cub)
 		{
 			if (ft_isset_tab(cub->config.map[y][x], (char *)ls_sprite))
 			{
-				cub->sprite.config[i].s = NULL;
-				cub->sprite.config[i].s_anim = NULL;
 				cub->sprite.config[i].pos = (t_position){(x + 0.5), (y + 0.5)};
 				add_value_sprite(cub, &cub->sprite.config[i++],
 					cub->config.map[y][x]);
