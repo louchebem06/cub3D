@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 05:09:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/30 21:58:33 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 22:01:01 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ int	get_values(char ***data_file, t_cub *cub)
 		if (isset.no && isset.so && isset.we && isset.ea && isset.f && isset.c
 			&& !isset.error)
 		{
-			cub->config.map = ft_calloc(sizeof(char *), count_tab(*data_file + i) + 1);
+			cub->config.map = ft_calloc(sizeof(char *),
+					count_tab(*data_file + i) + 1);
 			break ;
 		}
 	}
