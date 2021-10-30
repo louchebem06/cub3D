@@ -6,48 +6,37 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 02:30:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 13:41:42 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 17:20:10 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
 
-static int	is_player_ground(int c)
+static int	check_player_ground(t_direction_parsing_wall d, char **map,
+								int x, int y)
 {
-	const char	set[] = "0NSWELPOFHI|A!`@$";
-	int			isset;
-	int			i;
-
-	isset = 0;
-	i = -1;
-	while (set[++i])
-	{
-		if (set[i] == c)
-		{
-			isset = 1;
-			break ;
-		}
-	}
-	return (isset);
-}
-
-static int	is_wall(int c)
-{
-	const char	set[] = "123456789]";
-	int			isset;
-	int			i;
-
-	isset = 0;
-	i = -1;
-	while (set[++i])
-	{
-		if (set[i] == c)
-		{
-			isset = 1;
-			break ;
-		}
-	}
-	return (isset);
+	if (d.up >= 0 && d.up < d.y_map)
+		if (!ft_isset_tab(map[d.up][x], "123456789]")
+			&& !ft_isset_tab(map[d.up][x], "0NSWELPOFHI|A!`@$"))
+			return (0);
+	if (d.down >= 0 && d.down < d.y_map)
+		if (!ft_isset_tab(map[d.down][x], "123456789]")
+			&& !ft_isset_tab(map[d.down][x], "0NSWELPOFHI|A!`@$"))
+			return (0);
+	if (d.left >= 0 && d.left < d.x_map)
+		if (!ft_isset_tab(map[y][d.left], "123456789]")
+			&& !ft_isset_tab(map[y][d.left], "0NSWELPOFHI|A!`@$"))
+			return (0);
+	if (d.right >= 0 && d.right < d.x_map)
+		if (!ft_isset_tab(map[y][d.right], "123456789]")
+			&& !ft_isset_tab(map[y][d.right], "0NSWELPOFHI|A!`@$"))
+			return (0);
+	if ((d.up < 0 || d.up >= d.y_map)
+		|| (d.down < 0 || d.down >= d.y_map)
+		|| (d.left < 0 || d.left >= d.x_map)
+		|| (d.right < 0 || d.right >= d.x_map))
+		return (0);
+	return (1);
 }
 
 static int	check_direction_player_ground(char **map, int x, int y, t_cub *cub)
@@ -60,27 +49,30 @@ static int	check_direction_player_ground(char **map, int x, int y, t_cub *cub)
 	d.down = y + 1;
 	d.left = x - 1;
 	d.right = x + 1;
-	if (is_player_ground(map[y][x]))
-	{
-		if (d.up >= 0 && d.up < d.y_map)
-			if (!is_wall(map[d.up][x]) && !is_player_ground(map[d.up][x]))
-				return (0);
-		if (d.down >= 0 && d.down < d.y_map)
-			if (!is_wall(map[d.down][x]) && !is_player_ground(map[d.down][x]))
-				return (0);
-		if (d.left >= 0 && d.left < d.x_map)
-			if (!is_wall(map[y][d.left]) && !is_player_ground(map[y][d.left]))
-				return (0);
-		if (d.right >= 0 && d.right < d.x_map)
-			if (!is_wall(map[y][d.right])
-				&& !is_player_ground(map[y][d.right]))
-				return (0);
-		if ((d.up < 0 || d.up >= d.y_map)
-			|| (d.down < 0 || d.down >= d.y_map)
-			|| (d.left < 0 || d.left >= d.x_map)
-			|| (d.right < 0 || d.right >= d.x_map))
+	if (ft_isset_tab(map[y][x], "0NSWELPOFHI|A!`@$"))
+		if (!check_player_ground(d, map, x, y))
 			return (0);
-	}
+	return (1);
+}
+
+static int	check_space(t_direction_parsing_wall dir, char **map, int x, int y)
+{
+	if (dir.up >= 0 && dir.up < dir.y_map)
+		if (!ft_isset_tab(map[dir.up][x], "123456789]")
+			&& map[dir.up][x] != ' ')
+			return (0);
+	if (dir.down >= 0 && dir.down < dir.y_map)
+		if (!ft_isset_tab(map[dir.down][x], "123456789]")
+			&& map[dir.down][x] != ' ')
+			return (0);
+	if (dir.left >= 0 && dir.left < dir.x_map)
+		if (!ft_isset_tab(map[y][dir.left], "123456789]")
+			&& map[y][dir.left] != ' ')
+			return (0);
+	if (dir.right >= 0 && dir.right < dir.x_map)
+		if (!ft_isset_tab(map[y][dir.right], "123456789]")
+			&& map[y][dir.right] != ' ')
+			return (0);
 	return (1);
 }
 
@@ -95,20 +87,8 @@ static int	check_direction_space(char **map, int x, int y, t_cub *cub)
 	dir.left = x - 1;
 	dir.right = x + 1;
 	if (map[y][x] == ' ')
-	{
-		if (dir.up >= 0 && dir.up < dir.y_map)
-			if (!is_wall(map[dir.up][x]) && map[dir.up][x] != ' ')
-				return (0);
-		if (dir.down >= 0 && dir.down < dir.y_map)
-			if (!is_wall(map[dir.down][x]) && map[dir.down][x] != ' ')
-				return (0);
-		if (dir.left >= 0 && dir.left < dir.x_map)
-			if (!is_wall(map[y][dir.left]) && map[y][dir.left] != ' ')
-				return (0);
-		if (dir.right >= 0 && dir.right < dir.x_map)
-			if (!is_wall(map[y][dir.right]) && map[y][dir.right] != ' ')
-				return (0);
-	}
+		if (!check_space(dir, map, x, y))
+			return (0);
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/30 14:20:40 by mmehran          ###   ########.fr        #
+#    Updated: 2021/10/30 18:07:52 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,8 @@ SRCS_PARSING_FILES_BONUS	= forbiden_char_map_bonus.c \
 								wall_check_map_bonus.c \
 								create_player_info_bonus.c \
 								ft_config_bonus.c \
-								replace_ground_bonus.c
+								replace_ground_bonus.c \
+								find_nearest.c
 
 SRCS_UTILS_FILES_BONUS		= ft_get_current_time_bonus.c \
 								ismove_bonus.c \
