@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 00:56:26 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/30 18:07:32 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 19:11:27 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include "ft_config.h"
 
 void	replace_ground(t_cub *cub);
-void	find_nearest(t_cub *cub, char **map, int x, int y);
+void	find_texture(t_cub *cub, char **map, int x, int y);
 
 #endif

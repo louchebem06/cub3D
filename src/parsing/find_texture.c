@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_nearest.c                                     :+:      :+:    :+:   */
+/*   find_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 18:06:44 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/30 18:45:04 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 19:12:30 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "../../header/cub_bonus.h"
 #include "../../header/queue_bonus.h"
 
-static char	find(t_config *config, t_position *edges, char **map, t_queue **q)
+static char	find_the_closest_texture(t_config *config,
+									t_position *edges, char **map, t_queue **q)
 {
 	int			i;
 	t_position	w;
@@ -40,7 +41,7 @@ static char	find(t_config *config, t_position *edges, char **map, t_queue **q)
 	return ('0');
 }
 
-static void	replace(t_queue *q, char result, char **map)
+static void	replace_texture(t_queue *q, char result, char **map)
 {
 	t_position	p;
 
@@ -51,7 +52,7 @@ static void	replace(t_queue *q, char result, char **map)
 	}
 }
 
-void	find_nearest(t_cub *cub, char **map, int x, int y)
+void	find_texture(t_cub *cub, char **map, int x, int y)
 {
 	char		result;
 	t_queue		*q[2];
@@ -70,9 +71,9 @@ void	find_nearest(t_cub *cub, char **map, int x, int y)
 		ft_memcpy(&edges, (t_position []){{e.x + 1, e.y}, {e.x, e.y + 1},
 		{e.x - 1, e.y}, {e.x, e.y - 1}, {e.x + 1, e.y + 1}, {e.x - 1, e.y - 1},
 		{e.x - 1, e.y + 1}, {e.x + 1, e.y - 1}}, sizeof(edges));
-		result = find(&cub->config, edges, map, q);
+		result = find_the_closest_texture(&cub->config, edges, map, q);
 	}
-	replace(q[1], result, map);
+	replace_texture(q[1], result, map);
 	destroy_queue(q[0]);
 	destroy_queue(q[1]);
 }
