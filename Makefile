@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/28 03:05:33 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/30 11:31:02 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ HEADER_FILES_BONUS 			= minimap_bonus.h \
 								struct_bonus.h \
 								utils_bonus.h \
 								sprite_bonus.h \
-								ft_config_bonus.h
+								ft_config_bonus.h \
+								queue_bonus.h
 
 FOLDER_HEADER				= header/
 FOLDER_SRC					= src/
@@ -98,7 +99,8 @@ SRCS_PARSING_FILES_BONUS	= forbiden_char_map_bonus.c \
 SRCS_UTILS_FILES_BONUS		= ft_get_current_time_bonus.c \
 								ismove_bonus.c \
 								isrotate_bonus.c \
-								free_cub_bonus.c
+								free_cub_bonus.c \
+								queue_bonus.c
 
 SRCS_CUB3D_FILES_BONUS		= render_next_frame_bonus.c \
 								minimap_bonus.c \
