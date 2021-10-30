@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 13:09:37 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 15:05:53 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void	sprite(t_cub *cub)
 			}
 			s = cub->sprite.config[i].s_anim[img];
 		}
-		float scale = ((WW / 2.0f) / s->width);
+		float scale = ((WW / 1.69f) / s->width);
 		float mdr = scale / (dist * ft_dot(dir, udsprite));
 		float tt = (dist) / 10;
 		put_img(&cub->screen, s, (t_position){(WW) * toast_p, (WH / 2) - (mdr * s->height) / 2 + (WH / 2) / (dist * ft_dot(dir, udsprite)) },
