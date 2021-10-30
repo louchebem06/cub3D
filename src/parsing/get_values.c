@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 05:09:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/30 21:44:46 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 21:58:33 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 static int	unknown_param(char *sline)
 {
+	const size_t	size = ft_strlen(sline);
+
 	if (!sline)
 		return (0);
-	if (!ft_strncmp(sline, "NO", 2)
-		|| !ft_strncmp(sline, "SO", 2)
-		|| !ft_strncmp(sline, "WE", 2)
-		|| !ft_strncmp(sline, "EA", 2)
-		|| !ft_strncmp(sline, "F", 1)
-		|| !ft_strncmp(sline, "C", 1))
+	if ((!ft_strncmp(sline, "NO", 2) && size == 2)
+		|| (!ft_strncmp(sline, "SO", 2) && size == 2)
+		|| (!ft_strncmp(sline, "WE", 2) && size == 2)
+		|| (!ft_strncmp(sline, "EA", 2) && size == 2)
+		|| (!ft_strncmp(sline, "F", 1) && size == 1)
+		|| (!ft_strncmp(sline, "C", 1) && size == 1))
 		return (1);
 	return (0);
 }
