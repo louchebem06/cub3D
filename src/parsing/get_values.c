@@ -6,20 +6,24 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 05:09:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 05:58:35 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 21:44:46 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
 
-static int	sm(char **config)
+static int	unknown_param(char *sline)
 {
-	int	i;
-
-	i = 0;
-	while (config[i])
-		i++;
-	return (i);
+	if (!sline)
+		return (0);
+	if (!ft_strncmp(sline, "NO", 2)
+		|| !ft_strncmp(sline, "SO", 2)
+		|| !ft_strncmp(sline, "WE", 2)
+		|| !ft_strncmp(sline, "EA", 2)
+		|| !ft_strncmp(sline, "F", 1)
+		|| !ft_strncmp(sline, "C", 1))
+		return (1);
+	return (0);
 }
 
 static void	add_config_data(const char *line, t_isset *isset, t_cub *cub)
@@ -29,10 +33,7 @@ static void	add_config_data(const char *line, t_isset *isset, t_cub *cub)
 	if (ft_strlen(line) == 0)
 		return ;
 	sline = ft_split(line, ' ');
-	if (sline[0] && (!ft_strncmp(sline[0], "NO", 2)
-			&& !ft_strncmp(sline[0], "SO", 2) && !ft_strncmp(sline[0], "WE", 2)
-			&& !ft_strncmp(sline[0], "EA", 2) && !ft_strncmp(sline[0], "F", 1)
-			&& !ft_strncmp(sline[0], "C", 1)))
+	if (!unknown_param(sline[0]))
 	{
 		isset->error = 1;
 		free_split(&sline);
@@ -101,7 +102,7 @@ int	get_values(char ***data_file, t_cub *cub)
 		if (isset.no && isset.so && isset.we && isset.ea && isset.f && isset.c
 			&& !isset.error)
 		{
-			cub->config.map = ft_calloc(sizeof(char *), sm(*data_file + i) + 1);
+			cub->config.map = ft_calloc(sizeof(char *), count_tab(*data_file + i) + 1);
 			break ;
 		}
 	}

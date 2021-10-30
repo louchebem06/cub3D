@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/17 15:00:02 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/30 21:47:05 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ unsigned int	anti_rgb(t_rgb rgb);
 bool			is_valid_int(char *input);
 void			free_cub(t_cub *cub);
 t_rgb			color_to_rgb(unsigned int color);
+int				count_tab(char **tab);
 
 #endif

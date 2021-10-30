@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/30 20:42:02 by bledda           ###   ########.fr        #
+#    Updated: 2021/10/30 21:46:33 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,8 @@ SRCS_UTILS_FILES_COMMUN		= add_value.c \
 								ft_error.c \
 								anti_rgb.c \
 								is_valid_int.c \
-								color_to_rgb.c
+								color_to_rgb.c \
+								count_tab.c
 
 SRCS_CUB3D_FILES_COMMUN		= is_in_air.c \
 								scale_pos.c \
