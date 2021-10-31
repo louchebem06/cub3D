@@ -6,22 +6,12 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:22:48 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/31 00:07:08 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/31 12:48:03 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
 #include "../../header/cub_bonus.h"
-
-#ifdef __APPLE__
-
-# define THREAD_IMG_INTRO 5
-#elif __linux__
-
-# define THREAD_IMG_INTRO 1
-#endif
-
-#define IMG_INTRO 134
 
 static char	*add_zero(int i)
 {

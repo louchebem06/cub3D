@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/30 14:51:05 by bledda           ###   ########.fr       */
+/*   Updated: 2021/10/31 12:49:18 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "../../header/sound_bonus.h"
 #include "../../header/sprite_bonus.h"
 #include "../../header/utils_bonus.h"
+#include "../../header/cub_bonus.h"
 
 static const int	g_minimap_x = 15;
 static const int	g_minimap_y = WINDOWS_HEIGHT - 215;
@@ -77,7 +78,7 @@ int	render_next_frame(t_cub *cub)
 {
 	static int	i = -1;
 
-	if (cub->no_intro || i == 134)
+	if (cub->no_intro || i == IMG_INTRO)
 	{
 		cub->no_intro = true;
 		if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
@@ -95,7 +96,7 @@ int	render_next_frame(t_cub *cub)
 		fps(cub);
 		print_balle(cub);
 	}
-	else if (++i < 134)
+	else if (++i < IMG_INTRO)
 		play_intro(cub, i);
 	return (0);
 }
@@ -105,7 +106,7 @@ int	render_next_frame(t_cub *cub)
 {
 	static int	i = -1;
 
-	if (cub->no_intro || i == 134)
+	if (cub->no_intro || i == IMG_INTRO)
 	{
 		cub->no_intro = true;
 		if (ft_get_current_time() - cub->last_f < 1000.0 / 60.0)
@@ -123,7 +124,7 @@ int	render_next_frame(t_cub *cub)
 		print_balle(cub);
 		mlx_do_sync(cub->win.mlx);
 	}
-	else if (++i < 134)
+	else if (++i < IMG_INTRO)
 		play_intro(cub, i);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/30 19:38:35 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/10/31 12:48:43 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@
 # include "struct_bonus.h"
 # ifdef __APPLE__
 #  include "../base24-osx/bass.h"
+#  define THREAD_IMG_INTRO 5
 # elif __linux__
 #  include "../base24-linux/bass.h"
+#  define THREAD_IMG_INTRO 1
 # endif
+
+# define IMG_INTRO 134
 
 typedef struct s_music
 {
@@ -93,7 +97,7 @@ typedef struct s_cub
 	t_sound				sound;
 	t_shooter			shooter;
 	t_sprite			sprite;
-	t_img				intro[134];
+	t_img				intro[IMG_INTRO];
 	float				z[1280];
 	bool				no_intro;
 }				t_cub;
