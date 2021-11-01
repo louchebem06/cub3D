@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/31 12:49:18 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/01 09:46:33 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	render_next_frame(t_cub *cub)
 		print_nsew(cub, g_minimap_x, g_minimap_y);
 		fps(cub);
 		print_balle(cub);
+		sound_dolls(cub);
 	}
 	else if (++i < IMG_INTRO)
 		play_intro(cub, i);
@@ -123,6 +124,7 @@ int	render_next_frame(t_cub *cub)
 		fps(cub);
 		print_balle(cub);
 		mlx_do_sync(cub->win.mlx);
+		sound_dolls(cub);
 	}
 	else if (++i < IMG_INTRO)
 		play_intro(cub, i);

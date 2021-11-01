@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 08:02:18 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 04:28:20 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/01 09:47:18 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@
 void	init_sound(t_cub *cub);
 void	free_sound(t_cub *cub);
 void	toggle(t_music *music, bool restart);
+void	sound_dolls(t_cub *cub);
 
 #endif

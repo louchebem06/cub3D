@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:04:09 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 04:44:04 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/01 09:59:10 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_sound(t_cub *cub)
 		cub->sound.recharge.file = BASS_StreamCreateFile(FALSE,
 				"sound/recharge.mp3", 0, 0, 0);
 		cub->sound.sun.file = BASS_StreamCreateFile(FALSE,
-				"sound/123Soleil.mp3", 0, 0, BASS_SAMPLE_3D);
+				"sound/123Soleil.mp3", 0, 0, BASS_SAMPLE_LOOP);
 		cub->sound.step_classic.state = false;
 		cub->sound.tir.state = false;
 		cub->sound.recharge.state = false;
@@ -64,4 +64,15 @@ void	free_sound(t_cub *cub)
 	BASS_StreamFree(cub->sound.recharge.file);
 	BASS_StreamFree(cub->sound.sun.file);
 	BASS_Free();
+}
+
+void	sound_dolls(t_cub *cub)
+{
+	const char	c = cub->map.map
+		[(int)cub->player.pos.y][(int)cub->player.pos.x];
+
+	if (ft_isset_tab(c, "!`"))
+		BASS_ChannelPlay(cub->sound.sun.file, false);
+	else
+		BASS_ChannelPause(cub->sound.sun.file);
 }
