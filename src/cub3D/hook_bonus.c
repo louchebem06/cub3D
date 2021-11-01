@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:49:21 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 01:58:44 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/01 19:43:54 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,20 @@ static int	key_release(int keycode, t_cub *cub)
 	return (0);
 }
 
+static int	enter_mouse_windows(t_cub *cub)
+{
+	(void)cub;
+	cub->mouse_in_windows = true;
+	return (0);
+}
+
+static int	leave_mouse_windows(t_cub *cub)
+{
+	(void)cub;
+	cub->mouse_in_windows = false;
+	return (0);
+}
+
 #ifdef __APPLE__
 
 void	hook(t_cub *cub)
@@ -92,6 +106,8 @@ void	hook(t_cub *cub)
 {
 	mlx_hook(cub->win.win, 2, 1, key_press, cub);
 	mlx_hook(cub->win.win, 3, 2, key_release, cub);
+	mlx_hook(cub->win.win, 7, 1l << 4, enter_mouse_windows, cub);
+	mlx_hook(cub->win.win, 8, 1l << 5, leave_mouse_windows, cub);
 	mlx_hook(cub->win.win, 17, 0, close_click, cub);
 	mlx_hook(cub->win.win, 5, 1l << 3, mouse_unclick, cub);
 	mlx_mouse_hook(cub->win.win, mouse_hook, cub);

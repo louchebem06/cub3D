@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/31 12:48:43 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/01 19:43:29 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct s_cub
 	t_img				intro[IMG_INTRO];
 	float				z[1280];
 	bool				no_intro;
+	bool				mouse_in_windows;
 }				t_cub;
 
 char		get_map_char(const t_map *map, const t_position *ray,
