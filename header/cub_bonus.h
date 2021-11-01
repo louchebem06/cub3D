@@ -6,7 +6,11 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/01 18:25:37 by mmehran          ###   ########.fr       */
+=======
+/*   Updated: 2021/11/01 19:43:29 by bledda           ###   ########.fr       */
+>>>>>>> d5b775903be656fac17a2c8fe7245bd3ec908237
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +104,7 @@ typedef struct s_cub
 	t_img				intro[IMG_INTRO];
 	float				z[1280];
 	bool				no_intro;
+	bool				mouse_in_windows;
 }				t_cub;
 
 char		get_map_char(const t_map *map, const t_position *ray,

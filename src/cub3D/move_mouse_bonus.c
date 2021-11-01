@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:19:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/27 17:09:23 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/01 19:47:18 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,16 @@ void	move_mouse(t_cub *cub)
 	int	x;
 	int	y;
 
+	if (!cub->mouse_in_windows)
+		return ;
 	mlx_mouse_get_pos(cub->win.mlx, cub->win.win, &x, &y);
-	if (!cub->no_intro || y <= 10)
+	if (!cub->no_intro || y < 0)
 		return ;
-	if (x <= 0 || y <= 0 || y >= WINDOWS_HEIGHT || x >= WINDOWS_WIDTH)
-	{
-		mlx_mouse_show(cub->win.mlx, cub->win.win);
-		return ;
-	}
+	// if (x <= 0 || y <= 0 || y >= WINDOWS_HEIGHT || x >= WINDOWS_WIDTH)
+	// {
+	// 	mlx_mouse_show(cub->win.mlx, cub->win.win);
+	// 	return ;
+	// }
 	if (x < WINDOWS_WIDTH / 2)
 		cub->player.angle -= M_PI / 25;
 	else if (x > WINDOWS_WIDTH / 2)
