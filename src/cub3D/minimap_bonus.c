@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 13:09:01 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/01 10:04:08 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,5 @@ void	minimap(t_cub *cub, const int x, const int y)
 				print_map(cub, screen, 0, create_trgb(0, 0, 255, 0));
 		}
 	}
-	//for (int i = 0; cub->config.map_s[i]; i++)
-	//{
-	//	printf("%s\n", cub->config.map_s[i]);
-	//}
 	print_border(cub, screen);
 }
