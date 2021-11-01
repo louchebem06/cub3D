@@ -1,10 +1,9 @@
-NO ./texture/Test/brick.xpm
 SO ./texture/Test/metal.xpm
 WE ./texture/Test/pebbles.xpm
 EA ./texture/Test/wood.xpm
-
-F 255,100, 0
-C 225,255, 255
+F 255,100,0
+C 225,255,255
+NO ./texture/Test/brick.xpm
 
 111111111
 100000001

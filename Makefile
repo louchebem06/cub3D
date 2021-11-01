@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/10/30 21:46:33 by bledda           ###   ########.fr        #
+#    Updated: 2021/11/01 18:26:09 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,7 +120,9 @@ SRCS_CUB3D_FILES_BONUS		= render_next_frame_bonus.c \
 								fps_bonus.c \
 								minimap_utils_bonus.c \
 								print_balle_bonus.c \
-								generate_img_intro_bonus.c
+								generate_img_intro_bonus.c \
+								texture_bonus.c \
+								draw_utils_bonus.c
 
 
 SRCS_COMMUN					= $(addprefix ${FOLDER_SRC},${SRCS_FILES_COMMUN})

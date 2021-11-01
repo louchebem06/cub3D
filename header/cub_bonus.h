@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/31 12:48:43 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/01 18:25:37 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,9 @@ void		generate_i(t_cub *cub, t_img *img, char *file);
 void		fps(t_cub *cub);
 void		print_balle(t_cub *cub);
 void		generate_img_intro(t_cub *cub);
+t_img		*get_wall_texture(t_cub *cub, const t_position *ray_pos);
+t_img		*get_fc_texture(t_cub *cub, const t_position *ray_pos, bool floor);
+float		img_x_percent(const t_cub *cub, const t_position *ray_pos);
+float		ceiling_x_percent(const t_cub *cub, int x);
 
 #endif
