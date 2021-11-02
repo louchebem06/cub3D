@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 23:59:13 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/02 17:19:07 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/02 17:22:53 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,13 +142,13 @@ static void	anim_doll(unsigned long long *time,
 	}
 }
 
-static inline float	calc_scale(t_calc_sprite var)
+static inline float	calc_scale(const t_calc_sprite var)
 {
 	return (((WW / 1.69f) / var.s->width)
 		/ (var.dist * ft_dot(var.dir, var.udsprite)));
 }
 
-static inline t_position	calc_center(t_calc_sprite var)
+static inline t_position	calc_center(const t_calc_sprite var)
 {
 	return ((t_position){
 		(WW) * var.toast_p,
