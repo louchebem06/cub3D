@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/11/02 13:47:28 by bledda           ###   ########.fr        #
+#    Updated: 2021/11/02 16:09:55 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -176,8 +176,9 @@ CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror -O3
 #CFLAGS  			= -Wall -Wextra -O3
 RM					= rm -rf
-MAKE_EXT			= @make -s --no-print-directory -C
-REMAKE				= @make --no-print-directory
+MAKE_EXT_THREAD		= @make -j -s --no-print-directory -C
+MAKE_EXT			= @make -j1 -s --no-print-directory -C
+REMAKE				= @make -j --no-print-directory
 LIB					= ./libft/libft.a ./mlx_utils/mlx_utils.a -lm
 
 UNAME_S				= $(shell uname -s)
@@ -194,11 +195,11 @@ ifdef CUB3D_BONUS
 OBJS 				= $(OBJS_COMMUN_B) $(OBJS_BONUS)
 HEADERS 			= $(HEADERS_COMMUN) $(HEADERS_BONUS)
 ifeq ($(UNAME_S),Linux)
-	EXEC_BASE24		= $(MAKE_EXT) ./base24-linux
+	EXEC_BASE24		= $(MAKE_EXT_THREAD) ./base24-linux
 	LIBS			+= ./base24-linux/x64/libbass.so
 endif
 ifeq ($(UNAME_S),Darwin)
-	EXEC_BASE24		= $(MAKE_EXT) ./base24-osx intel && cp -r ./base24-osx/intel/libbass.dylib ./
+	EXEC_BASE24		= $(MAKE_EXT_THREAD) ./base24-osx intel && cp -r ./base24-osx/intel/libbass.dylib ./
 	LIBS			+= libbass.dylib
 endif
 LIBS				+= -lpthread
@@ -211,13 +212,16 @@ endif
 #####################################################################################
 
 #	RULES	#########################################################################
+all:
+			$(REMAKE) $(NAME)
+
 $(NAME):	${OBJS}
 			@printf $(magenta)
 			@printf "\nStart build ⏳\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
-			$(MAKE_EXT) ./libft
-			$(MAKE_EXT) ./mlx_utils
+			$(MAKE_EXT_THREAD) ./libft
+			$(MAKE_EXT_THREAD) ./mlx_utils
 			@$(MLX_MAC)
 			$(EXEC_BASE24)
 			@printf $(yellow)
@@ -232,8 +236,6 @@ $(NAME):	${OBJS}
 			@printf "Your cub3D is ready ✅\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
-
-all:		${NAME}
 
 %.o: %.c	$(HEADERS)
 			@printf $(yellow)
