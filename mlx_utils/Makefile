@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/10 21:16:17 by bledda            #+#    #+#              #
-#    Updated: 2021/10/13 18:28:45 by mmehran          ###   ########.fr        #
+#    Updated: 2021/11/02 16:15:25 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,6 @@ all:			mlx
 				@printf $(yellow)
 				@printf "Generating mlx utils objects... %-32.32s\r" $@
 				@$(CC) -c $(CFLAGS) -o $@ $<
-				@printf $(reset)
 
 clean:
 				@${RM} $(OBJS)

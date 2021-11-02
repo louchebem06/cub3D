@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/11/02 16:09:55 by bledda           ###   ########.fr        #
+#    Updated: 2021/11/02 16:17:22 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -241,19 +241,17 @@ $(NAME):	${OBJS}
 			@printf $(yellow)
 			@printf "Generating cub3D objects... %-28.28s\r" $@
 			@$(CC) -c $(CFLAGS) $(DEFINE) -o $@ $<
-			@printf $(reset)
 
 %_B.o: %.c	$(HEADERS)
 			@printf $(yellow)
 			@printf "Generating cub3D objects... %-28.28s\r" $@
 			@$(CC) -c $(CFLAGS) $(DEFINE) -o $@ $<
-			@printf $(reset)
 
 re: 		fclean all
 
 clean:
-			$(MAKE_EXT) ./libft clean
-			$(MAKE_EXT) ./mlx_utils clean
+			$(MAKE_EXT_THREAD) ./libft clean
+			$(MAKE_EXT_THREAD) ./mlx_utils clean
 			$(MAKE_EXT) ./mlx_mac clean
 			@${RM} ${OBJS_COMMUN} ${OBJS_COMMUN_B} ${OBJS_MANDA} ${OBJS_BONUS}
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
@@ -263,9 +261,9 @@ clean:
 			@printf $(reset)
 
 fclean:		clean
-			$(MAKE_EXT) ./libft fclean
-			$(MAKE_EXT) ./mlx_utils fclean
-			$(MAKE_EXT) ./base24-linux clean
+			$(MAKE_EXT_THREAD) ./libft fclean
+			$(MAKE_EXT_THREAD) ./mlx_utils fclean
+			$(MAKE_EXT_THREAD) ./base24-linux clean
 			@${RM} $(NAME) base24-osx/intel libbass.dylib libbass.so libmlx.dylib
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)

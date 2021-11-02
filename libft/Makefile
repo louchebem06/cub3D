@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/05 05:34:19 by bledda            #+#    #+#              #
-#    Updated: 2021/08/11 14:39:16 by bledda           ###   ########.fr        #
+#    Updated: 2021/11/02 16:14:56 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,6 @@ all:		${NAME}
 			@printf $(yellow)
 			@printf "Generating libft objects... %-28.28s\r" $@
 			@$(CC) -c $(CFLAGS) -o $@ $<
-			@printf $(reset)
 
 bonus: 		
 			@$(MAKE) BONUS_LIBFT=1
