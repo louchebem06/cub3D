@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/11/01 18:32:12 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/02 01:14:26 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,27 +79,52 @@ static void	draw_col(t_cub *cub, int x,
 	}
 }
 
+#include <pthread.h>
+
+void	*draw_multithread(void *curr_thread)
+{
+	t_thread_draw	*thread;
+	int				x;
+
+	thread = (t_thread_draw *)curr_thread;
+	x = thread->x_start - 1;
+	while (++x <= thread->x_end)
+	{
+		thread->angle = atan2f((float) x / thread->cub->screen.width - 0.5, 0.6);
+		thread->ray = ray_cast(&thread->cub->player.pos, thread->cub->player.angle + thread->angle, &thread->cub->map);
+		thread->cray = thread->ray;
+		thread->cray.x -= thread->cub->player.pos.x;
+		thread->cray.y -= thread->cub->player.pos.y;
+		thread->size = hypotf(thread->cray.x, thread->cray.y);
+		thread->cub->z[x] = thread->size;
+		thread->size *= cosf(thread->angle);
+		if (thread->size == 0)
+			thread->size = 1;
+		draw_col(thread->cub, x, &thread->ray, (t_position){thread->cub->screen.height / thread->size, thread->angle});
+	}
+	pthread_exit(0);
+}
+
 void	draw(t_cub *cub)
 {
-	float		size;
-	t_position	ray;
-	t_position	cray;
-	int			x;
-	float		angle;
+	t_thread_draw	t[4];
+	pthread_t		thread[4];
+	int				i;
 
-	x = -1;
-	while (++x < cub->screen.width)
+	t[0].x_start = 0;
+	t[0].x_end = 319;
+	t[1].x_start = 320;
+	t[1].x_end = 639;
+	t[2].x_start = 640;
+	t[2].x_end = 959;
+	t[3].x_start = 960;
+	t[3].x_end = 1279;
+	i = -1;
+	while (++i < 4)
 	{
-		angle = atan2f((float) x / cub->screen.width - 0.5, 0.6);
-		ray = ray_cast(&cub->player.pos, cub->player.angle + angle, &cub->map);
-		cray = ray;
-		cray.x -= cub->player.pos.x;
-		cray.y -= cub->player.pos.y;
-		size = hypotf(cray.x, cray.y);
-		cub->z[x] = size;
-		size *= cosf(angle);
-		if (size == 0)
-			size = 1;
-		draw_col(cub, x, &ray, (t_position){cub->screen.height / size, angle});
+		t[i].cub = cub;
+		pthread_create(&thread[i], NULL, draw_multithread, &t[i]);
 	}
+	for (int i = 0; i < 4; i++)
+		pthread_join(thread[i], NULL);
 }

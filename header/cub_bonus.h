@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/01 20:56:37 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/02 00:58:24 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,17 @@ typedef struct s_thread
 	int		id_thread;
 	int		nb_thread;
 }		t_thread;
+
+typedef struct s_thread_draw
+{
+	t_cub		*cub;
+	int			x_start;
+	int			x_end;
+	float		size;
+	t_position	ray;
+	float		angle;
+	t_position	cray;
+}		t_thread_draw;
 
 typedef struct s_cub
 {
