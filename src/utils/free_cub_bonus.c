@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 03:04:24 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 13:11:55 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/02 03:39:23 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	free_cub(t_cub *cub)
 			free(cub->config.map_s[i]);
 	}
 	free(cub->config.map);
-	free(cub->config.map_s);
+	if (cub->config.map_s)
+		free(cub->config.map_s);
 	i = -1;
 	while (++i < cub->sprite.item)
 		free(cub->sprite.config[i].s_anim);

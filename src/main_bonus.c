@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:17:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/31 00:10:14 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/02 03:48:20 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int ac, const char **av)
 	{
 		cub.keys = (t_keys){false};
 		cub3d(&cub);
+		free_cub(&cub);
 	}
 	else if (ac == 1)
 		ft_error("Error:\n\t-Please specify a map\n", RED);

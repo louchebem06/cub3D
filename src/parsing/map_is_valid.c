@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 06:21:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 13:28:22 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/02 03:47:30 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ static bool	min_ligne(char **map)
 	return (true);
 }
 
+static void	ft_final_free(t_cub *cub)
+{
+	int	i;
+
+	i = -1;
+	free(cub->config.path_ea);
+	free(cub->config.path_no);
+	free(cub->config.path_so);
+	free(cub->config.path_we);
+	while (cub->config.map[++i])
+		free(cub->config.map[i]);
+	free(cub->config.map);
+}
+
 int	map_is_valid(t_cub *cub)
 {
 	if (!remove_newlines(&cub->config.map) || remove_space_map(&cub->config.map)
@@ -57,7 +71,7 @@ int	map_is_valid(t_cub *cub)
 		|| multi_pos_map(cub->config.map) || wall_check_map(cub)
 		|| !min_ligne(cub->config.map))
 	{
-		free_cub(cub);
+		ft_final_free(cub);
 		return (0);
 	}
 	if (!ft_extension(cub->config.path_we, ".xpm")
