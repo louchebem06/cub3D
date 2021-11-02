@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/11/01 18:32:12 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/02 00:04:40 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	draw_col(t_cub *cub, int x,
 							sinf(cub->player.angle + junk.y) / cosf(junk.y)};
 
 	y = -1;
+	color = 0;
 	while (++y < cub->screen.height)
 	{
 		if (y < am)
@@ -71,14 +72,16 @@ static void	draw_col(t_cub *cub, int x,
 				color = get_fc(cub, y, &dir, false);
 		}
 		else if (y < am + junk.x)
-			color = mlx_get_pixel_img(texture, img_x_percent(cub, ray_pos)
-					* texture->width, texture->height * (y - am) / junk.x);
+		{
+			if (texture)
+				color = mlx_get_pixel_img(texture, img_x_percent(cub, ray_pos)
+						* texture->width, texture->height * (y - am) / junk.x);
+		}
 		else
 			color = get_fc(cub, y, &dir, true);
 		mlx_put_pixel_to_img(&cub->screen, x, y, color);
 	}
 }
-
 void	draw(t_cub *cub)
 {
 	float		size;

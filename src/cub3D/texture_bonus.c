@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 16:47:02 by mmehran           #+#    #+#             */
-/*   Updated: 2021/11/01 18:15:16 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/01 23:13:01 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_img	*get_wall_direction(t_cub *cub, const t_position *ray_pos)
 			return (&cub->texture.ea);
 		return (&cub->texture.we);
 	}
-	return (0);
+	return (NULL);
 }
 
 t_img	*get_wall_texture(t_cub *cub, const t_position *ray_pos)
