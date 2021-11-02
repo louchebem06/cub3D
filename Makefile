@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/11/02 16:17:22 by bledda           ###   ########.fr        #
+#    Updated: 2021/11/02 17:32:44 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,7 +124,8 @@ SRCS_CUB3D_FILES_BONUS		= render_next_frame_bonus.c \
 								texture_bonus.c \
 								draw_utils_bonus.c \
 								move_mouse_utils_bonus.c \
-								sprite_utils_bonus.c
+								sprite_utils_bonus.c \
+								put_sprite_bonus.c
 
 
 SRCS_COMMUN					= $(addprefix ${FOLDER_SRC},${SRCS_FILES_COMMUN})
