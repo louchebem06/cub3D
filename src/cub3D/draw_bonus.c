@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/11/02 01:36:05 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/02 20:32:35 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,22 @@ static unsigned int	get_fc(t_cub *cub, int y, const t_position *dir, bool floor)
 			(lol.y - floorf(lol.y)) * texture->height));
 }
 
-static unsigned int	panorama(t_cub *cub, int x, int y)
+static unsigned int	get_ceiling(t_cub *cub, int x, int y, const t_position *dir)
 {
-	const t_img	*ceiling = get_fc_texture(cub, &cub->player.pos, false);
+	t_img	*ceiling;
 
-	if (!ceiling)
-		return (0);
-	return (mlx_get_pixel_img(ceiling,
-			ceiling_x_percent(cub, x) * ceiling->width,
-			(float) ceiling->height * y / (cub->screen.height / 2)));
+	if (ft_isset_tab(get_map_char(
+				&cub->map, &cub->player.pos, &cub->player.pos), "!`$"))
+	{
+		ceiling = get_fc_texture(cub, &cub->player.pos, false);
+		if (!ceiling)
+			return (0);
+		return (mlx_get_pixel_img(ceiling,
+				ceiling_x_percent(cub, x) * ceiling->width,
+				(float) ceiling->height * y / (cub->screen.height / 2)));
+	}
+	else
+		return (get_fc(cub, y, dir, false));
 }
 
 static void	draw_col(t_cub *cub, int x,
@@ -65,19 +72,10 @@ static void	draw_col(t_cub *cub, int x,
 	while (++y < cub->screen.height)
 	{
 		if (y < am)
-		{
-			if (ft_isset_tab(get_map_char(
-						&cub->map, &cub->player.pos, &cub->player.pos), "!`$"))
-				color = panorama(cub, x, y);
-			else
-				color = get_fc(cub, y, &dir, false);
-		}
-		else if (y < am + junk.x)
-		{
-			if (texture)
-				color = mlx_get_pixel_img(texture, img_x_percent(cub, ray_pos)
-						* texture->width, texture->height * (y - am) / junk.x);
-		}
+			color = get_ceiling(cub, x, y, &dir);
+		else if (texture && y < am + junk.x)
+			color = mlx_get_pixel_img(texture, img_x_percent(cub, ray_pos)
+					* texture->width, texture->height * (y - am) / junk.x);
 		else
 			color = get_fc(cub, y, &dir, true);
 		mlx_put_pixel_to_img(&cub->screen, x, y, color);
