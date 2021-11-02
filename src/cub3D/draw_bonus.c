@@ -6,11 +6,12 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/11/02 01:14:26 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/02 01:30:26 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub_bonus.h"
+#include <pthread.h>
 
 static unsigned int	get_fc(t_cub *cub, int y, const t_position *dir, bool floor)
 {
@@ -79,9 +80,7 @@ static void	draw_col(t_cub *cub, int x,
 	}
 }
 
-#include <pthread.h>
-
-void	*draw_multithread(void *curr_thread)
+static void	*draw_multithread(void *curr_thread)
 {
 	t_thread_draw	*thread;
 	int				x;
@@ -90,8 +89,10 @@ void	*draw_multithread(void *curr_thread)
 	x = thread->x_start - 1;
 	while (++x <= thread->x_end)
 	{
-		thread->angle = atan2f((float) x / thread->cub->screen.width - 0.5, 0.6);
-		thread->ray = ray_cast(&thread->cub->player.pos, thread->cub->player.angle + thread->angle, &thread->cub->map);
+		thread->angle = atan2f(
+				(float) x / thread->cub->screen.width - 0.5, 0.6);
+		thread->ray = ray_cast(&thread->cub->player.pos,
+				thread->cub->player.angle + thread->angle, &thread->cub->map);
 		thread->cray = thread->ray;
 		thread->cray.x -= thread->cub->player.pos.x;
 		thread->cray.y -= thread->cub->player.pos.y;
@@ -100,7 +101,8 @@ void	*draw_multithread(void *curr_thread)
 		thread->size *= cosf(thread->angle);
 		if (thread->size == 0)
 			thread->size = 1;
-		draw_col(thread->cub, x, &thread->ray, (t_position){thread->cub->screen.height / thread->size, thread->angle});
+		draw_col(thread->cub, x, &thread->ray, (t_position)
+		{thread->cub->screen.height / thread->size, thread->angle});
 	}
 	pthread_exit(0);
 }
@@ -125,6 +127,7 @@ void	draw(t_cub *cub)
 		t[i].cub = cub;
 		pthread_create(&thread[i], NULL, draw_multithread, &t[i]);
 	}
-	for (int i = 0; i < 4; i++)
+	i = -1;
+	while (++i < 4)
 		pthread_join(thread[i], NULL);
 }
