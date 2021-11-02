@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/02 01:36:21 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/02 15:11:28 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,49 @@ typedef struct s_thread_draw
 	float		angle;
 	t_position	cray;
 }		t_thread_draw;
+
+typedef struct s_draw_sprite
+{
+	t_position	center;
+	float		scale;
+	float		dist;
+}	t_draw_sprite;
+
+typedef struct s_calc_sprite
+{
+	t_player		*p;
+	t_position		sprite_pos;
+	t_position		dsprite;
+	float			dist;
+	t_position		dir;
+	float			dot;
+	float			s_angle;
+	float			p_angle;
+	float			diff_angle;
+	t_position		udsprite;
+	float			toast_p;
+	t_img			*s;
+	t_draw_sprite	send;
+	int				i;
+}	t_calc_sprite;
+
+typedef struct s_draw_sprite_thread
+{
+	t_cub			*cub;
+	int				id_thread;
+	int				nb_thread;
+	t_img			*src;
+	t_draw_sprite	value;
+	float			px;
+	float			py;
+	float			y;
+	float			x;
+	unsigned int	color;
+	int				xx;
+	int				yy;
+	int				i;
+	int				j;
+}	t_draw_sprite_thread;
 
 typedef struct s_cub
 {
