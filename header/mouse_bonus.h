@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:20:12 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/22 18:50:32 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/02 13:16:38 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int		move_mouse(int x, int y, t_cub *cub);
 # elif __linux__
 
 void	move_mouse(t_cub *cub);
+int		enter_mouse_windows(t_cub *cub);
+int		leave_mouse_windows(t_cub *cub);
 # endif
 
 #endif
