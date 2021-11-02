@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 23:43:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/30 21:20:46 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/02 00:22:31 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,15 @@ static void	next(t_position *pos, const t_position *direction)
 
 t_position	ray_cast(const t_position *p, const float angle, const t_map *map)
 {
-	t_position	dir;
-	t_position	ray_pos;
-	char		c;
-	int			i;
+	const t_position	dir = {cosf(angle), sinf(angle)};
+	t_position			ray_pos;
+	char				c;
+	int					i;
 
-	dir.x = cosf(angle);
-	dir.y = sinf(angle);
 	ray_pos = *p;
 	c = get_map_char(map, &ray_pos, p);
 	i = 0;
-	while (++i < 1000 && ft_isset_tab(c, "0LPOFHI|A!`@$"))
+	while (i++ < 100 && ft_isset_tab(c, "0!`@$"))
 	{
 		next(&ray_pos, &dir);
 		c = get_map_char(map, &ray_pos, p);

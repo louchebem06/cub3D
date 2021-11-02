@@ -3,71 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   generate_img_intro_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:22:48 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/31 12:48:03 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/02 02:24:50 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
 #include "../../header/cub_bonus.h"
 
-static char	*add_zero(int i)
-{
-	char	*tmp[2];
-
-	tmp[0] = ft_calloc(sizeof(char), 2);
-	tmp[0][0] = '0';
-	while (--i > 0)
-	{
-		tmp[1] = ft_strdup(tmp[0]);
-		free(tmp[0]);
-		tmp[0] = ft_strjoin(tmp[1], "0");
-		free(tmp[1]);
-	}
-	return (tmp[0]);
-}
-
-static char	*file_name(int i)
-{
-	const char	ch_intro[] = "texture/intro29s/intro";
-	char		*file;
-	char		*tmp[3];
-	char		*nb[2];
-	int			nb_zero;
-
-	nb[0] = ft_itoa(i);
-	nb[1] = ft_itoa(IMG_INTRO);
-	if (ft_strlen(nb[0]) != ft_strlen(nb[1]))
-	{
-		nb_zero = ft_strlen(nb[1]) - ft_strlen(nb[0]);
-		tmp[2] = add_zero(nb_zero);
-		tmp[1] = ft_strjoin(ch_intro, tmp[2]);
-		tmp[0] = ft_strjoin(tmp[1], nb[0]);
-		free(tmp[1]);
-		free(tmp[2]);
-	}
-	else
-		tmp[0] = ft_strjoin(ch_intro, nb[0]);
-	file = ft_strjoin(tmp[0], ".xpm");
-	free(nb[0]);
-	free(tmp[0]);
-	free(nb[1]);
-	return (file);
-}
-
 static void	create_img_intro(t_cub *cub, int start, int end)
 {
-	char		*file;
+	char		file[30];
 	int			i;
 
 	i = start;
 	while (++i < end)
 	{
-		file = file_name(i);
+		ft_bzero(file, 30);
+		ft_strlcat(file, "texture/intro29s/intro", 30);
+		file[22] = (i / 100) % 10 + '0';
+		file[23] = (i / 10) % 10 + '0';
+		file[24] = i % 10 + '0';
+		ft_strlcat(file, ".xpm", 30);
 		generate_i(cub, &cub->intro[i], file);
-		free(file);
 	}
 }
 
