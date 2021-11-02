@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/23 01:48:20 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/02 19:18:24 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,13 @@ void	shooter(t_cub *cub)
 		mlx_put_img_to_img(&cub->screen, s,
 			WW / 2 - (s->width - 47) / 2, WH - s->height);
 	else if (move && ismove(cub))
-		mlx_put_img_to_img(&cub->screen, s, WW / 1.55, WH - s->height + 47);
+		mlx_put_img_to_img(&cub->screen, s,
+			WW - s->height - (s->height / 2) - 20, WH - s->height + 47);
 	else if (move)
-		mlx_put_img_to_img(&cub->screen, s, WW / 1.5, WH - s->height + 57);
+		mlx_put_img_to_img(&cub->screen, s,
+			WW - s->height - (s->height / 2), WH - s->height + 57);
 	else
-		mlx_put_img_to_img(&cub->screen, s, WW / 1.5, WH - s->height + 47);
+		mlx_put_img_to_img(&cub->screen, s,
+			WW - s->height - (s->height / 2), WH - s->height + 47);
 	toggle_mouse(cub, 1, false);
 }
