@@ -1,2 +1,1 @@
-- Faut Fix le multithreading dans VM linux
 - IDEE NDUVELLE TIMER A DECU DE ARBRE
