@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 04:35:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/02 19:18:24 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/03 14:39:14 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,15 +107,14 @@ void	shooter(t_cub *cub)
 {
 	const int		img = toggle_mouse(0, 0, 0);
 	const t_img		*s = get_shooter(cub, img);
-	static long int	first = 0;
-	const long int	cmp = ft_get_current_time();
+	static long int	f = 0;
+	const long int	c = ft_get_current_time();
 	static bool		move = false;
 
 	print_pointer(cub, create_trgb(0, 89, 150, 189));
-	if (first == 0 || (ismove(cub) && cmp - first >= 200)
-		|| (!ismove(cub) && cmp - first >= 500))
+	if (!f || (ismove(cub) && c - f >= 200) || (!ismove(cub) && c - f >= 500))
 	{
-		first = ft_get_current_time();
+		f = ft_get_current_time();
 		move = !move;
 	}
 	if (!cub->keys.r && (img == 3 || img == 1))
