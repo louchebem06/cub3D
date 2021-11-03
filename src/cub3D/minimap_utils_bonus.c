@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 03:25:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/03 16:56:08 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/03 17:02:14 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ static float	ft_inertia(float player_angle)
 			step2 = false;
 	}
 	angle = player_angle;
-	printf("%f\n", inertia);
 	return (inertia);
 }
 
