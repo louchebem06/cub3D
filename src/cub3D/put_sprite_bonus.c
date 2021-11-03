@@ -6,12 +6,14 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:31:34 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/03 15:33:52 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/03 17:40:50 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/sprite_bonus.h"
 #include <pthread.h>
+
+#define THREAD_SPRITE 4
 
 static void	fill(t_draw_sprite_thread *thread)
 {
@@ -54,7 +56,7 @@ static void	*put_sprite_multithread(void *curr_thread)
 	const int					pixel = thread->src->width / thread->nb_thread;
 
 	thread->x = pixel * thread->id_thread;
-	while (++thread->x < pixel * thread->id_thread + pixel)
+	while (++thread->x <= pixel * thread->id_thread + pixel)
 	{
 		thread->y = -1;
 		while (++thread->y < thread->src->height)
@@ -62,7 +64,10 @@ static void	*put_sprite_multithread(void *curr_thread)
 			thread->py += (thread->value.scale / thread->src->height);
 			thread->color = \
 				mlx_get_pixel_img(thread->src, thread->x, thread->y);
-			thread->xx = calc_xx(thread);
+			if (thread->color == 0)
+				continue ;
+			thread->xx = calc_xx(thread)
+				+ (pixel * thread->id_thread) * thread->value.scale;
 			thread->yy = calc_yy(thread);
 			thread->i = -1;
 			fill(thread);
@@ -72,8 +77,6 @@ static void	*put_sprite_multithread(void *curr_thread)
 	}
 	pthread_exit(0);
 }
-
-#define THREAD_SPRITE 1
 
 void	put_sprite(t_cub *cub, t_img *src, t_draw_sprite value)
 {
