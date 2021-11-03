@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:19:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/02 13:13:40 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/03 11:23:43 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,19 @@ int	mouse_unclick(int button, t_cub *cub)
 
 int	move_mouse(int x, int y, t_cub *cub)
 {
-	if (!cub->no_intro || y <= 10)
-		return (0);
-	if (x <= 0 || y <= 0 || y >= WINDOWS_HEIGHT || x >= WINDOWS_WIDTH)
+	const float	move = (fmaxf((float)(x), (float)(WW / 2))
+		- fminf((float)(x), (float)(WW / 2))) / 500.0f;
+
+	if (!cub->no_intro || y < 200
+		|| x <= 0 || y >= WINDOWS_HEIGHT || x >= WINDOWS_WIDTH)
 	{
 		mlx_mouse_show();
 		return (0);
 	}
 	if (x < WINDOWS_WIDTH / 2)
-		cub->player.angle -= M_PI / 30;
+		cub->player.angle -= move;
 	else if (x > WINDOWS_WIDTH / 2)
-		cub->player.angle += M_PI / 30;
+		cub->player.angle += move;
 	mlx_mouse_move(cub->win.win, WINDOWS_WIDTH / 2, WINDOWS_HEIGHT / 2);
 	mlx_mouse_hide();
 	return (0);
