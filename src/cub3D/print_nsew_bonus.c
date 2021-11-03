@@ -1,77 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_utils_bonus.c                              :+:      :+:    :+:   */
+/*   print_nsew_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 03:25:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/03 17:02:14 by bledda           ###   ########.fr       */
+/*   Created: 2021/11/03 17:07:05 by bledda            #+#    #+#             */
+/*   Updated: 2021/11/03 17:16:48 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minimap_bonus.h"
 
-/*
-	START RGB BORDER
-*/
-
-static void	update_color(t_rgb *color)
+static void	ft_step1(float *inertia, bool *move, bool *step1, bool *step2)
 {
-	static bool	inter = false;
-
-	inter = !inter;
-	if (inter)
-		return ;
-	if (color->r == 255 && color->g < 255 && color->b == 0)
-		color->g++;
-	else if (color->r > 0 && color->g == 255 && color->b == 0)
-		color->r--;
-	else if (color->g == 255 && color->b < 255 && color->r == 0)
-		color->b++;
-	else if (color->g > 0 && color->b == 255 && color->r == 0)
-		color->g--;
-	else if (color->b == 255 && color->r < 255 && color->g == 0)
-		color->r++;
-	else if (color->b > 0 && color->r == 255 && color->g == 0)
-		color->b--;
-}
-
-void	print_border(t_cub *cub, t_position screen)
-{
-	t_position		map;
-	float			tmp;
-	static t_rgb	color = {255, 0, 0};
-	const int		size = 5;
-
-	map.x = screen.x - size - 1;
-	while (++map.x < 200 + (size * 2) + screen.x - size)
+	if (!*move && *inertia < 0.5f)
+		*inertia += 0.1f;
+	else if (*move && *inertia > -0.5f)
+		*inertia -= 0.1f;
+	else
 	{
-		map.y = screen.y - size - 1;
-		while (++map.y < 200 + (size * 2) + screen.y - size)
-		{
-			tmp = hypotf(map.x - (100 + screen.x), map.y - (100 + screen.y));
-			if (tmp >= 100 && tmp < 100 + size)
-			{
-				mlx_put_pixel_to_img(&cub->screen, map.x, map.y,
-					create_trgb(0, color.r, color.g, color.b));
-				update_color(&color);
-			}
-		}
+		*step1 = false;
+		*step2 = true;
 	}
 }
-/* END RGB PART */
 
-/*
-	START LETTER MINIMAP
-*/
-
-static inline t_position	direction(t_position ray,
-										t_position pos, float value)
+static void	ft_step2(float *inertia, bool *step2)
 {
-	return ((t_position){
-		pos.x * cosf(value) + pos.y * sinf(value) + ray.x,
-		-pos.x * sinf(value) + pos.y * cosf(value) + ray.y});
+	if (*inertia > 0.09f)
+		*inertia -= 0.1f;
+	else if (*inertia < -0.09f)
+		*inertia += 0.1f;
+	else
+		*step2 = false;
 }
 
 static float	ft_inertia(float player_angle)
@@ -87,34 +48,22 @@ static float	ft_inertia(float player_angle)
 	if (!step1 && !step2 && angle != player_angle)
 	{
 		step1 = true;
-		if (angle > player_angle)
-			move = true;
-		else
-			move = false;
+		move = (angle > player_angle);
 	}
 	else if (angle == player_angle && step1 && !step2)
-	{
-		if (!move && inertia < 0.5f)
-			inertia += 0.1f;
-		else if (move && inertia > -0.5f)
-			inertia -= 0.1f;
-		if (inertia > 0.49f || inertia < -0.49f)
-		{
-			step1 = false;
-			step2 = true;
-		}
-	}
+		ft_step1(&inertia, &move, &step1, &step2);
 	else if (angle == player_angle && !step1 && step2)
-	{
-		if (inertia > 0.09f)
-			inertia -= 0.1f;
-		else if (inertia < -0.09f)
-			inertia += 0.1f;
-		else
-			step2 = false;
-	}
+		ft_step2(&inertia, &step2);
 	angle = player_angle;
 	return (inertia);
+}
+
+static inline t_position	direction(t_position ray,
+										t_position pos, float value)
+{
+	return ((t_position){
+		pos.x * cosf(value) + pos.y * sinf(value) + ray.x,
+		-pos.x * sinf(value) + pos.y * cosf(value) + ray.y});
 }
 
 void	print_nsew(t_cub *cub, int const x, int const y)
@@ -143,4 +92,3 @@ void	print_nsew(t_cub *cub, int const x, int const y)
 	mlx_string_put(cub->win.mlx, cub->win.win, dir[6].x, dir[6].y, color, "SW");
 	mlx_string_put(cub->win.mlx, cub->win.win, dir[7].x, dir[7].y, color, "NW");
 }
-/* END LETTER MINIMAP */
