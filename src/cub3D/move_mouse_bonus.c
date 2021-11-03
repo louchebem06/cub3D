@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 03:19:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/03 11:23:43 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/03 17:00:10 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,21 @@ int	move_mouse(int x, int y, t_cub *cub)
 
 void	move_mouse(t_cub *cub)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	float	move;
 
 	if (!cub->mouse_in_windows)
 		return ;
 	mlx_mouse_get_pos(cub->win.mlx, cub->win.win, &x, &y);
+	move = (fmaxf((float)(x), (float)(WW / 2))
+			- fminf((float)(x), (float)(WW / 2))) / 500.0f;
 	if (!cub->no_intro || y < 0)
 		return ;
 	if (x < WINDOWS_WIDTH / 2)
-		cub->player.angle -= M_PI / 25;
+		cub->player.angle -= move;
 	else if (x > WINDOWS_WIDTH / 2)
-		cub->player.angle += M_PI / 25;
+		cub->player.angle += move;
 	mlx_mouse_move(cub->win.mlx, cub->win.win,
 		WINDOWS_WIDTH / 2, WINDOWS_HEIGHT / 2);
 	mlx_mouse_hide(cub->win.mlx, cub->win.win);

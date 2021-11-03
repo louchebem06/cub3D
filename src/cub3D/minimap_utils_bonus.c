@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 03:25:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 04:05:01 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/03 16:56:08 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,24 +66,56 @@ void	print_border(t_cub *cub, t_position screen)
 	START LETTER MINIMAP
 */
 
-static t_position	direction(t_position ray, t_position pos, float value)
+static inline t_position	direction(t_position ray,
+										t_position pos, float value)
 {
-	const t_position	direction = {
+	return ((t_position){
 		pos.x * cosf(value) + pos.y * sinf(value) + ray.x,
-		-pos.x * sinf(value) + pos.y * cosf(value) + ray.y
-	};
-
-	return (direction);
+		-pos.x * sinf(value) + pos.y * cosf(value) + ray.y});
 }
 
 static float	ft_inertia(float player_angle)
 {
 	static float	angle = -1;
-	static double	inertia = 0;
+	static float	inertia = 0;
+	static bool		move = false;
+	static bool		step1 = false;
+	static bool		step2 = false;
 
 	if (angle == -1)
 		angle = player_angle;
-	return ((float)inertia);
+	if (!step1 && !step2 && angle != player_angle)
+	{
+		step1 = true;
+		if (angle > player_angle)
+			move = true;
+		else
+			move = false;
+	}
+	else if (angle == player_angle && step1 && !step2)
+	{
+		if (!move && inertia < 0.5f)
+			inertia += 0.1f;
+		else if (move && inertia > -0.5f)
+			inertia -= 0.1f;
+		if (inertia > 0.49f || inertia < -0.49f)
+		{
+			step1 = false;
+			step2 = true;
+		}
+	}
+	else if (angle == player_angle && !step1 && step2)
+	{
+		if (inertia > 0.09f)
+			inertia -= 0.1f;
+		else if (inertia < -0.09f)
+			inertia += 0.1f;
+		else
+			step2 = false;
+	}
+	angle = player_angle;
+	printf("%f\n", inertia);
+	return (inertia);
 }
 
 void	print_nsew(t_cub *cub, int const x, int const y)
