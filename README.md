@@ -1,7 +1,7 @@
 
 # cub3D
 
-## Le points de minishell
+## Le points de cub3D
 
 > Ce projet est inspiré du célèbre jeu Wolfenstein 3D, qui était le tout premier FPS. Il vous permettra d'explorer le ray-casting. Votre objectif sera de faire une vue dynamique à l'intérieur d'un labyrinthe, dans lequel vous devrez trouver votre chemin.
 >
