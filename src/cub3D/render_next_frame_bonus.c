@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_next_frame_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/05 12:47:49 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/05 14:27:48 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	render_next_frame(t_cub *cub)
 		cub->last_f = ft_get_current_time();
 		move(cub);
 		draw(cub);
+		state_door(cub);
 		sprite(cub);
 		move_mouse(cub);
 		shooter(cub);
@@ -115,6 +116,7 @@ int	render_next_frame(t_cub *cub)
 		cub->last_f = ft_get_current_time();
 		move(cub);
 		draw(cub);
+		state_door(cub);
 		sprite(cub);
 		shooter(cub);
 		minimap(cub, g_minimap_x, g_minimap_y);

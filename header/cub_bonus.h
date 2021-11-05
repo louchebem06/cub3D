@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/05 14:16:46 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/05 15:52:39 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,11 @@ t_img		*get_fc_texture(t_cub *cub, const t_position *ray_pos, bool floor);
 float		img_x_percent(const t_cub *cub, const t_position *ray_pos);
 float		ceiling_x_percent(const t_cub *cub, int x);
 char		get_map_char2(const t_cub *cub, const t_position *ray,
-		const t_position *p);
+				const t_position *p);
+void		state_door(t_cub *cub);
+int			calc_x_y(float a, float b);
+void		next(t_position *pos, const t_position *direction);
+void		next_d(t_position *pos, const t_position *dir, float percent);
+void		next_d2(t_position *pos, const t_position *dir, float percent);
 
 #endif

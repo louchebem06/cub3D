@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_config_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 21:05:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/05 14:20:44 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/05 14:24:45 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,5 @@ or the file could not be opened\n", RED);
 	get_data_sprite(cub);
 	get_data_door(cub);
 	replace_ground(cub);
-	for (int i =0; cub->config.map[i]; i++)
-		printf("%s\n", cub->config.map[i]);
 	return (1);
 }
