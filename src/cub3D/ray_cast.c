@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 23:43:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/16 04:18:52 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/05 12:14:10 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	next(t_position *pos, const t_position *direction)
 	}
 }
 
-t_position	ray_cast(const t_position *p, const float angle, const t_map *map)
+t_position	ray_cast(const t_position *p, const float angle, const t_cub *cub)
 {
 	t_position	dir;
 	t_position	ray_pos;
@@ -54,7 +54,7 @@ t_position	ray_cast(const t_position *p, const float angle, const t_map *map)
 	dir.x = cosf(angle);
 	dir.y = sinf(angle);
 	ray_pos = *p;
-	while (is_in_air(map, &ray_pos, p))
+	while (is_in_air(&cub->map, &ray_pos, p))
 		next(&ray_pos, &dir);
 	return (ray_pos);
 }

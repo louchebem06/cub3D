@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_next_frame_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:26:08 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/01 09:46:33 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/05 12:47:49 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	update_pos(t_cub *cub, float angle, float dist)
 	const float	sin = sinf(cub->player.angle + angle);
 	t_position	ray;
 
-	ray = ray_cast(&cub->player.pos, cub->player.angle + angle, &cub->map);
+	ray = ray_cast(&cub->player.pos, cub->player.angle + angle, cub);
 	if (hypotf(cub->player.pos.x - ray.x, cub->player.pos.y - ray.y) > dist)
 	{
 		cub->player.pos.x += cos * dist;

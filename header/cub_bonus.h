@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/05 11:47:06 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/05 14:16:46 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,11 +140,10 @@ typedef struct s_draw_sprite_thread
 
 typedef struct s_door
 {
-	t_img		*img;
 	t_position	pos;
 	float		percent_closed;
 	bool		closed;
-	bool		dir;
+	char		c;
 }	t_door;
 
 typedef struct s_cub
@@ -179,5 +178,7 @@ t_img		*get_wall_texture(t_cub *cub, const t_position *ray_pos);
 t_img		*get_fc_texture(t_cub *cub, const t_position *ray_pos, bool floor);
 float		img_x_percent(const t_cub *cub, const t_position *ray_pos);
 float		ceiling_x_percent(const t_cub *cub, int x);
+char		get_map_char2(const t_cub *cub, const t_position *ray,
+		const t_position *p);
 
 #endif

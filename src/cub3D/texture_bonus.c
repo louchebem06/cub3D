@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 16:47:02 by mmehran           #+#    #+#             */
-/*   Updated: 2021/11/01 23:13:01 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/05 12:35:05 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_img	*get_wall_direction(t_cub *cub, const t_position *ray_pos)
 
 t_img	*get_wall_texture(t_cub *cub, const t_position *ray_pos)
 {
-	const char	c = get_map_char(&cub->map, ray_pos, &cub->player.pos);
+	const char	c = get_map_char2(cub, ray_pos, &cub->player.pos);
 
 	if (c == '2')
 		return (&cub->texture.two);
@@ -56,6 +56,8 @@ t_img	*get_wall_texture(t_cub *cub, const t_position *ray_pos)
 		return (&cub->texture.beton);
 	if (c == '1')
 		return (get_wall_direction(cub, ray_pos));
+	if (c == 'p' || c == 'P')
+		return (&cub->sprite.door);
 	return (NULL);
 }
 

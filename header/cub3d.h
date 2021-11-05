@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:15:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/26 20:01:39 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/05 12:16:25 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 void		cub3d(t_cub *cub);
 bool		is_in_air(const t_map *map, const t_position *ray,
 				const t_position *p);
-t_position	ray_cast(const t_position *p, const float angle, const t_map *map);
+t_position	ray_cast(const t_position *p, const float angle, const t_cub *cub);
 t_position	scale_pos(t_position *pos, float scale_x, float scale_y);
 void		draw(t_cub *cub);
 void		generate_img(t_cub *c);

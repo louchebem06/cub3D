@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/11/02 20:32:35 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/05 12:16:14 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void	*draw_multithread(void *curr_thread)
 		thread->angle = atan2f(
 				(float) x / thread->cub->screen.width - 0.5, 0.6);
 		thread->ray = ray_cast(&thread->cub->player.pos,
-				thread->cub->player.angle + thread->angle, &thread->cub->map);
+				thread->cub->player.angle + thread->angle, thread->cub);
 		thread->cray = thread->ray;
 		thread->cray.x -= thread->cub->player.pos.x;
 		thread->cray.y -= thread->cub->player.pos.y;

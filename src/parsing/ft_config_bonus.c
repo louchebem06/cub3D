@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_config_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 21:05:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/05 12:03:39 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/05 14:20:44 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,11 @@ static void	get_data_door(t_cub *cub)
 		{
 			if (ft_isset_tab(cub->config.map[y][x], (char *)ls_sprite))
 			{
-				cub->doors[i].dir = false;
-				if (cub->config.map[y][x] == 'P')
-					cub->doors[i].dir = true;
+				cub->doors[i].c = cub->config.map[y][x];
 				cub->doors[i].percent_closed = 1.0f;
 				cub->doors[i].closed = true;
 				cub->doors[i].pos = (t_position){x, y};
-				cub->doors[i++].img = &cub->sprite.door;
+				i++;
 			}
 		}
 	}

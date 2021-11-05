@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 00:23:37 by mmehran           #+#    #+#             */
-/*   Updated: 2021/10/12 19:57:46 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/05 12:15:55 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	draw(t_cub *cub)
 	while (++x < cub->screen.width)
 	{
 		angle = atan2f((float) x / cub->screen.width - 0.5, 0.6);
-		ray = ray_cast(&cub->player.pos, cub->player.angle + angle, &cub->map);
+		ray = ray_cast(&cub->player.pos, cub->player.angle + angle, cub);
 		cray = ray;
 		cray.x -= cub->player.pos.x;
 		cray.y -= cub->player.pos.y;
