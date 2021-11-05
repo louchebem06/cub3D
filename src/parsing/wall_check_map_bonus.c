@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 02:30:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/30 17:20:10 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/05 11:58:51 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ static int	check_player_ground(t_direction_parsing_wall d, char **map,
 {
 	if (d.up >= 0 && d.up < d.y_map)
 		if (!ft_isset_tab(map[d.up][x], "123456789]")
-			&& !ft_isset_tab(map[d.up][x], "0NSWELPOFHI|A!`@$"))
+			&& !ft_isset_tab(map[d.up][x], "0NSWELpPOFHI|A!`@$"))
 			return (0);
 	if (d.down >= 0 && d.down < d.y_map)
 		if (!ft_isset_tab(map[d.down][x], "123456789]")
-			&& !ft_isset_tab(map[d.down][x], "0NSWELPOFHI|A!`@$"))
+			&& !ft_isset_tab(map[d.down][x], "0NSWELpPOFHI|A!`@$"))
 			return (0);
 	if (d.left >= 0 && d.left < d.x_map)
 		if (!ft_isset_tab(map[y][d.left], "123456789]")
-			&& !ft_isset_tab(map[y][d.left], "0NSWELPOFHI|A!`@$"))
+			&& !ft_isset_tab(map[y][d.left], "0NSWELpPOFHI|A!`@$"))
 			return (0);
 	if (d.right >= 0 && d.right < d.x_map)
 		if (!ft_isset_tab(map[y][d.right], "123456789]")
-			&& !ft_isset_tab(map[y][d.right], "0NSWELPOFHI|A!`@$"))
+			&& !ft_isset_tab(map[y][d.right], "0NSWELpPOFHI|A!`@$"))
 			return (0);
 	if ((d.up < 0 || d.up >= d.y_map)
 		|| (d.down < 0 || d.down >= d.y_map)
@@ -49,7 +49,7 @@ static int	check_direction_player_ground(char **map, int x, int y, t_cub *cub)
 	d.down = y + 1;
 	d.left = x - 1;
 	d.right = x + 1;
-	if (ft_isset_tab(map[y][x], "0NSWELPOFHI|A!`@$"))
+	if (ft_isset_tab(map[y][x], "0NSWELpPOFHI|A!`@$"))
 		if (!check_player_ground(d, map, x, y))
 			return (0);
 	return (1);

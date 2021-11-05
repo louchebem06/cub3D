@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:45:43 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/01 10:04:08 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/05 12:05:04 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	print_map_content(t_cub *cub, char c, t_position screen,
 {
 	if (ft_isset_tab(c, "123456789]"))
 		print_map(cub, screen, map, create_trgb(0, 255, 0, 0));
-	else if (ft_isset_tab(c, "PLA"))
+	else if (ft_isset_tab(c, "PpLA"))
 		print_map(cub, screen, map, create_trgb(0, 0, 0, 255));
 	else if (ft_isset_tab(c, "HFI|O"))
 		print_map(cub, screen, map, create_trgb(0, 0, 255, 255));

@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 00:53:49 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/30 19:11:20 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/05 12:02:17 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	replace_ground(t_cub *cub)
 	{
 		x = -1;
 		while (++x < cub->config.map_x)
-			if (ft_isset_tab(cub->config.map[y][x], "NSEWLPOFHI|A"))
+			if (ft_isset_tab(cub->config.map[y][x], "NSEWLpPOFHI|A"))
 				find_texture(cub, cub->config.map, x, y);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 18:06:44 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/30 19:12:30 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/05 12:02:45 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	find_the_closest_texture(t_config *config,
 		{
 			return (map[(int)w.y][(int)w.x]);
 		}
-		if (ft_isset_tab(map[(int)w.y][(int)w.x], "NSEWLPOFHI|A"))
+		if (ft_isset_tab(map[(int)w.y][(int)w.x], "NSEWLpPOFHI|A"))
 		{
 			map[(int)w.y][(int)w.x] = '?';
 			push_queue(q[0], w);

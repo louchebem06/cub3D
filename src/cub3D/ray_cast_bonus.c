@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 23:43:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/11/05 05:39:56 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/05 12:06:39 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ char	get_map_char2(const t_map *map, const t_position *ray,
 		y = floorf(ray->y);
 	if (x >= map->width || x < 0 || y >= map->height || y < 0)
 		return ('1');
-	if (x == 4 && y == 4)
-		return ('P');
+	// if (x == 4 && y == 4)
+	// 	return ('P');
 	return (map->map[y][x]);
 }
 
@@ -110,11 +110,11 @@ t_position	ray_cast(const t_position *p, const float angle, const t_map *map)
 	{
 		next(&ray_pos, &dir);
 		c = get_map_char2(map, &ray_pos, p);
-		if (c == 'P')
-		{
-			next_d(&ray_pos, &dir);
-			c = get_map_char2(map, &ray_pos, p);
-		}
+		// if (c == 'P')
+		// {
+		// 	next_d(&ray_pos, &dir);
+		// 	c = get_map_char2(map, &ray_pos, p);
+		// }
 	}
 	return (ray_pos);
 }

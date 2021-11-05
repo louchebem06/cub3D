@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 21:05:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/02 03:48:10 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/05 12:03:39 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static void	add_value_sprite(t_cub *cub, t_item_sprite *config, char c)
 	i = -1;
 	if (c == 'L')
 		config->s = &cub->sprite.lit;
-	else if (c == 'P')
-		config->s = &cub->sprite.door;
 	else if (c == 'O')
 		config->s = &cub->sprite.circle;
 	else if (c == 'F')
@@ -64,7 +62,7 @@ static void	add_value_sprite(t_cub *cub, t_item_sprite *config, char c)
 
 static void	get_data_sprite(t_cub *cub)
 {
-	const char	ls_sprite[] = "LPOFHI|A";
+	const char	ls_sprite[] = "LOFHI|A";
 	const int	size = get_nb_sprite(cub, ls_sprite);
 	int			y;
 	int			x;
@@ -89,6 +87,37 @@ static void	get_data_sprite(t_cub *cub)
 	}
 }
 
+static void	get_data_door(t_cub *cub)
+{
+	const char	ls_sprite[] = "Pp";
+	const int	size = get_nb_sprite(cub, ls_sprite);
+	int			y;
+	int			x;
+	int			i;
+
+	cub->doors = ft_calloc(size, sizeof(t_door));
+	cub->nb_doors = size;
+	i = 0;
+	y = -1;
+	while (++y < cub->config.map_y)
+	{
+		x = -1;
+		while (++x < cub->config.map_x)
+		{
+			if (ft_isset_tab(cub->config.map[y][x], (char *)ls_sprite))
+			{
+				cub->doors[i].dir = false;
+				if (cub->config.map[y][x] == 'P')
+					cub->doors[i].dir = true;
+				cub->doors[i].percent_closed = 1.0f;
+				cub->doors[i].closed = true;
+				cub->doors[i].pos = (t_position){x, y};
+				cub->doors[i++].img = &cub->sprite.door;
+			}
+		}
+	}
+}
+
 int	ft_config(t_cub *cub, const char *file)
 {
 	int		fd;
@@ -106,6 +135,9 @@ or the file could not be opened\n", RED);
 	if (!get_values(&data_file, cub) || !map_is_valid(cub))
 		return (0);
 	get_data_sprite(cub);
+	get_data_door(cub);
 	replace_ground(cub);
+	for (int i =0; cub->config.map[i]; i++)
+		printf("%s\n", cub->config.map[i]);
 	return (1);
 }

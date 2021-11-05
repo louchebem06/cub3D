@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 02:12:14 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/15 02:19:12 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/05 11:57:51 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	error_msg_forbiden_char_map(int c)
 
 static int	forbidden(char const c)
 {
-	const char	set[] = "NESW01 LPOFHI|A23456789]!`@$";
+	const char	set[] = "NESW01 LPpOFHI|A23456789]!`@$";
 	int			isset;
 	int			i;
 

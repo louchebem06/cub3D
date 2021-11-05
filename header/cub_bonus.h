@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/05 11:14:48 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/05 11:47:06 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ typedef struct s_cub
 	t_shooter			shooter;
 	t_sprite			sprite;
 	t_door				*doors;
+	int					nb_doors;
 	t_img				intro[IMG_INTRO];
 	float				z[1280];
 	bool				no_intro;
