@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:56:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/05 15:52:39 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/05 16:11:34 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_sound
 	t_music	recharge;
 	t_music	tir;
 	t_music	sun;
+	t_music	door;
 }			t_sound;
 
 typedef struct s_shooter
