@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 23:43:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/11/05 16:04:16 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/06 04:53:37 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,20 @@ static char	next_door(const t_cub *cub, t_position *ray,
 	char				c;
 
 	c = get_map_char2(cub, ray, p);
-	x = calc_x_y(p->x, ray->x);
-	y = calc_x_y(p->y, ray->y);
-	j = -1;
-	while (++j < cub->nb_doors)
-		if (cub->doors[j].pos.x == x && cub->doors[j].pos.y == y)
-			break ;
-	if (c == 'p')
-		next_d(ray, dir, cub->doors[j].percent_closed);
-	else if (c == 'P')
-		next_d2(ray, dir, cub->doors[j].percent_closed);
-	c = get_map_char2(cub, ray, p);
+	if (c == 'p' || c == 'P')
+	{
+		x = calc_x_y(p->x, ray->x);
+		y = calc_x_y(p->y, ray->y);
+		j = -1;
+		while (++j < cub->nb_doors)
+			if (cub->doors[j].pos.x == x && cub->doors[j].pos.y == y)
+				break ;
+		if (c == 'p')
+			next_d(ray, dir, cub->doors[j].percent_closed);
+		else if (c == 'P')
+			next_d2(ray, dir, cub->doors[j].percent_closed);
+		c = get_map_char2(cub, ray, p);
+	}
 	return (c);
 }
 
