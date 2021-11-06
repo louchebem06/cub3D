@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 14:28:02 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/06 04:53:30 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/06 04:59:19 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static inline float	distance(const t_position *a, const t_position *b)
 
 void	state_door(t_cub *cub)
 {
-	float	dist;
 	int		i;
 	bool	last_state;
 
@@ -28,18 +27,17 @@ void	state_door(t_cub *cub)
 	while (++i < cub->nb_doors)
 	{
 		last_state = cub->doors[i].closed;
-		dist = distance(&cub->player.pos, &cub->doors[i].pos);
-		if (dist >= 2.0f)
+		if (distance(&cub->player.pos, &cub->doors[i].pos) > 2)
 		{
-			if (cub->doors[i].percent_closed < 1.0f)
-				cub->doors[i].percent_closed += 0.01f;
+			if (cub->doors[i].percent_closed < 1)
+				cub->doors[i].percent_closed += 0.01;
 			else
 				cub->doors[i].closed = true;
 		}
 		else
 		{
-			if (cub->doors[i].percent_closed > 0.0f)
-				cub->doors[i].percent_closed -= 0.01f;
+			if (cub->doors[i].percent_closed > 0)
+				cub->doors[i].percent_closed -= 0.01;
 			else
 				cub->doors[i].closed = false;
 		}
