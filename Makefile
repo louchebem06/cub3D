@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 18:12:54 by bledda            #+#    #+#              #
-#    Updated: 2021/11/05 15:53:08 by bledda           ###   ########.fr        #
+#    Updated: 2021/11/09 20:13:21 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ SRCS_PARSING_FILES_COMMUN	= ft_extension.c \
 								remove_space_map.c \
 								normalize_map.c \
 								add_space.c \
-								size_map.c
+								size_map.c \
+								check_folder.c
 
 SRCS_UTILS_FILES_COMMUN		= add_value.c \
 								ft_strisdigit.c \

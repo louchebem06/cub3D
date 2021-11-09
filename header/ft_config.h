@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 04:46:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/16 02:27:26 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/09 20:15:43 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int		wall_check_map(t_cub *cub);
 int		size_map(char ***map, int c);
 void	add_space(char **line, int space);
 void	normalize_map(char ***map);
+void	check_folder(const char *file);
 
 #endif

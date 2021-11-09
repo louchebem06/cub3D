@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_config.c                                        :+:      :+:    :+:   */
+/*   check_folder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 04:46:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/09 20:11:32 by bledda           ###   ########.fr       */
+/*   Created: 2021/11/09 20:12:04 by bledda            #+#    #+#             */
+/*   Updated: 2021/11/09 20:15:36 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
 
-int	ft_config(t_cub *cub, const char *file)
+void	check_folder(const char *file)
 {
-	int		fd;
-	char	**data_file;
+	int	fd;
 
-	data_file = 0;
-	check_folder(file);
-	fd = open(file, O_RDONLY);
-	if (fd == -1 || !ft_extension(file, ".cub"))
+	fd = open(file, O_DIRECTORY);
+	if (fd != -1)
 	{
+		close(fd);
 		ft_error("Error:\n\t-Your card is not in the correct format \".cub\" \
 or the file could not be opened\n", RED);
-		return (0);
+		exit(1);
 	}
-	get_file(fd, file, &data_file);
-	if (!get_values(&data_file, cub) || !map_is_valid(cub))
-		return (0);
-	return (1);
 }
