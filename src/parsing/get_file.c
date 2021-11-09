@@ -6,21 +6,11 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 05:09:42 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/09 11:50:18 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/09 19:58:34 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_config.h"
-
-static void	fix_folder(int i)
-{
-	if (i == 1)
-	{
-		ft_error("Error:\n\t-Your card is not in the correct format \".cub\" \
-or the file could not be opened\n", RED);
-		exit(1);
-	}
-}
 
 void	get_file(int fd, const char *file, char ***config)
 {
@@ -28,13 +18,13 @@ void	get_file(int fd, const char *file, char ***config)
 	int		i;
 
 	i = 0;
+	line = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
 		i++;
 		free(line);
 	}
 	i++;
-	fix_folder(i);
 	free(line);
 	close (fd);
 	fd = open(file, O_RDONLY);
