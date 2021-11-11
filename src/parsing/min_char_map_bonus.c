@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   min_char_map_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 02:23:34 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/15 02:27:40 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/11 13:54:25 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	min_char_map(char **m)
 		}
 	}
 	if (!player)
-		ft_error("Error:\n\t -Player position is not found in map\n", RED);
+		ft_error("Error:\n\t-Player position not found\n", RED);
 	if (!wall)
-		ft_error("Error:\n\t -Wall is not found in map\n", RED);
+		ft_error("Error:\n\t-Wall not found\n", RED);
 	if (!player || !wall)
 		return (1);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:17:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/02 03:48:20 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/11 13:43:15 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, const char **av)
 		cub.no_intro = true;
 	if (!S_ISDIR(stats.st_mode) && !cub.no_intro)
 	{
-		ft_error("Error:\n\t-Intro skip, folder for intro is not found!\n", RED);
+		ft_error("Error:\n\t-Intro folder not found!\n", RED);
 		cub.no_intro = true;
 	}
 	if ((ac == 2 || cub.no_intro) && ft_config(&cub, av[1]))

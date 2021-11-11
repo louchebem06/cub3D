@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:22:48 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/02 02:24:50 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/11/11 13:47:18 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,5 @@ void	generate_img_intro(t_cub *cub)
 	i = -1;
 	while (++i < THREAD_IMG_INTRO)
 		pthread_join(thread[i], NULL);
-	printf("Intro load in : %f\n", (ft_get_current_time() - time) / 1000.0f);
+	printf("Loaded intro in : %f\n", (ft_get_current_time() - time) / 1000.0f);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   empty_line_in_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 20:55:24 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/28 16:48:19 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/11 13:50:23 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	empty_line_in_map(char **map)
 	{
 		if (!ft_strlen(map[i]))
 		{
-			ft_error("Error:\n\t-Line empty in map is detect\n", RED);
+			ft_error("Error:\n\t-Empty line in map\n", RED);
 			return (1);
 		}
 	}

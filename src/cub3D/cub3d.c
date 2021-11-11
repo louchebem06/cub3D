@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 12:37:02 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/31 00:10:40 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/11 13:45:15 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	cub3d(t_cub *cub)
 	if (!cub->win.mlx)
 	{
 		free_cub(cub);
-		ft_error("Error:\n\t-Env var is not found MLX init is bad\n", RED);
+		ft_error("Error:\n\t-Couldn't init MLX\n", RED);
 		exit(1);
 	}
 	cub->win.win = mlx_new_window(cub->win.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forbiden_char_map_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 02:12:14 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/05 11:57:51 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/11 13:50:57 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	error_msg_forbiden_char_map(int c)
 	tab[1] = 0;
 	ft_error("Error:\n\t -'", RED);
 	ft_error(tab, RED);
-	ft_error("' forbiden char in map\n", RED);
+	ft_error("' forbidden char in map\n", RED);
 }
 
 static int	forbidden(char const c)

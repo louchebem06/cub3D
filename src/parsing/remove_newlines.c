@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_newlines.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 19:53:14 by bledda            #+#    #+#             */
-/*   Updated: 2021/10/12 02:21:37 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/11 13:55:49 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	remove_newlines(char ***map)
 	if (start_i == end_i || start_i > end_i)
 	{
 		i = -1;
-		ft_error("Error:\n\t -Map not found\n", RED);
+		ft_error("Error:\n\t-Map not found\n", RED);
 		return (0);
 	}
 	new_map = ft_calloc(sizeof(char *), end_i - start_i + 1);

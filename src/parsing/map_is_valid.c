@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_is_valid.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 06:21:35 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/02 03:47:30 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/11 13:53:38 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static bool	min_ligne(char **map)
 		;
 	if (i < 3)
 	{
-		ft_error("Error:\n\t-Minimun ligne for map is 3\n", RED);
+		ft_error("Error:\n\t-Not enougth lines in map\n", RED);
 		return (false);
 	}
 	return (true);

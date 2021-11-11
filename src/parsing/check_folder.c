@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_folder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 20:12:04 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/09 20:15:36 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/11 13:57:30 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_folder(const char *file)
 	if (fd != -1)
 	{
 		close(fd);
-		ft_error("Error:\n\t-Your card is not in the correct format \".cub\" \
+		ft_error("Error:\n\t-Your card is not in the correct \".cub\" format \
 or the file could not be opened\n", RED);
 		exit(1);
 	}

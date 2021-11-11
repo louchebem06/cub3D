@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_check_map_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 02:30:25 by bledda            #+#    #+#             */
-/*   Updated: 2021/11/05 11:58:51 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/11 13:56:35 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	wall_check_map(t_cub *cub)
 			if (!check_direction_player_ground(cub->config.map, x, y, cub)
 				|| !check_direction_space(cub->config.map, x, y, cub))
 			{
-				ft_error("Error\n\t-Maps not valid\n", RED);
+				ft_error("Error\n\t-Map invalid\n", RED);
 				return (1);
 			}
 		}

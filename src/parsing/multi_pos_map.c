@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multi_pos_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 20:57:03 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/15 05:57:56 by bledda           ###   ########.fr       */
+/*   Updated: 2021/11/11 13:55:23 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	multi_pos_map(char **map)
 		{
 			if (pos > 1)
 			{
-				ft_error("Error:\nMulti player position is detect in map\n", RED);
+				ft_error("Error:\n\t-More than one player\n", RED);
 				return (1);
 			}
 			if (map[y][x] == 'N' || map[y][x] == 'S'
